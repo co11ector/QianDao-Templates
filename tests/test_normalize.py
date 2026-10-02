@@ -255,6 +255,15 @@ def test_local_templates_are_merged_and_survive_the_sync(tmp_path):
     assert json.loads(base64.b64decode(entry["content"]).decode("utf-8"))[0]["request"][
         "url"
     ].endswith("?userHash={{userHash}}")
+    # The app decides whether to re-import with `int(current["version"]) < int(new)`, so
+    # a record whose version is missing or non-numeric raises and aborts the refresh for
+    # every user - this was a real regression when the merge first shipped.
+    assert entry["version"].isdigit()
+    assert entry["date"]
+    assert isinstance(entry["update"], int)
+    assert entry["commenturl"] == entry["url"]
+    # And it must move forward when the template changes, or updates would never land.
+    assert entry["version"] >= "20" + entry["date"][2:4] + entry["date"][5:7] + entry["date"][8:10]
     # No credential may ever travel with a published template: the placeholder is all
     # there is, and the real value lives only in the user's own task. The prose may say
     # "Bearer prefix", so look for a token actually stuck to it.

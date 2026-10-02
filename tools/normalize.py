@@ -27,8 +27,10 @@ resolves exactly like a root-level file did.
 """
 
 import base64
+import datetime
 import json
 import shutil
+import subprocess
 import sys
 from pathlib import Path
 from urllib.parse import quote
@@ -74,6 +76,40 @@ def categorise(name: str, url: str, author: str) -> str:
 def local_root_default() -> Path:
     """The repository's own hand-maintained templates: <repo>/local/<category>/*.har."""
     return Path(__file__).resolve().parent.parent / "local"
+
+
+def local_record_metadata(path: Path, published_url: str) -> dict:
+    """The version/date/update/commenturl fields the application expects on a record.
+
+    version must be an int-comparable date because the app decides whether to re-import
+    with `int(current["version"]) < int(template["version"])`, and a record without it
+    raises and aborts the whole refresh for every user. Git's last commit date for the
+    file keeps the value stable across checkouts - the file mtime does not, and the daily
+    workflow would then emit a new index every run - while still moving forward whenever
+    the template is actually edited. Outside a work tree it falls back to the mtime.
+    """
+    stamp = None
+    try:
+        completed = subprocess.run(
+            ["git", "log", "-1", "--format=%cd", "--date=format:%Y%m%d%H%M%S", "--", str(path)],
+            cwd=str(path.parent),
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        raw = completed.stdout.strip()
+        if completed.returncode == 0 and raw:
+            stamp = datetime.datetime.strptime(raw, "%Y%m%d%H%M%S")
+    except (OSError, ValueError):
+        stamp = None
+    if stamp is None:
+        stamp = datetime.datetime.fromtimestamp(path.stat().st_mtime)
+    return {
+        "version": stamp.strftime("%Y%m%d"),
+        "date": stamp.strftime("%Y-%m-%d %H:%M:%S"),
+        "update": int(stamp.timestamp()),
+        "commenturl": published_url,
+    }
 
 
 def read_local_entries(local_root: Path):
@@ -200,10 +236,11 @@ def normalise(source: Path, target: Path, local_root=None) -> dict:
 
         if name in stored_by_name:
             report["overridden"].append(name)
+        published_url = "%s/%s" % (PUBLISHED_REPOSITORY, quote(relative))
         stored_by_name[name] = {
             "name": name,
             "filename": relative,
-            "url": "%s/%s" % (PUBLISHED_REPOSITORY, quote(relative)),
+            "url": published_url,
             "author": LOCAL_AUTHOR,
             "comments": comment,
             # Upstream records embed the template body and the app uses it when present.
@@ -211,6 +248,7 @@ def normalise(source: Path, target: Path, local_root=None) -> dict:
             # a second fetch of the published file, which is the step that already proved
             # unreliable from the NAS.
             "content": base64.b64encode(path.read_bytes()).decode("ascii"),
+            **local_record_metadata(path, published_url),
         }
         report["local"] += 1
         report["local_templates"].append((name, relative))
