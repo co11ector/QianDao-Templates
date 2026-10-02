@@ -17,16 +17,18 @@
 
 仓库与本地目录单独存在只因为两件事：模板必须能被**公开抓取**（主仓是私库，而 GitHub 的可见性是仓库级的），以及让本地文件管理更清楚。
 
-## 模板概览
+## 模板分类
 
-| 分类 | 说明 | 数量 |
+模板按站点类型分目录摆放，应用内「模板库 → 公共模板」可以直接搜索与订阅：
+
+| 目录 | 分类 | 说明 |
 | --- | --- | --- |
-| [`pt/`](templates/pt) | PT 站 | 18 |
-| [`forum/`](templates/forum) | 论坛社区 | 68 |
-| [`video/`](templates/video) | 影音 | 8 |
-| [`signin/`](templates/signin) | 通用签到 | 308 |
+| [`pt/`](templates/pt) | PT 站 | 需要登录的私有 PT 站，多为签到与保号类任务 |
+| [`forum/`](templates/forum) | 论坛社区 | Discuz、Flarum 等论坛的每日签到与打卡 |
+| [`video/`](templates/video) | 影音 | 视频与音乐站点的签到、试听与日常任务 |
+| [`signin/`](templates/signin) | 通用签到 | 其余站点；未命中上面关键词的都归到这里 |
 
-共 **402** 个模板，索引见 [`tpls_history.json`](tpls_history.json)。
+完整列表见 [`tpls_history.json`](tpls_history.json)：索引里 `filename` 为相对路径，`url` 指向本仓库，应用按 `<仓库地址>/<filename>` 抓取。
 
 ## 自动同步
 
