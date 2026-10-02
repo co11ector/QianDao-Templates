@@ -37,7 +37,7 @@ from urllib.parse import quote
 
 PUBLISHED_REPOSITORY = "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master"
 # Shown as the author of the templates this project writes itself, under local/.
-LOCAL_AUTHOR = "QianDao"
+LOCAL_AUTHOR = "co11ector"
 # Where the app's 评论 button sends people for a local template with no dedicated issue.
 LOCAL_COMMENT_URL = "https://github.com/co11ector/QianDao-Templates/issues/1"
 
@@ -111,7 +111,7 @@ def local_record_metadata(path: Path, comment_url: str) -> dict:
     if stamp is None:
         stamp = datetime.datetime.fromtimestamp(path.stat().st_mtime)
     return {
-        "version": stamp.strftime("%Y%m%d"),
+        "version": stamp.strftime("%Y%m%d%H%M"),
         "date": stamp.strftime("%Y-%m-%d %H:%M:%S"),
         "update": int(stamp.timestamp()),
         "commenturl": comment_url,

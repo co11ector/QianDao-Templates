@@ -241,7 +241,7 @@ def test_local_templates_are_merged_and_survive_the_sync(tmp_path):
 
     index = json.loads((target / "tpls_history.json").read_text(encoding="utf-8"))
     entry = index["har"]["ithome"]
-    assert entry["author"] == "QianDao"
+    assert entry["author"] == normalize.LOCAL_AUTHOR
     assert entry["filename"] == "templates/signin/ithome.har"
     assert entry["url"] == (
         "https://raw.githubusercontent.com/co11ector/QianDao-Templates/"
@@ -268,7 +268,7 @@ def test_local_templates_are_merged_and_survive_the_sync(tmp_path):
     assert entry["commenturl"] != entry["url"]
     assert entry["commenturl"] == normalize.LOCAL_COMMENT_URL
     # And it must move forward when the template changes, or updates would never land.
-    assert entry["version"] >= "20" + entry["date"][2:4] + entry["date"][5:7] + entry["date"][8:10]
+    assert entry["version"].startswith(entry["date"][:4] + entry["date"][5:7] + entry["date"][8:10])
     # No credential may ever travel with a published template: the placeholder is all
     # there is, and the real value lives only in the user's own task. The prose may say
     # "Bearer prefix", so look for a token actually stuck to it.
@@ -317,7 +317,7 @@ def test_a_local_template_wins_over_an_upstream_name(tmp_path):
 
     assert report["overridden"] == ["ithome"]
     index = json.loads((target / "tpls_history.json").read_text(encoding="utf-8"))
-    assert index["har"]["ithome"]["author"] == "QianDao"
+    assert index["har"]["ithome"]["author"] == normalize.LOCAL_AUTHOR
 
 
 def test_an_unreadable_local_template_is_reported_not_published(tmp_path):
