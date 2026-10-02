@@ -4,7 +4,7 @@
     "雨晨分享站": {
       "name": "雨晨分享站",
       "author": "loveyanglove",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/雨晨分享站.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E9%9B%A8%E6%99%A8%E5%88%86%E4%BA%AB%E7%AB%99.har",
       "update": true,
       "comments": "账号密码签到<br>日志显示",
       "filename": "templates/signin/雨晨分享站.har",
@@ -16,7 +16,7 @@
     "S1论坛签到": {
       "name": "S1论坛签到",
       "author": "Antiky",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/saraba1st.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/saraba1st.har",
       "update": false,
       "comments": "用户名+密码 登陆<br>url: https://bbs.saraba1st.com/",
       "filename": "templates/forum/saraba1st.har",
@@ -28,7 +28,7 @@
     "S1论坛一小时挂机": {
       "name": "S1论坛一小时挂机",
       "author": "Antiky",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/saraba1st-1h.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/saraba1st-1h.har",
       "update": false,
       "comments": "用户名密码登陆 一小时挂机<br>运行时长3400s<br>推荐定时cron效果更好：10 * * * *<br>url: https://bbs.saraba1st.com/",
       "filename": "templates/forum/saraba1st-1h.har",
@@ -40,7 +40,7 @@
     "轻之国度": {
       "name": "轻之国度",
       "author": "AragonSnow",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/lightnovel.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/lightnovel.har",
       "update": false,
       "comments": "cks 网页cookie<br>https://www.lightnovel.us/",
       "filename": "templates/signin/lightnovel.har",
@@ -52,7 +52,7 @@
     "精易论坛": {
       "name": "精易论坛",
       "author": "xkgg昕风挽笑",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/精易论坛.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/%E7%B2%BE%E6%98%93%E8%AE%BA%E5%9D%9B.har",
       "update": true,
       "comments": "cookie登录<br>日志显示<br>https://bbs.ijingyi.com/",
       "filename": "templates/forum/精易论坛.har",
@@ -64,7 +64,7 @@
     "柠檬PT签到": {
       "name": "柠檬PT签到",
       "author": "devil",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/leaguehd.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/pt/leaguehd.har",
       "update": false,
       "comments": "cookie<br>https://leaguehd.com/attendance.php",
       "filename": "templates/pt/leaguehd.har",
@@ -76,7 +76,7 @@
     "网易云音乐": {
       "name": "网易云音乐",
       "author": "qiandao.today公共模板",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/网易云音乐.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/video/%E7%BD%91%E6%98%93%E4%BA%91%E9%9F%B3%E4%B9%90.har",
       "update": false,
       "comments": "网易云音乐 电脑 or 手机 cookie<br>https://music.163.com/",
       "filename": "templates/video/网易云音乐.har",
@@ -88,7 +88,7 @@
     "吾爱破解": {
       "name": "吾爱破解",
       "author": "wjf0214,github-h",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/吾爱破解.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/%E5%90%BE%E7%88%B1%E7%A0%B4%E8%A7%A3.har",
       "update": false,
       "comments": "cookie<br><br>国内vps供应商已经被加ACL黑名单, 请使用家庭IP<br><br>https://www.52pojie.cn/",
       "filename": "templates/forum/吾爱破解.har",
@@ -100,7 +100,7 @@
     "ArcTime字幕平台": {
       "name": "ArcTime字幕平台",
       "author": "github-h",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/ArcTime字幕平台.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/ArcTime%E5%AD%97%E5%B9%95%E5%B9%B3%E5%8F%B0.har",
       "update": false,
       "comments": "cookie<br>Arctime 现已转为客户端签到 暂无有效签到办法<br>https://m.arctime.cn/",
       "filename": "templates/signin/ArcTime字幕平台.har",
@@ -112,7 +112,7 @@
     "杉果游戏": {
       "name": "杉果游戏",
       "author": "github-h,wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/杉果游戏.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E6%9D%89%E6%9E%9C%E6%B8%B8%E6%88%8F.har",
       "update": false,
       "comments": "username:账号 password:密码<br><br>每日领取积分<br><br>https://sonkwo.com/",
       "filename": "templates/signin/杉果游戏.har",
@@ -124,7 +124,7 @@
     "IT天空": {
       "name": "IT天空",
       "author": "github-h",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/IT天空.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/IT%E5%A4%A9%E7%A9%BA.har",
       "update": false,
       "comments": "cookie<br><br>每日签到<br><br>https://www.itsk.com/",
       "filename": "templates/signin/IT天空.har",
@@ -136,7 +136,7 @@
     "恩山无线论坛": {
       "name": "恩山无线论坛",
       "author": "xkgg昕风挽笑",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/恩山无线论坛.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/%E6%81%A9%E5%B1%B1%E6%97%A0%E7%BA%BF%E8%AE%BA%E5%9D%9B.har",
       "update": true,
       "comments": "cookie登录<br>日志显示<br>https://www.right.com.cn/forum",
       "filename": "templates/forum/恩山无线论坛.har",
@@ -148,7 +148,7 @@
     "万能福利吧": {
       "name": "万能福利吧",
       "author": "github-h",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/万能福利吧.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E4%B8%87%E8%83%BD%E7%A6%8F%E5%88%A9%E5%90%A7.har",
       "update": true,
       "comments": "cookie<br><br>每日签到奖励<br><br>https://www.wnflb2023.com",
       "filename": "templates/signin/万能福利吧.har",
@@ -160,7 +160,7 @@
     "高清MP4粉": {
       "name": "高清MP4粉",
       "author": "github-h",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/高清MP4粉.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E9%AB%98%E6%B8%85MP4%E7%B2%89.har",
       "update": false,
       "comments": "cookie<br><br>每日签到<br><br>https://mp4fan.org/",
       "filename": "templates/signin/高清MP4粉.har",
@@ -172,7 +172,7 @@
     "3DMGAME论坛": {
       "name": "3DMGAME论坛",
       "author": "github-h",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/3DMGAME论坛.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/3DMGAME%E8%AE%BA%E5%9D%9B.har",
       "update": false,
       "comments": "cookie<br><br>仅做样例展示,强烈不建议订阅,前置任务叠前置任务,而且每日发言超过上限直接封号<br><br>https://bbs.3dmgame.com/",
       "filename": "templates/forum/3DMGAME论坛.har",
@@ -184,7 +184,7 @@
     "QQNTR论坛": {
       "name": "QQNTR论坛",
       "author": "github-h",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/QQNTR论坛.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/QQNTR%E8%AE%BA%E5%9D%9B.har",
       "update": true,
       "comments": "cookie<br><br>每日签到奖励<br><br>https://www.iya.app",
       "filename": "templates/forum/QQNTR论坛.har",
@@ -196,7 +196,7 @@
     "飞客茶馆": {
       "name": "飞客茶馆",
       "author": "github-h",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/飞客茶馆.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E9%A3%9E%E5%AE%A2%E8%8C%B6%E9%A6%86.har",
       "update": true,
       "comments": "cookies<br><br>每日签到奖励<br><br>若提示未登录，请确保登录抓取cookie的ua与模板的一致<br><br>可能第一次会失败，第二次就成功了<br><br>https://www.flyert.com",
       "filename": "templates/signin/飞客茶馆.har",
@@ -208,7 +208,7 @@
     "V2EX": {
       "name": "V2EX",
       "author": "github-h",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/V2EX.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/V2EX.har",
       "update": true,
       "comments": "cookie<br><br>每日签到奖励，请自行解决网络问题<br><br>https://www.v2ex.com",
       "filename": "templates/signin/V2EX.har",
@@ -220,7 +220,7 @@
     "看雪安全论坛": {
       "name": "看雪安全论坛",
       "author": "wjf0214,github-h",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/看雪安全论坛.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/%E7%9C%8B%E9%9B%AA%E5%AE%89%E5%85%A8%E8%AE%BA%E5%9D%9B.har",
       "update": false,
       "comments": "cookie<br><br>每日签到 需要自行填写uid<br><br>https://bbs.kanxue.com/",
       "filename": "templates/forum/看雪安全论坛.har",
@@ -232,7 +232,7 @@
     "MT管理器论坛": {
       "name": "MT管理器论坛",
       "author": "github-h",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/MT管理器论坛.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/MT%E7%AE%A1%E7%90%86%E5%99%A8%E8%AE%BA%E5%9D%9B.har",
       "update": true,
       "comments": "cookies<br><br>每日签到奖励，严格限制家宽，VPS会被禁止访问<br><br>https://bbs.binmt.cc",
       "filename": "templates/forum/MT管理器论坛.har",
@@ -244,7 +244,7 @@
     "柚坛社区": {
       "name": "柚坛社区",
       "author": "github-h",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/柚坛社区.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E6%9F%9A%E5%9D%9B%E7%A4%BE%E5%8C%BA.har",
       "update": true,
       "comments": "username/password<br><br>每日签到奖励<br><br>https://www.uotan.cn/",
       "filename": "templates/signin/柚坛社区.har",
@@ -256,7 +256,7 @@
     "火绒安全论坛": {
       "name": "火绒安全论坛",
       "author": "github-h",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/火绒安全论坛.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/%E7%81%AB%E7%BB%92%E5%AE%89%E5%85%A8%E8%AE%BA%E5%9D%9B.har",
       "update": true,
       "comments": "cookie<br><br>每日签到奖励<br><br>https://bbs.huorong.cn",
       "filename": "templates/forum/火绒安全论坛.har",
@@ -268,7 +268,7 @@
     "ZodGame论坛": {
       "name": "ZodGame论坛",
       "author": "github-h",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/ZodGame论坛.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/ZodGame%E8%AE%BA%E5%9D%9B.har",
       "update": false,
       "comments": "cookie<br><br>每日签到，带有看广告赚积分任务<br><br>https://zodgame.xyz/",
       "filename": "templates/forum/ZodGame论坛.har",
@@ -280,7 +280,7 @@
     "星空论坛seikuu": {
       "name": "星空论坛seikuu",
       "author": "github-h",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/星空论坛seikuu.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/%E6%98%9F%E7%A9%BA%E8%AE%BA%E5%9D%9Bseikuu.har",
       "update": false,
       "comments": "cookie<br><br>每日签到<br><br>https://bbs2.seikuu.com/",
       "filename": "templates/forum/星空论坛seikuu.har",
@@ -292,7 +292,7 @@
     "终点论坛": {
       "name": "终点论坛",
       "author": "github-h",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/终点论坛.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/%E7%BB%88%E7%82%B9%E8%AE%BA%E5%9D%9B.har",
       "update": false,
       "comments": "cookie<br><br>需要YesCaptcha付费服务通过谷歌验证<br>签到(SignJob)和摇一摇功能(GameJob)需要使用付费服务 GameJob处填写任意字符为开启，不填为关<br><br>https://bbs.zdfx.net/",
       "filename": "templates/forum/终点论坛.har",
@@ -304,7 +304,7 @@
     "哥特动漫王国": {
       "name": "哥特动漫王国",
       "author": "github-h",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/哥特动漫王国.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E5%93%A5%E7%89%B9%E5%8A%A8%E6%BC%AB%E7%8E%8B%E5%9B%BD.har",
       "update": false,
       "comments": "cookie<br><br>每日签到，带有VIP组和王者萝莉任务<br><br>https://www.gtloli.gay/",
       "filename": "templates/signin/哥特动漫王国.har",
@@ -316,7 +316,7 @@
     "萌出血动漫论坛": {
       "name": "萌出血动漫论坛",
       "author": "github-h",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/萌出血动漫论坛.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/%E8%90%8C%E5%87%BA%E8%A1%80%E5%8A%A8%E6%BC%AB%E8%AE%BA%E5%9D%9B.har",
       "update": false,
       "comments": "cookie<br><br>每日签到<br><br>https://www.bbshh.top/",
       "filename": "templates/forum/萌出血动漫论坛.har",
@@ -328,7 +328,7 @@
     "花火学园": {
       "name": "花火学园",
       "author": "wjf0214,github-h",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/花火学园.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E8%8A%B1%E7%81%AB%E5%AD%A6%E5%9B%AD.har",
       "update": false,
       "comments": "username:账号 password:密码<br><br>目前无有效过CF盾方式<br><br>https://www.sayhuahuo.com/",
       "filename": "templates/signin/花火学园.har",
@@ -340,7 +340,7 @@
     "夏跡natsunokiseki": {
       "name": "夏跡natsunokiseki",
       "author": "github-h",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/夏跡natsunokiseki.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E5%A4%8F%E8%B7%A1natsunokiseki.har",
       "update": false,
       "comments": "cookie<br><br>每日签到，论坛容易欠费过期<br><br>https://bbs.natsunokiseki.org/",
       "filename": "templates/signin/夏跡natsunokiseki.har",
@@ -352,7 +352,7 @@
     "萌幻之乡": {
       "name": "萌幻之乡",
       "author": "wjf0214,github-h",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/萌幻之乡.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E8%90%8C%E5%B9%BB%E4%B9%8B%E4%B9%A1.har",
       "update": false,
       "comments": "username:账号<br>password:密码<br>自定义UA:可选,空为默认UA<br>签到+点赞x4<br>https://www.hmoe12.com/",
       "filename": "templates/signin/萌幻之乡.har",
@@ -364,7 +364,7 @@
     "KDays论坛": {
       "name": "KDays论坛",
       "author": "github-h",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/KDays论坛.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/KDays%E8%AE%BA%E5%9D%9B.har",
       "update": true,
       "comments": "username/password<br><br>每日签到奖励<br><br>https://uc.kdays.net",
       "filename": "templates/forum/KDays论坛.har",
@@ -376,7 +376,7 @@
     "绯月ScarletMoon": {
       "name": "绯月ScarletMoon",
       "author": "github-h,JinchuanL",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/绯月ScarletMoon.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E7%BB%AF%E6%9C%88ScarletMoon.har",
       "update": true,
       "comments": "username/password<br><br>每日签到奖励，已对中文ID提供支持<br><br>https://bbs.kfpromax.com",
       "filename": "templates/signin/绯月ScarletMoon.har",
@@ -388,7 +388,7 @@
     "天游二次元": {
       "name": "天游二次元",
       "author": "github-h",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/天游二次元.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E5%A4%A9%E6%B8%B8%E4%BA%8C%E6%AC%A1%E5%85%83.har",
       "update": false,
       "comments": "cookie<br><br>每日签到 需要YesCaptcha付费服务通过谷歌验证<br><br>https://www.tiangal.com/",
       "filename": "templates/signin/天游二次元.har",
@@ -400,7 +400,7 @@
     "天游二次元_账号版": {
       "name": "天游二次元_账号版",
       "author": "github-h",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/天游二次元_账号版.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E5%A4%A9%E6%B8%B8%E4%BA%8C%E6%AC%A1%E5%85%83_%E8%B4%A6%E5%8F%B7%E7%89%88.har",
       "update": false,
       "comments": "username:账号 password:密码<br><br>每日签到 需要YesCaptcha付费服务通过谷歌验证<br><br>https://www.tiangal.com/",
       "filename": "templates/signin/天游二次元_账号版.har",
@@ -412,7 +412,7 @@
     "天使二次元": {
       "name": "天使二次元",
       "author": "github-h",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/天使二次元.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E5%A4%A9%E4%BD%BF%E4%BA%8C%E6%AC%A1%E5%85%83.har",
       "update": false,
       "comments": "cookie<br><br>每日签到 需要YesCaptcha付费服务通过谷歌验证<br>摇一摇功能(GameJob)需要使用付费服务 GameJob处填写任意字符为开启，不填为关<br><br>https://bbs.tianshi.one/",
       "filename": "templates/signin/天使二次元.har",
@@ -424,7 +424,7 @@
     "漫画补档": {
       "name": "漫画补档",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/漫画补档.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E6%BC%AB%E7%94%BB%E8%A1%A5%E6%A1%A3.har",
       "update": true,
       "comments": "Cookies:登录后首页cookie<br>UA: user-agent对应的值<br>https://www.manhuabudangbbs.com/",
       "filename": "templates/signin/漫画补档.har",
@@ -436,7 +436,7 @@
     "什么值得买7合一": {
       "name": "什么值得买7合一",
       "author": "a76yyyy,wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/什么值得买7合一.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E4%BB%80%E4%B9%88%E5%80%BC%E5%BE%97%E4%B9%B07%E5%90%88%E4%B8%80.har",
       "update": false,
       "comments": "登录后首页cookie。<br>https://smzdm.com",
       "filename": "templates/signin/什么值得买7合一.har",
@@ -448,7 +448,7 @@
     "联想智选app": {
       "name": "联想智选app",
       "author": "aragonsnow",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/联想智选app.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E8%81%94%E6%83%B3%E6%99%BA%E9%80%89app.har",
       "update": false,
       "comments": "需要在联想智选APP 账号密码登录抓包 <br> account 和 password 是app登录的账号密码, loginType,邮箱是email,手机号是msisdn <br> IMEI 和 baseinfo 在 抓包的 https://api.club.lenovo.cn/users/getSessionID 的header里 <br> deviceId 在  抓包的 https://uss.lenovomm.com/authen/1.2/tgt/user/get 的post里",
       "filename": "templates/signin/联想智选app.har",
@@ -460,7 +460,7 @@
     "隔壁网": {
       "name": "隔壁网",
       "author": "stay",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/gebi1.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/gebi1.har",
       "update": false,
       "comments": "username 和 password 是登录的账号密码<br>http://www.gebi1.com",
       "filename": "templates/signin/gebi1.har",
@@ -472,7 +472,7 @@
     "MIUI历史版本": {
       "name": "MIUI历史版本",
       "author": "stay",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/MIUI历史版本.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/MIUI%E5%8E%86%E5%8F%B2%E7%89%88%E6%9C%AC.har",
       "update": false,
       "comments": "username 和 password 是登录的账号密码",
       "filename": "templates/signin/MIUI历史版本.har",
@@ -484,7 +484,7 @@
     "E次元": {
       "name": "E次元",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/E次元.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/E%E6%AC%A1%E5%85%83.har",
       "update": false,
       "comments": "homeaction和cks 打开首页即可获取 https://www.evacg.cc/wp-admin/admin-ajax.php?action=<br>https://www.evacg.cc/",
       "filename": "templates/signin/E次元.har",
@@ -496,7 +496,7 @@
     "数码之家": {
       "name": "数码之家",
       "author": "acooler15",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/数码之家.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E6%95%B0%E7%A0%81%E4%B9%8B%E5%AE%B6.har",
       "update": false,
       "comments": "首页cookie",
       "filename": "templates/signin/数码之家.har",
@@ -508,7 +508,7 @@
     "迅维网": {
       "name": "迅维网",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/迅维网.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E8%BF%85%E7%BB%B4%E7%BD%91.har",
       "update": false,
       "comments": "username:账号<br>password:密码<br>https://www.chinafix.com",
       "filename": "templates/signin/迅维网.har",
@@ -520,7 +520,7 @@
     "远景论坛": {
       "name": "远景论坛",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/pcbeta.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/pcbeta.har",
       "update": true,
       "comments": "https://bbs.pcbeta.com/<br>账户密码",
       "filename": "templates/forum/pcbeta.har",
@@ -532,7 +532,7 @@
     "91tvg主机玩家的营地": {
       "name": "91tvg主机玩家的营地",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/91tvg主机玩家的营地.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/91tvg%E4%B8%BB%E6%9C%BA%E7%8E%A9%E5%AE%B6%E7%9A%84%E8%90%A5%E5%9C%B0.har",
       "update": false,
       "comments": "登录后首页cookie<br>https://www.91tvg.com/",
       "filename": "templates/signin/91tvg主机玩家的营地.har",
@@ -544,7 +544,7 @@
     "致美化": {
       "name": "致美化",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/致美化.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E8%87%B4%E7%BE%8E%E5%8C%96.har",
       "update": false,
       "comments": "user:账号<br>pass:密码<br>https://zhutix.com",
       "filename": "templates/signin/致美化.har",
@@ -556,7 +556,7 @@
     "hao4k": {
       "name": "hao4k",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/hao4k.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/hao4k.har",
       "update": false,
       "comments": "登录后首页cookie,f12的时候请选中复制,不要右键复制值。<br>https://www.hao4k.cn/",
       "filename": "templates/signin/hao4k.har",
@@ -568,7 +568,7 @@
     "掘金": {
       "name": "掘金",
       "author": "acooler15",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/掘金.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E6%8E%98%E9%87%91.har",
       "update": true,
       "comments": "掘金签到202306026",
       "filename": "templates/signin/掘金.har",
@@ -580,7 +580,7 @@
     "有道云笔记": {
       "name": "有道云笔记",
       "author": "acooler15",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/有道云笔记.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0.har",
       "update": false,
       "comments": "首页cookie",
       "filename": "templates/signin/有道云笔记.har",
@@ -592,7 +592,7 @@
     "爱奇艺": {
       "name": "爱奇艺",
       "author": "a76yyyy",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/爱奇艺.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E7%88%B1%E5%A5%87%E8%89%BA.har",
       "update": true,
       "comments": "网址: https://www.iqiyi.com/; <br>首页登录后在cookie中提取变量P00001, P00003 和 _dfp变量中@符号前的部分内容; <br>仅爱奇艺会员可用",
       "filename": "templates/signin/爱奇艺.har",
@@ -604,7 +604,7 @@
     "MZFastCloud": {
       "name": "MZFastCloud",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/MZFastCloud.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/MZFastCloud.har",
       "update": false,
       "comments": "username:账号<br>password:密码<br>https://www.mzfast.xyz/",
       "filename": "templates/signin/MZFastCloud.har",
@@ -616,7 +616,7 @@
     "HiFiNi": {
       "name": "HiFiNi",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/HiFiNi.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/HiFiNi.har",
       "update": false,
       "comments": "登录后首页cookie<br>https://www.hifini.com/",
       "filename": "templates/signin/HiFiNi.har",
@@ -628,7 +628,7 @@
     "人人素材": {
       "name": "人人素材",
       "author": "wjf0214,chen8945",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/人人素材.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E4%BA%BA%E4%BA%BA%E7%B4%A0%E6%9D%90.har",
       "update": true,
       "comments": "手机号 + 密码<br>https://www.rrcg.cn/",
       "filename": "templates/signin/人人素材.har",
@@ -640,7 +640,7 @@
     "SolidWorks机械工程师网": {
       "name": "SolidWorks机械工程师网",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/SolidWorks机械工程师网.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/SolidWorks%E6%9C%BA%E6%A2%B0%E5%B7%A5%E7%A8%8B%E5%B8%88%E7%BD%91.har",
       "update": false,
       "comments": "username:账号<br>password:密码<br>https://www.swbbsc.com/",
       "filename": "templates/signin/SolidWorks机械工程师网.har",
@@ -652,7 +652,7 @@
     "卡饭_Cookie版": {
       "name": "卡饭_Cookie版",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/卡饭_Cookie版.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E5%8D%A1%E9%A5%AD_Cookie%E7%89%88.har",
       "update": false,
       "comments": "username:账号<br>password:密码<br>https://bbs.kafan.cn/",
       "filename": "templates/signin/卡饭_Cookie版.har",
@@ -664,7 +664,7 @@
     "hostloc主机论坛": {
       "name": "hostloc主机论坛",
       "author": "wjf0214, IITII",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/hostloc主机论坛.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/hostloc%E4%B8%BB%E6%9C%BA%E8%AE%BA%E5%9D%9B.har",
       "update": true,
       "comments": "登录后首页cookie<br>https://hostloc.com",
       "filename": "templates/forum/hostloc主机论坛.har",
@@ -676,7 +676,7 @@
     "粤梦缘": {
       "name": "粤梦缘",
       "author": "李大爷",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/粤梦缘.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E7%B2%A4%E6%A2%A6%E7%BC%98.har",
       "update": true,
       "comments": "cookie+日志输出   20240526",
       "filename": "templates/signin/粤梦缘.har",
@@ -688,7 +688,7 @@
     "幕后Muhou": {
       "name": "幕后Muhou",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/幕后Muhou.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E5%B9%95%E5%90%8EMuhou.har",
       "update": false,
       "comments": "username:账号<br>password:密码<br>https://muhou.net/",
       "filename": "templates/signin/幕后Muhou.har",
@@ -700,7 +700,7 @@
     "一酷C4D": {
       "name": "一酷C4D",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/一酷C4D.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E4%B8%80%E9%85%B7C4D.har",
       "update": false,
       "comments": "登录后首页cookie<br>https://c4dco.com",
       "filename": "templates/signin/一酷C4D.har",
@@ -712,7 +712,7 @@
     "Fa米家": {
       "name": "Fa米家",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/Fa米家.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/Fa%E7%B1%B3%E5%AE%B6.har",
       "update": false,
       "comments": "抓包 APP 的请求中的 headers 信息,提取 token、deviceId、blackBox 即可,fmVersion,os,User-Agent等参数可以根据自身情况自行更改。<br>应用单点登录限制, 换设备登录后, 之前登录状态参数失效",
       "filename": "templates/signin/Fa米家.har",
@@ -724,7 +724,7 @@
     "中国汉化论坛": {
       "name": "中国汉化论坛",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/中国汉化论坛.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/%E4%B8%AD%E5%9B%BD%E6%B1%89%E5%8C%96%E8%AE%BA%E5%9D%9B.har",
       "update": false,
       "comments": "username:账号<br>password:密码<br>questionId对应值: <br>-1.自定义问题<br>1.我爸爸的出生地<br>2.我妈妈的出生地<br>3.我的小学校名<br>4.我的中学校名<br>5.我最喜欢的运动<br>6.我最喜欢的歌曲<br>7.我最喜欢的电影<br>8.我最喜欢的颜色<br>customquest: 自定义问题<br>answer:问题答案<br>没有密保安全问题, questionId,customquest,answer不填为空。<br>http://h.shanse8.com/",
       "filename": "templates/forum/中国汉化论坛.har",
@@ -736,7 +736,7 @@
     "HDDolby": {
       "name": "HDDolby",
       "author": "a76yyyy",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/HDDolby.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/HDDolby.har",
       "update": false,
       "comments": "登录后首页cookie<br>https://www.hddolby.com/index.php",
       "filename": "templates/signin/HDDolby.har",
@@ -748,7 +748,7 @@
     "不移之火": {
       "name": "不移之火",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/不移之火.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E4%B8%8D%E7%A7%BB%E4%B9%8B%E7%81%AB.har",
       "update": false,
       "comments": "登录后首页cookie<br>https://www.byzhihuo.com/",
       "filename": "templates/signin/不移之火.har",
@@ -760,7 +760,7 @@
     "次元狗": {
       "name": "次元狗",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/次元狗.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E6%AC%A1%E5%85%83%E7%8B%97.har",
       "update": false,
       "comments": "登录后首页cookie<br>https://www.acgndog.com/",
       "filename": "templates/signin/次元狗.har",
@@ -772,7 +772,7 @@
     "后期菌资源村": {
       "name": "后期菌资源村",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/后期菌资源村.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E5%90%8E%E6%9C%9F%E8%8F%8C%E8%B5%84%E6%BA%90%E6%9D%91.har",
       "update": false,
       "comments": "username:手机号<br>password:密码<br>http://www.houqijun.vip/",
       "filename": "templates/signin/后期菌资源村.har",
@@ -784,7 +784,7 @@
     "几鸡": {
       "name": "几鸡",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/几鸡.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E5%87%A0%E9%B8%A1.har",
       "update": false,
       "comments": "username:账号<br>password:密码<br>domain: 网站域名",
       "filename": "templates/signin/几鸡.har",
@@ -796,7 +796,7 @@
     "晋江小说": {
       "name": "晋江小说",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/晋江小说.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E6%99%8B%E6%B1%9F%E5%B0%8F%E8%AF%B4.har",
       "update": false,
       "comments": "登录后首页cookie<br>https://m.jjwxc.net/",
       "filename": "templates/signin/晋江小说.har",
@@ -808,7 +808,7 @@
     "经管之家": {
       "name": "经管之家",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/经管之家.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E7%BB%8F%E7%AE%A1%E4%B9%8B%E5%AE%B6.har",
       "update": false,
       "comments": "登录后首页cookie<br>https://bbs.pinggu.org/",
       "filename": "templates/signin/经管之家.har",
@@ -820,7 +820,7 @@
     "科技玩家": {
       "name": "科技玩家",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/科技玩家.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E7%A7%91%E6%8A%80%E7%8E%A9%E5%AE%B6.har",
       "update": true,
       "comments": "username:账号<br>password:密码<br>https://www.kejiwanjia.net/",
       "filename": "templates/signin/科技玩家.har",
@@ -832,7 +832,7 @@
     "科学刀论坛": {
       "name": "科学刀论坛",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/科学刀论坛.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/%E7%A7%91%E5%AD%A6%E5%88%80%E8%AE%BA%E5%9D%9B.har",
       "update": false,
       "comments": "登录后首页cookie<br>https://www.kxdao.net/",
       "filename": "templates/forum/科学刀论坛.har",
@@ -844,7 +844,7 @@
     "科学刀在线时间": {
       "name": "科学刀在线时间",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/科学刀在线时间.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E7%A7%91%E5%AD%A6%E5%88%80%E5%9C%A8%E7%BA%BF%E6%97%B6%E9%97%B4.har",
       "update": false,
       "comments": "登录后首页cookie<br>https://www.k7d.com/",
       "filename": "templates/signin/科学刀在线时间.har",
@@ -856,7 +856,7 @@
     "龙的天空": {
       "name": "龙的天空",
       "author": "pooneyy",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/龙的天空.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E9%BE%99%E7%9A%84%E5%A4%A9%E7%A9%BA.har",
       "update": true,
       "comments": "通过账号密码登录，网址 https://www.lkong.com/",
       "filename": "templates/signin/龙的天空.har",
@@ -868,7 +868,7 @@
     "猫耳FM-每日鱼干": {
       "name": "猫耳FM-每日鱼干",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/猫耳FM-每日鱼干.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E7%8C%AB%E8%80%B3FM-%E6%AF%8F%E6%97%A5%E9%B1%BC%E5%B9%B2.har",
       "update": false,
       "comments": "登录后首页cookie<br>https://www.missevan.com",
       "filename": "templates/signin/猫耳FM-每日鱼干.har",
@@ -880,7 +880,7 @@
     "魅族社区": {
       "name": "魅族社区",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/魅族社区.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E9%AD%85%E6%97%8F%E7%A4%BE%E5%8C%BA.har",
       "update": false,
       "comments": "登录后首页cookie<br>https://bbs.meizu.cn/",
       "filename": "templates/signin/魅族社区.har",
@@ -892,7 +892,7 @@
     "轻之文库": {
       "name": "轻之文库",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/轻之文库.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E8%BD%BB%E4%B9%8B%E6%96%87%E5%BA%93.har",
       "update": false,
       "comments": "username:账号<br>password:密码<br>https://www.linovel.net/",
       "filename": "templates/signin/轻之文库.har",
@@ -904,7 +904,7 @@
     "人人字幕组": {
       "name": "人人字幕组",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/人人字幕组.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E4%BA%BA%E4%BA%BA%E5%AD%97%E5%B9%95%E7%BB%84.har",
       "update": false,
       "comments": "username:账号<br>password:密码<br>DOMAIN: 网站域名【https://www.yysub.net/】",
       "filename": "templates/signin/人人字幕组.har",
@@ -916,7 +916,7 @@
     "绅士领域": {
       "name": "绅士领域",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/绅士领域.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E7%BB%85%E5%A3%AB%E9%A2%86%E5%9F%9F.har",
       "update": false,
       "comments": "uid:个人uid可APP抓签到包看到",
       "filename": "templates/signin/绅士领域.har",
@@ -928,7 +928,7 @@
     "时光相册": {
       "name": "时光相册",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/时光相册.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E6%97%B6%E5%85%89%E7%9B%B8%E5%86%8C.har",
       "update": false,
       "comments": "phone:账号<br>password:密码<br>手机号密码 请抓登陆包查看 手机号里包括区号 86啥的 密码为加密后的密码<br>https://www.everphoto.cn/",
       "filename": "templates/signin/时光相册.har",
@@ -940,7 +940,7 @@
     "手电大家谈": {
       "name": "手电大家谈",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/手电大家谈.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E6%89%8B%E7%94%B5%E5%A4%A7%E5%AE%B6%E8%B0%88.har",
       "update": false,
       "comments": "username:账号<br>password:密码<br>https://www.shoudian.org/",
       "filename": "templates/signin/手电大家谈.har",
@@ -952,7 +952,7 @@
     "书香门第": {
       "name": "书香门第",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/书香门第.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E4%B9%A6%E9%A6%99%E9%97%A8%E7%AC%AC.har",
       "update": false,
       "comments": "account:账号<br>password:密码<br>登陆账号密码(只支持字母+数字组合账号)<br>http://www.txtnovel.top",
       "filename": "templates/signin/书香门第.har",
@@ -964,7 +964,7 @@
     "王者营地": {
       "name": "王者营地",
       "author": "wjf0214,pooneyy",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/王者营地.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E7%8E%8B%E8%80%85%E8%90%A5%E5%9C%B0.har",
       "update": true,
       "comments": "APP 抓包, 寻找URL为 https://kohcamp.qq.com/operation/action/newsignin 的请求, <br>获取请求头中的 token 与 userId, 以及请求体中的全部内容, 请求体是一个json。<br>signin_payload_for_raw_format 中填入完整的请求体, 形如<br>{\"cSystem\":\"ios\",\"h5Get\":1,\"roleId\":\"2012345674\"}<br>https://kohcamp.qq.com",
       "filename": "templates/signin/王者营地.har",
@@ -976,7 +976,7 @@
     "网易云游戏": {
       "name": "网易云游戏",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/网易云游戏.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E7%BD%91%E6%98%93%E4%BA%91%E6%B8%B8%E6%88%8F.har",
       "update": false,
       "comments": "登录后首页cookie<br>https://cg.163.com/",
       "filename": "templates/signin/网易云游戏.har",
@@ -988,7 +988,7 @@
     "香网小说": {
       "name": "香网小说",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/香网小说.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E9%A6%99%E7%BD%91%E5%B0%8F%E8%AF%B4.har",
       "update": false,
       "comments": "登录后首页cookie<br>https://m.xiang5.com/",
       "filename": "templates/signin/香网小说.har",
@@ -1000,7 +1000,7 @@
     "一加社区": {
       "name": "一加社区",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/一加社区.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E4%B8%80%E5%8A%A0%E7%A4%BE%E5%8C%BA.har",
       "update": false,
       "comments": "登录后首页cookie<br>https://www.oneplusbbs.com/",
       "filename": "templates/signin/一加社区.har",
@@ -1012,7 +1012,7 @@
     "阅次元论坛": {
       "name": "阅次元论坛",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/阅次元论坛.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/%E9%98%85%E6%AC%A1%E5%85%83%E8%AE%BA%E5%9D%9B.har",
       "update": false,
       "comments": "登录后首页cookie<br>https://www.abooky.com/",
       "filename": "templates/forum/阅次元论坛.har",
@@ -1024,7 +1024,7 @@
     "中国原创音乐基地5SING": {
       "name": "中国原创音乐基地5SING",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/中国原创音乐基地5SING.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/video/%E4%B8%AD%E5%9B%BD%E5%8E%9F%E5%88%9B%E9%9F%B3%E4%B9%90%E5%9F%BA%E5%9C%B05SING.har",
       "update": false,
       "comments": "登录后首页cookie,ck有效期一周<br>http://5sing.kugou.com/",
       "filename": "templates/video/中国原创音乐基地5SING.har",
@@ -1036,7 +1036,7 @@
     "bigfun": {
       "name": "bigfun",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/bigfun.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/bigfun.har",
       "update": false,
       "comments": "登录后首页cookie<br>https://www.bigfun.cn",
       "filename": "templates/signin/bigfun.har",
@@ -1048,7 +1048,7 @@
     "chiphell": {
       "name": "chiphell",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/chiphell.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/chiphell.har",
       "update": false,
       "comments": "登录后首页cookie<br>https://www.chiphell.com",
       "filename": "templates/forum/chiphell.har",
@@ -1060,7 +1060,7 @@
     "element3ds": {
       "name": "element3ds",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/element3ds.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/element3ds.har",
       "update": false,
       "comments": "登录后首页cookie<br>https://www.element3ds.com/",
       "filename": "templates/signin/element3ds.har",
@@ -1072,7 +1072,7 @@
     "HDarea高清视界": {
       "name": "HDarea高清视界",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/HDarea高清视界.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/HDarea%E9%AB%98%E6%B8%85%E8%A7%86%E7%95%8C.har",
       "update": false,
       "comments": "登录后首页cookie<br>https://www.hdarea.co/",
       "filename": "templates/signin/HDarea高清视界.har",
@@ -1084,7 +1084,7 @@
     "south-plus": {
       "name": "south-plus",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/south-plus.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/south-plus.har",
       "update": false,
       "comments": "登录后首页cookie和UA<br>domain:为网站域名, 如【https://www.south-plus.net/】,https和后面的'/'都要有<br>https://www.south-plus.net",
       "filename": "templates/signin/south-plus.har",
@@ -1096,7 +1096,7 @@
     "QooApp": {
       "name": "QooApp",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/QooApp.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/QooApp.har",
       "update": false,
       "comments": "token:下载App抓包cookie,找到请求头部 x-user-token 的值",
       "filename": "templates/signin/QooApp.har",
@@ -1108,7 +1108,7 @@
     "VCB-Studio分享论坛": {
       "name": "VCB-Studio分享论坛",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/VCB-Studio分享论坛.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/VCB-Studio%E5%88%86%E4%BA%AB%E8%AE%BA%E5%9D%9B.har",
       "update": false,
       "comments": "登录后首页cookie<br>https://bbs.acgrip.com",
       "filename": "templates/forum/VCB-Studio分享论坛.har",
@@ -1120,7 +1120,7 @@
     "ZNDS智能电视网": {
       "name": "ZNDS智能电视网",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/ZNDS智能电视网.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/ZNDS%E6%99%BA%E8%83%BD%E7%94%B5%E8%A7%86%E7%BD%91.har",
       "update": false,
       "comments": "username:账号<br>password:密码<br>https://www.znds.com/",
       "filename": "templates/signin/ZNDS智能电视网.har",
@@ -1132,7 +1132,7 @@
     "吾爱汇编": {
       "name": "吾爱汇编",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/吾爱汇编.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E5%90%BE%E7%88%B1%E6%B1%87%E7%BC%96.har",
       "update": false,
       "comments": "登录后首页cookie<br>https://www.52hb.com/",
       "filename": "templates/signin/吾爱汇编.har",
@@ -1144,7 +1144,7 @@
     "爱玩网络": {
       "name": "爱玩网络",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/爱玩网络.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E7%88%B1%E7%8E%A9%E7%BD%91%E7%BB%9C.har",
       "update": false,
       "comments": "username:账号<br>password:密码<br>https://wngamebox.cn/",
       "filename": "templates/signin/爱玩网络.har",
@@ -1156,7 +1156,7 @@
     "switch520": {
       "name": "switch520",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/switch520.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/switch520.har",
       "update": false,
       "comments": "username:账号<br>password:密码<br>https://switch520.com/",
       "filename": "templates/signin/switch520.har",
@@ -1168,7 +1168,7 @@
     "远景论坛_账号版": {
       "name": "远景论坛_账号版",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/远景论坛_账号版.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/%E8%BF%9C%E6%99%AF%E8%AE%BA%E5%9D%9B_%E8%B4%A6%E5%8F%B7%E7%89%88.har",
       "update": false,
       "comments": "username:账号<br>password:密码<br>https://bbs.pcbeta.com/",
       "filename": "templates/forum/远景论坛_账号版.har",
@@ -1180,7 +1180,7 @@
     "小米运动": {
       "name": "小米运动",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/小米运动.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E5%B0%8F%E7%B1%B3%E8%BF%90%E5%8A%A8.har",
       "update": false,
       "comments": "username:账号<br>password:密码<br>min_step:最小步数<br>max_step:最大步数<br>步数在最大最小值之间取值, 不填默认为1w到2w之间随机",
       "filename": "templates/signin/小米运动.har",
@@ -1192,7 +1192,7 @@
     "阡陌居": {
       "name": "阡陌居",
       "author": "李大爷,chen8945",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/阡陌居.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E9%98%A1%E9%99%8C%E5%B1%85.har",
       "update": true,
       "comments": "Cookie<br>支持每日威望红包",
       "filename": "templates/signin/阡陌居.har",
@@ -1204,7 +1204,7 @@
     "PtTime": {
       "name": "PtTime",
       "author": "a76yyyy,zhaoyan42,fengymi",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/PtTime.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/pt/PtTime.har",
       "update": true,
       "comments": "登录后首页cookie<br>https://www.pttime.org/",
       "filename": "templates/pt/PtTime.har",
@@ -1216,7 +1216,7 @@
     "ToTheGlory": {
       "name": "ToTheGlory",
       "author": "a76yyyy",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/ToTheGlory.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/ToTheGlory.har",
       "update": false,
       "comments": "登录后首页cookie<br>https://totheglory.im/",
       "filename": "templates/signin/ToTheGlory.har",
@@ -1228,7 +1228,7 @@
     "B站每日综合签到": {
       "name": "B站每日综合签到",
       "author": "嘉然今天吃什么",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/B站每日综合签到.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/B%E7%AB%99%E6%AF%8F%E6%97%A5%E7%BB%BC%E5%90%88%E7%AD%BE%E5%88%B0.har",
       "update": true,
       "comments": "无痕模式/隐私模式打开https://www.bilibili.com/<br>登陆后获取cookie填入，然后直接关闭浏览器<br>每个操作都会相隔10秒。耐心等待, 请不要重复点击测试！<br>包含主站登陆经验+5, 视频观看经验+5, 视频分享经验+5, 直播签到, B漫签到, 带日志",
       "filename": "templates/signin/B站每日综合签到.har",
@@ -1240,7 +1240,7 @@
     "OB_PT_账号版": {
       "name": "OB_PT_账号版",
       "author": "嘉然今天吃什么",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/ourbits.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/pt/ourbits.har",
       "update": false,
       "comments": "OB PT站Cookie 30天过期一次, 用账号密码版省心点<br>https://ourbits.club",
       "filename": "templates/pt/ourbits.har",
@@ -1252,7 +1252,7 @@
     "33iQ": {
       "name": "33iQ",
       "author": "FellBan",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/33iQ.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/33iQ.har",
       "update": false,
       "comments": "user:账号<br>pass:密码<br>https://www.33iq.com/",
       "filename": "templates/signin/33iQ.har",
@@ -1264,7 +1264,7 @@
     "万由论坛": {
       "name": "万由论坛",
       "author": "FellBan",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/万由论坛.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/%E4%B8%87%E7%94%B1%E8%AE%BA%E5%9D%9B.har",
       "update": false,
       "comments": "登录后首页cookie<br>https://www.u-share.cn/",
       "filename": "templates/forum/万由论坛.har",
@@ -1276,7 +1276,7 @@
     "魔兽大数据": {
       "name": "魔兽大数据",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/魔兽大数据.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E9%AD%94%E5%85%BD%E5%A4%A7%E6%95%B0%E6%8D%AE.har",
       "update": false,
       "comments": "登录后首页cookie<br>content: 世界频道发言的内容<br>http://bj.wowdata.top/",
       "filename": "templates/signin/魔兽大数据.har",
@@ -1288,7 +1288,7 @@
     "龙de船人": {
       "name": "龙de船人",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/龙de船人.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E9%BE%99de%E8%88%B9%E4%BA%BA.har",
       "update": false,
       "comments": "登录后首页cookie<br>https://www.imarine.cn/",
       "filename": "templates/signin/龙de船人.har",
@@ -1300,7 +1300,7 @@
     "新赚吧": {
       "name": "新赚吧",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/新赚吧.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E6%96%B0%E8%B5%9A%E5%90%A7.har",
       "update": false,
       "comments": "username:手机号<br>password:密码<br>https://v1.xianbao.net/",
       "filename": "templates/signin/新赚吧.har",
@@ -1312,7 +1312,7 @@
     "SSPANEL机场通用签到": {
       "name": "SSPANEL机场通用签到",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/SSPANEL机场通用签到.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/SSPANEL%E6%9C%BA%E5%9C%BA%E9%80%9A%E7%94%A8%E7%AD%BE%E5%88%B0.har",
       "update": false,
       "comments": "domain:域名,如【https://xxx.com】,后面不带'/'<br>username:账号<br>password:密码",
       "filename": "templates/signin/SSPANEL机场通用签到.har",
@@ -1324,7 +1324,7 @@
     "萌盘总动员": {
       "name": "萌盘总动员",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/萌盘总动员.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E8%90%8C%E7%9B%98%E6%80%BB%E5%8A%A8%E5%91%98.har",
       "update": false,
       "comments": "username:账号<br>password:密码<br>http://bdarea.net/",
       "filename": "templates/signin/萌盘总动员.har",
@@ -1336,7 +1336,7 @@
     "98堂": {
       "name": "98堂",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/98堂.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/98%E5%A0%82.har",
       "update": false,
       "comments": "username:账号<br>password:密码<br>https://wetytrytuyu.net/",
       "filename": "templates/signin/98堂.har",
@@ -1348,7 +1348,7 @@
     "学犀牛中文网": {
       "name": "学犀牛中文网",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/学犀牛中文网.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E5%AD%A6%E7%8A%80%E7%89%9B%E4%B8%AD%E6%96%87%E7%BD%91.har",
       "update": false,
       "comments": "登录后首页cookie, 不要右键复制值, 请选中后复制<br>https://www.xuexiniu.com/",
       "filename": "templates/signin/学犀牛中文网.har",
@@ -1360,7 +1360,7 @@
     "大碗岛漫画": {
       "name": "大碗岛漫画",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/大碗岛漫画.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E5%A4%A7%E7%A2%97%E5%B2%9B%E6%BC%AB%E7%94%BB.har",
       "update": false,
       "comments": "username:账号<br>password:密码<br>http://www.dawandao.com/",
       "filename": "templates/signin/大碗岛漫画.har",
@@ -1372,7 +1372,7 @@
     "捌零发烧音乐网": {
       "name": "捌零发烧音乐网",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/捌零发烧音乐网.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/video/%E6%8D%8C%E9%9B%B6%E5%8F%91%E7%83%A7%E9%9F%B3%E4%B9%90%E7%BD%91.har",
       "update": false,
       "comments": "登录后首页cookie<br>https://hifi.juyincar.com/",
       "filename": "templates/video/捌零发烧音乐网.har",
@@ -1384,7 +1384,7 @@
     "武聆音雄配乐网": {
       "name": "武聆音雄配乐网",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/武聆音雄配乐网.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E6%AD%A6%E8%81%86%E9%9F%B3%E9%9B%84%E9%85%8D%E4%B9%90%E7%BD%91.har",
       "update": false,
       "comments": "username:账号<br>password:密码<br>message:签到回复帖子的语句, 默认为'每日签到~'<br>https://www.wlyxmusic.net/",
       "filename": "templates/signin/武聆音雄配乐网.har",
@@ -1396,7 +1396,7 @@
     "56brand我来网": {
       "name": "56brand我来网",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/56brand我来网.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/56brand%E6%88%91%E6%9D%A5%E7%BD%91.har",
       "update": false,
       "comments": "username:账号<br>password:密码<br>http://www.56brand.com/",
       "filename": "templates/signin/56brand我来网.har",
@@ -1408,7 +1408,7 @@
     "野火论坛": {
       "name": "野火论坛",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/野火论坛.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/%E9%87%8E%E7%81%AB%E8%AE%BA%E5%9D%9B.har",
       "update": false,
       "comments": "username:账号<br>password:密码<br>http://www.proewildfire.cn/",
       "filename": "templates/forum/野火论坛.har",
@@ -1420,7 +1420,7 @@
     "3D溜溜网": {
       "name": "3D溜溜网",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/3D溜溜网.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/3D%E6%BA%9C%E6%BA%9C%E7%BD%91.har",
       "update": false,
       "comments": "登录后首页cookie<br>https://user.3d66.com/",
       "filename": "templates/signin/3D溜溜网.har",
@@ -1432,7 +1432,7 @@
     "宽带技术网": {
       "name": "宽带技术网",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/宽带技术网.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E5%AE%BD%E5%B8%A6%E6%8A%80%E6%9C%AF%E7%BD%91.har",
       "update": true,
       "comments": "登录后首页cookie<br>http://www.chinadsl.net/",
       "filename": "templates/signin/宽带技术网.har",
@@ -1444,7 +1444,7 @@
     "摩登犀牛": {
       "name": "摩登犀牛",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/摩登犀牛.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E6%91%A9%E7%99%BB%E7%8A%80%E7%89%9B.har",
       "update": false,
       "comments": "username:账号<br>password:密码<br>http://bbs.rhino3d.us/",
       "filename": "templates/signin/摩登犀牛.har",
@@ -1456,7 +1456,7 @@
     "Goldroom黄金屋": {
       "name": "Goldroom黄金屋",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/Goldroom黄金屋.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/Goldroom%E9%BB%84%E9%87%91%E5%B1%8B.har",
       "update": false,
       "comments": "登录后首页cookie<br>http://goldroom.top/",
       "filename": "templates/signin/Goldroom黄金屋.har",
@@ -1468,7 +1468,7 @@
     "心动日剧": {
       "name": "心动日剧",
       "author": "嘉然今天吃什么",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/心动日剧.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E5%BF%83%E5%8A%A8%E6%97%A5%E5%89%A7.har",
       "update": false,
       "comments": "账号密码版本, 带日志<br>http://www.doki8.com/",
       "filename": "templates/signin/心动日剧.har",
@@ -1480,7 +1480,7 @@
     "河洛网": {
       "name": "河洛网",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/河洛网.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E6%B2%B3%E6%B4%9B%E7%BD%91.har",
       "update": false,
       "comments": "username:账号<br>password:密码<br>https://www.horou.com/",
       "filename": "templates/signin/河洛网.har",
@@ -1492,7 +1492,7 @@
     "落叶次元": {
       "name": "落叶次元",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/落叶次元.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E8%90%BD%E5%8F%B6%E6%AC%A1%E5%85%83.har",
       "update": false,
       "comments": "username:邮箱<br>password:密码<br>https://www.lyocy.com/",
       "filename": "templates/signin/落叶次元.har",
@@ -1504,7 +1504,7 @@
     "tool.lu在线工具": {
       "name": "tool.lu在线工具",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/tool.lu在线工具.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/tool.lu%E5%9C%A8%E7%BA%BF%E5%B7%A5%E5%85%B7.har",
       "update": false,
       "comments": "登录后[https://id.tool.lu/profile]页面cookie<br>https://tool.lu/",
       "filename": "templates/signin/tool.lu在线工具.har",
@@ -1516,7 +1516,7 @@
     "小云社区": {
       "name": "小云社区",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/xiaoyunbbs.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/xiaoyunbbs.har",
       "update": false,
       "comments": "username:账号<br>password:密码<br>https://www.xiaoyunbbs.cn/",
       "filename": "templates/forum/xiaoyunbbs.har",
@@ -1528,7 +1528,7 @@
     "geekhub": {
       "name": "geekhub",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/geekhub.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/geekhub.har",
       "update": false,
       "comments": "username:账号<br>password:密码<br>https://www.geekhub.com/",
       "filename": "templates/signin/geekhub.har",
@@ -1540,7 +1540,7 @@
     "52asus": {
       "name": "52asus",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/52asus.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/52asus.har",
       "update": false,
       "comments": "username:账号<br>password:密码<br>https://www.52asus.com/",
       "filename": "templates/signin/52asus.har",
@@ -1552,7 +1552,7 @@
     "eatASMR": {
       "name": "eatASMR",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/eatASMR.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/eatASMR.har",
       "update": false,
       "comments": "username:账号<br>password:密码<br>https://eatasmr.com/",
       "filename": "templates/signin/eatASMR.har",
@@ -1564,7 +1564,7 @@
     "好书友": {
       "name": "好书友",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/好书友.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E5%A5%BD%E4%B9%A6%E5%8F%8B.har",
       "update": false,
       "comments": "username:账号<br>password:密码<br>https://www.58shuyou.com/",
       "filename": "templates/signin/好书友.har",
@@ -1576,7 +1576,7 @@
     "腾龙工作室": {
       "name": "腾龙工作室",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/腾龙工作室.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E8%85%BE%E9%BE%99%E5%B7%A5%E4%BD%9C%E5%AE%A4.har",
       "update": false,
       "comments": "username:邮箱<br>password:密码<br>https://www.tenlonstudio.com/",
       "filename": "templates/signin/腾龙工作室.har",
@@ -1588,7 +1588,7 @@
     "蓝光演唱会": {
       "name": "蓝光演唱会",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/蓝光演唱会.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E8%93%9D%E5%85%89%E6%BC%94%E5%94%B1%E4%BC%9A.har",
       "update": false,
       "comments": "username:账号<br>password:密码<br>https://www.lgych.com/",
       "filename": "templates/signin/蓝光演唱会.har",
@@ -1600,7 +1600,7 @@
     "原盘天堂": {
       "name": "原盘天堂",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/原盘天堂.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E5%8E%9F%E7%9B%98%E5%A4%A9%E5%A0%82.har",
       "update": false,
       "comments": "username:账号<br>password:密码<br>https://4k3dyptt.com/",
       "filename": "templates/signin/原盘天堂.har",
@@ -1612,7 +1612,7 @@
     "WhereMyLife": {
       "name": "WhereMyLife",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/WhereMyLife.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/WhereMyLife.har",
       "update": false,
       "comments": "username:邮箱<br>password:密码<br>https://wheremylife.cn/",
       "filename": "templates/signin/WhereMyLife.har",
@@ -1624,7 +1624,7 @@
     "Gogo次元": {
       "name": "Gogo次元",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/Gogo次元.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/Gogo%E6%AC%A1%E5%85%83.har",
       "update": false,
       "comments": "username:账号<br>password:密码<br>https://gogoacg.ws/",
       "filename": "templates/signin/Gogo次元.har",
@@ -1636,7 +1636,7 @@
     "blue高清公馆": {
       "name": "blue高清公馆",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/blue高清公馆.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/blue%E9%AB%98%E6%B8%85%E5%85%AC%E9%A6%86.har",
       "update": false,
       "comments": "username:账号<br>password:密码<br>https://www.bluegq.com/",
       "filename": "templates/signin/blue高清公馆.har",
@@ -1648,7 +1648,7 @@
     "国配影迷社区": {
       "name": "国配影迷社区",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/国配影迷社区.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E5%9B%BD%E9%85%8D%E5%BD%B1%E8%BF%B7%E7%A4%BE%E5%8C%BA.har",
       "update": false,
       "comments": "登录后首页cookie<br>https://club.ccmnn.com/",
       "filename": "templates/signin/国配影迷社区.har",
@@ -1660,7 +1660,7 @@
     "飘云阁": {
       "name": "飘云阁",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/飘云阁.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E9%A3%98%E4%BA%91%E9%98%81.har",
       "update": false,
       "comments": "username:账号<br>password:密码<br>https://www.chinapyg.com/",
       "filename": "templates/signin/飘云阁.har",
@@ -1672,7 +1672,7 @@
     "书法江湖": {
       "name": "书法江湖",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/书法江湖.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E4%B9%A6%E6%B3%95%E6%B1%9F%E6%B9%96.har",
       "update": false,
       "comments": "username:账号<br>password:密码<br>https://www.shufajianghu.com/",
       "filename": "templates/signin/书法江湖.har",
@@ -1684,7 +1684,7 @@
     "全球VPS交流社区": {
       "name": "全球VPS交流社区",
       "author": "FellBan",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/全球VPS交流社区.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E5%85%A8%E7%90%83VPS%E4%BA%A4%E6%B5%81%E7%A4%BE%E5%8C%BA.har",
       "update": false,
       "comments": "username:账号<br>password:密码<br>https://www.qqvps.com",
       "filename": "templates/signin/全球VPS交流社区.har",
@@ -1696,7 +1696,7 @@
     "鸿鹄论坛": {
       "name": "鸿鹄论坛",
       "author": "FellBan",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/鸿鹄论坛.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/%E9%B8%BF%E9%B9%84%E8%AE%BA%E5%9D%9B.har",
       "update": false,
       "comments": "首页Cookie<br>https://bbs.hh010.com/",
       "filename": "templates/forum/鸿鹄论坛.har",
@@ -1708,7 +1708,7 @@
     "攻城狮论坛-CCNA论坛": {
       "name": "攻城狮论坛-CCNA论坛",
       "author": "FellBan",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/攻城狮论坛-CCNA论坛.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/%E6%94%BB%E5%9F%8E%E7%8B%AE%E8%AE%BA%E5%9D%9B-CCNA%E8%AE%BA%E5%9D%9B.har",
       "update": false,
       "comments": "首页Cookie<br>http://bbs.vlan5.com/",
       "filename": "templates/forum/攻城狮论坛-CCNA论坛.har",
@@ -1720,7 +1720,7 @@
     "4K时光官网": {
       "name": "4K时光官网",
       "author": "FellBan",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/4K时光官网.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/4K%E6%97%B6%E5%85%89%E5%AE%98%E7%BD%91.har",
       "update": false,
       "comments": "首页Cookie<br>http://www.4ksg.cn/",
       "filename": "templates/signin/4K时光官网.har",
@@ -1732,7 +1732,7 @@
     "紫猫学院社区": {
       "name": "紫猫学院社区",
       "author": "FellBan",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/紫猫学院社区.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E7%B4%AB%E7%8C%AB%E5%AD%A6%E9%99%A2%E7%A4%BE%E5%8C%BA.har",
       "update": false,
       "comments": "首页Cookie<br>https://zimaoxy.com/b/forum.php",
       "filename": "templates/signin/紫猫学院社区.har",
@@ -1744,7 +1744,7 @@
     "修图匠人": {
       "name": "修图匠人",
       "author": "FellBan",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/修图匠人.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E4%BF%AE%E5%9B%BE%E5%8C%A0%E4%BA%BA.har",
       "update": false,
       "comments": "首页Cookie<br>https://www.tsliuyu.com/",
       "filename": "templates/signin/修图匠人.har",
@@ -1756,7 +1756,7 @@
     "糖果VR资源网": {
       "name": "糖果VR资源网",
       "author": "FellBan",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/糖果VR资源网.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E7%B3%96%E6%9E%9CVR%E8%B5%84%E6%BA%90%E7%BD%91.har",
       "update": false,
       "comments": "首页Cookie<br>https://www.tangguo2.com/forum.php",
       "filename": "templates/signin/糖果VR资源网.har",
@@ -1768,7 +1768,7 @@
     "HDTime": {
       "name": "HDTime",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/HDTime.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/HDTime.har",
       "update": false,
       "comments": "首页Cookie<br>https://hdtime.org/",
       "filename": "templates/signin/HDTime.har",
@@ -1780,7 +1780,7 @@
     "聆音Club": {
       "name": "聆音Club",
       "author": "wjf0214",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/聆音Club.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E8%81%86%E9%9F%B3Club.har",
       "update": false,
       "comments": "首页Cookie<br>https://pt.soulvoice.club/",
       "filename": "templates/signin/聆音Club.har",
@@ -1792,7 +1792,7 @@
     "MC百科": {
       "name": "MC百科",
       "author": "FellBan",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/MC百科.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/MC%E7%99%BE%E7%A7%91.har",
       "update": false,
       "comments": "首页Cookie<br>https://center.mcmod.cn/",
       "filename": "templates/signin/MC百科.har",
@@ -1804,7 +1804,7 @@
     "MC百科账号版": {
       "name": "MC百科账号版",
       "author": "FellBan,AlisaCat-S",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/MC百科账号版.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/MC%E7%99%BE%E7%A7%91%E8%B4%A6%E5%8F%B7%E7%89%88.har",
       "update": false,
       "comments": "用户名密码<br>可选自定义UA,空为默认UA<br>https://center.mcmod.cn/",
       "filename": "templates/signin/MC百科账号版.har",
@@ -1816,7 +1816,7 @@
     "IT技术交流论坛": {
       "name": "IT技术交流论坛",
       "author": "FellBan",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/IT技术交流论坛.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/IT%E6%8A%80%E6%9C%AF%E4%BA%A4%E6%B5%81%E8%AE%BA%E5%9D%9B.har",
       "update": false,
       "comments": "首页Cookie<br>https://bbs.itzmx.com/",
       "filename": "templates/forum/IT技术交流论坛.har",
@@ -1828,7 +1828,7 @@
     "苹果团": {
       "name": "苹果团",
       "author": "FellBan",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/苹果团.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E8%8B%B9%E6%9E%9C%E5%9B%A2.har",
       "update": false,
       "comments": "首页Cookie<br>https://appletuan.com/",
       "filename": "templates/signin/苹果团.har",
@@ -1840,7 +1840,7 @@
     "游戏大桶": {
       "name": "游戏大桶",
       "author": "FellBan",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/游戏大桶.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E6%B8%B8%E6%88%8F%E5%A4%A7%E6%A1%B6.har",
       "update": false,
       "comments": "账号密码<br>定时-当天随机延时12000~20000 不随机容易出滑块就签到不了<br>https://gamekegs.com",
       "filename": "templates/signin/游戏大桶.har",
@@ -1852,7 +1852,7 @@
     "Cnlang国语视界": {
       "name": "Cnlang国语视界",
       "author": "FellBan",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/Cnlang国语视界.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/Cnlang%E5%9B%BD%E8%AF%AD%E8%A7%86%E7%95%8C.har",
       "update": false,
       "comments": "首页Cookie<br>https://cnlang.org/",
       "filename": "templates/signin/Cnlang国语视界.har",
@@ -1864,7 +1864,7 @@
     "速蛙云": {
       "name": "速蛙云",
       "author": "a76yyyy",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/速蛙云.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E9%80%9F%E8%9B%99%E4%BA%91.har",
       "update": false,
       "comments": "domain: 速蛙云域名, 如 cloud.sw16.icu ,<br>F12获取info请求 Cookie 和 authorizationmweb 参数",
       "filename": "templates/signin/速蛙云.har",
@@ -1876,7 +1876,7 @@
     "FreeFarm": {
       "name": "FreeFarm",
       "author": "AemonCao",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/FreeFarm.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/FreeFarm.har",
       "update": false,
       "comments": "首页Cookie<br>https://pt.0ff.cc/",
       "filename": "templates/signin/FreeFarm.har",
@@ -1888,7 +1888,7 @@
     "CarPT": {
       "name": "CarPT",
       "author": "AemonCao",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/CarPT.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/pt/CarPT.har",
       "update": false,
       "comments": "首页Cookie<br>https://carpt.net/",
       "filename": "templates/pt/CarPT.har",
@@ -1900,7 +1900,7 @@
     "RainPat专利检索": {
       "name": "RainPat专利检索",
       "author": "FellBan",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/RainPat专利检索.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/RainPat%E4%B8%93%E5%88%A9%E6%A3%80%E7%B4%A2.har",
       "update": false,
       "comments": "username:账号<br>password:密码<br>https://www.rainpat.com/",
       "filename": "templates/signin/RainPat专利检索.har",
@@ -1912,7 +1912,7 @@
     "慢慢游社区": {
       "name": "慢慢游社区",
       "author": "李大爷",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/慢慢游社区.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E6%85%A2%E6%85%A2%E6%B8%B8%E7%A4%BE%E5%8C%BA.har",
       "update": true,
       "comments": "Cookie 日志显示",
       "filename": "templates/signin/慢慢游社区.har",
@@ -1924,7 +1924,7 @@
     "布谷Tv": {
       "name": "布谷Tv",
       "author": "FellBan",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/布谷Tv.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E5%B8%83%E8%B0%B7Tv.har",
       "update": false,
       "comments": "username:账号<br>password:密码<br>https://www.bugutv.net/",
       "filename": "templates/signin/布谷Tv.har",
@@ -1936,7 +1936,7 @@
     "元宇宙创意": {
       "name": "元宇宙创意",
       "author": "FellBan",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/元宇宙创意.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E5%85%83%E5%AE%87%E5%AE%99%E5%88%9B%E6%84%8F.har",
       "update": false,
       "comments": "username:账号<br>password:密码<br>https://mult.utour.top/",
       "filename": "templates/signin/元宇宙创意.har",
@@ -1948,7 +1948,7 @@
     "Nicept": {
       "name": "Nicept",
       "author": "Frostaxe",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/nicept.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/pt/nicept.har",
       "update": false,
       "comments": "首页Cookie<br>https://nicept.net/",
       "filename": "templates/pt/nicept.har",
@@ -1960,7 +1960,7 @@
     "hdhome": {
       "name": "hdhome",
       "author": "AlisaCat-S",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/hdhome.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/hdhome.har",
       "update": false,
       "comments": "hdhome,家园<br>首页Cookie<br>自定义UA:可选,空为默认UA<br>国内访问经常超时<br>https://hdhome.org/",
       "filename": "templates/signin/hdhome.har",
@@ -1972,7 +1972,7 @@
     "MyQQ": {
       "name": "MyQQ",
       "author": "FellBan",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/MyQQ.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/MyQQ.har",
       "update": false,
       "comments": "首页Cookie<br>https://bbs.myqqx.net",
       "filename": "templates/signin/MyQQ.har",
@@ -1984,7 +1984,7 @@
     "老男人游戏网配套论坛": {
       "name": "老男人游戏网配套论坛",
       "author": "FellBan",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/老男人游戏网配套论坛.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/%E8%80%81%E7%94%B7%E4%BA%BA%E6%B8%B8%E6%88%8F%E7%BD%91%E9%85%8D%E5%A5%97%E8%AE%BA%E5%9D%9B.har",
       "update": false,
       "comments": "首页Cookie<br>https://bbs.oldmanemu.net/",
       "filename": "templates/forum/老男人游戏网配套论坛.har",
@@ -1996,7 +1996,7 @@
     "m-team-cookie-flaresolverr": {
       "name": "m-team-cookie-flaresolverr",
       "author": "Sinkerine,404gods",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/m-team-cookie-flaresolverr.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/m-team-cookie-flaresolverr.har",
       "update": true,
       "comments": "cookies_value_tp: Cookies 中 \\\"tp\\\" key 的值<br>userid: userdetails.php?id={{userid}} 的用户 id<br>FlareSolverr url: 如 http://localhost:8191/v1",
       "filename": "templates/signin/m-team-cookie-flaresolverr.har",
@@ -2008,7 +2008,7 @@
     "掌上百科账号版": {
       "name": "掌上百科账号版",
       "author": "AlisaCat-S",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/掌上百科账号版.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E6%8E%8C%E4%B8%8A%E7%99%BE%E7%A7%91%E8%B4%A6%E5%8F%B7%E7%89%88.har",
       "update": false,
       "comments": "用户名密码,转盘次数与种树时间可自行调整<br>签到+种树+兑换+转盘抽奖<br>https://www.pdawiki.com/",
       "filename": "templates/signin/掌上百科账号版.har",
@@ -2020,7 +2020,7 @@
     "PT通用登录保号": {
       "name": "PT通用登录保号",
       "author": "bipy",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/PT通用登录保号.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/pt/PT%E9%80%9A%E7%94%A8%E7%99%BB%E5%BD%95%E4%BF%9D%E5%8F%B7.har",
       "update": false,
       "comments": "domain:域名, 如 pt.somept.com <br> cookie: PT的Cookie",
       "filename": "templates/pt/PT通用登录保号.har",
@@ -2032,7 +2032,7 @@
     "成都吃喝玩乐网": {
       "name": "成都吃喝玩乐网",
       "author": "FellBan",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/成都吃喝玩乐网.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E6%88%90%E9%83%BD%E5%90%83%E5%96%9D%E7%8E%A9%E4%B9%90%E7%BD%91.har",
       "update": false,
       "comments": "首页Cookie<br>https://www.52ch.net/",
       "filename": "templates/signin/成都吃喝玩乐网.har",
@@ -2044,7 +2044,7 @@
     "SF轻小说": {
       "name": "SF轻小说",
       "author": "chen8945",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/SF轻小说.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/SF%E8%BD%BB%E5%B0%8F%E8%AF%B4.har",
       "update": false,
       "comments": "每日签到和阅读时长任务, 需要在凌晨一点后执行<br>（网页或者APP均可，需要使用抓取 Cookie 时对应 UA，不可更改）<br>https://www.sfacg.com/",
       "filename": "templates/signin/SF轻小说.har",
@@ -2056,7 +2056,7 @@
     "爱桌游": {
       "name": "爱桌游",
       "author": "chen8945,UnicornUnderMoon",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/爱桌游.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E7%88%B1%E6%A1%8C%E6%B8%B8.har",
       "update": true,
       "comments": "用户名或邮箱 + 密码<br>https://www.zhuoyoux.com/",
       "filename": "templates/signin/爱桌游.har",
@@ -2068,7 +2068,7 @@
     "DJI大疆社区": {
       "name": "DJI大疆社区",
       "author": "chen8945,tophtab",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/DJI大疆社区.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/DJI%E5%A4%A7%E7%96%86%E7%A4%BE%E5%8C%BA.har",
       "update": true,
       "comments": "首页Cookie，Cookie请选中复制, 不要右键复制<br>https://bbs.dji.com/",
       "filename": "templates/signin/DJI大疆社区.har",
@@ -2080,7 +2080,7 @@
     "白兔俱乐部": {
       "name": "白兔俱乐部",
       "author": "AlisaCat-S",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/白兔俱乐部.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E7%99%BD%E5%85%94%E4%BF%B1%E4%B9%90%E9%83%A8.har",
       "update": false,
       "comments": "首页Cookie<br>https://club.hares.top/",
       "filename": "templates/signin/白兔俱乐部.har",
@@ -2092,7 +2092,7 @@
     "小栗子社区": {
       "name": "小栗子社区",
       "author": "chen8945",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/小栗子社区.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E5%B0%8F%E6%A0%97%E5%AD%90%E7%A4%BE%E5%8C%BA.har",
       "update": false,
       "comments": "首页Cookie, Cookie请选中复制, 不要右键复制<br>https://f.xiaolz.cn/",
       "filename": "templates/signin/小栗子社区.har",
@@ -2104,7 +2104,7 @@
     "华印社区": {
       "name": "华印社区",
       "author": "chen8945",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/华印社区.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E5%8D%8E%E5%8D%B0%E7%A4%BE%E5%8C%BA.har",
       "update": false,
       "comments": "用户名+密码<br>https://www.52cnp.com/",
       "filename": "templates/signin/华印社区.har",
@@ -2116,7 +2116,7 @@
     "360积分中心": {
       "name": "360积分中心",
       "author": "chen8945",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/360积分中心.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/360%E7%A7%AF%E5%88%86%E4%B8%AD%E5%BF%83.har",
       "update": true,
       "comments": "首页Cookie<br>https://jf.360.cn/",
       "filename": "templates/signin/360积分中心.har",
@@ -2128,7 +2128,7 @@
     "9DM玖大猫": {
       "name": "9DM玖大猫",
       "author": "chen8945,loveqianool",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/9DM玖大猫.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/9DM%E7%8E%96%E5%A4%A7%E7%8C%AB.har",
       "update": true,
       "comments": "邮箱 + 密码<br>domain：域名（示例 www.9dmgamemod.com）<br>评论区主楼另提供一份 Cookie版<br>http://www.9dmgamemod.com/",
       "filename": "templates/signin/9DM玖大猫.har",
@@ -2140,7 +2140,7 @@
     "SSDForum": {
       "name": "SSDForum",
       "author": "chen8945",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/SSDForum.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/SSDForum.har",
       "update": false,
       "comments": "首页Cookie, Cookie请选中复制, 不要右键复制<br>https://ssdforum.org/",
       "filename": "templates/forum/SSDForum.har",
@@ -2152,7 +2152,7 @@
     "影视168论坛": {
       "name": "影视168论坛",
       "author": "chen8945",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/影视168论坛.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/%E5%BD%B1%E8%A7%86168%E8%AE%BA%E5%9D%9B.har",
       "update": false,
       "comments": "首页Cookie, Cookie请选中复制, 不要右键复制<br>http://hkdy168.com/",
       "filename": "templates/forum/影视168论坛.har",
@@ -2164,7 +2164,7 @@
     "狮碟论坛": {
       "name": "狮碟论坛",
       "author": "chen8945",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/狮碟论坛.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/%E7%8B%AE%E7%A2%9F%E8%AE%BA%E5%9D%9B.har",
       "update": false,
       "comments": "首页Cookie, Cookie请选中复制, 不要右键复制<br>http://www.ssdvd.net/",
       "filename": "templates/forum/狮碟论坛.har",
@@ -2176,7 +2176,7 @@
     "云原神": {
       "name": "云原神",
       "author": "chen8945",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/云原神.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E4%BA%91%E5%8E%9F%E7%A5%9E.har",
       "update": false,
       "comments": "APP抓包 x-rpc-combo_token和x-rpc-device_id<br>每日 04:00 刷新签到时间, 定时请设置在4点以后<br>https://mhyy.mihoyo.com/",
       "filename": "templates/signin/云原神.har",
@@ -2188,7 +2188,7 @@
     "LittleSkin": {
       "name": "LittleSkin",
       "author": "chen8945",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/LittleSkin.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/LittleSkin.har",
       "update": false,
       "comments": "用户名+密码<br>https://littleskin.cn/",
       "filename": "templates/signin/LittleSkin.har",
@@ -2200,7 +2200,7 @@
     "极点ACG": {
       "name": "极点ACG",
       "author": "chen8945",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/极点ACG.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E6%9E%81%E7%82%B9ACG.har",
       "update": true,
       "comments": "用户名或邮箱 + 密码<br>https://lspgal.top/",
       "filename": "templates/signin/极点ACG.har",
@@ -2212,7 +2212,7 @@
     "阅读论坛": {
       "name": "阅读论坛",
       "author": "chen8945",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/阅读论坛.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/%E9%98%85%E8%AF%BB%E8%AE%BA%E5%9D%9B.har",
       "update": true,
       "comments": "Cookie<br>https://legado.cn/",
       "filename": "templates/forum/阅读论坛.har",
@@ -2224,7 +2224,7 @@
     "hdatmos_阿童木_保号": {
       "name": "hdatmos_阿童木_保号",
       "author": "IITII",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/hdatmos.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/hdatmos.har",
       "update": false,
       "comments": "用户 Cookies 从 F12 .php 请求获取<br>https://hdatmos.club",
       "filename": "templates/signin/hdatmos.har",
@@ -2236,7 +2236,7 @@
     "pthome_铂金家_保号": {
       "name": "pthome_铂金家_保号",
       "author": "IITII",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/pthome.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/pt/pthome.har",
       "update": false,
       "comments": "用户 Cookies 从 F12 .php 请求获取<br>https://pthome.net",
       "filename": "templates/pt/pthome.har",
@@ -2248,7 +2248,7 @@
     "2xfree_保号": {
       "name": "2xfree_保号",
       "author": "IITII",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/2xfree.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/2xfree.har",
       "update": false,
       "comments": "用户 Cookies 从 F12 .php 请求获取<br>https://pt.2xfree.org",
       "filename": "templates/signin/2xfree.har",
@@ -2260,7 +2260,7 @@
     "kamept_保号": {
       "name": "kamept_保号",
       "author": "IITII",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/kamept.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/pt/kamept.har",
       "update": false,
       "comments": "用户 Cookies 从 F12 .php 请求获取<br>https://kamept.com",
       "filename": "templates/pt/kamept.har",
@@ -2272,7 +2272,7 @@
     "云遥客栈": {
       "name": "云遥客栈",
       "author": "",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/yunyaokz.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/yunyaokz.har",
       "update": false,
       "comments": "content签到的文字。<br>emotid签到的的心情，1到8.<br>Cookies首页cookie.<br>注意论坛对签到时间的限制。<br>https://www.yunyaokz.com/",
       "filename": "templates/signin/yunyaokz.har",
@@ -2284,7 +2284,7 @@
     "FOXGAME": {
       "name": "FOXGAME",
       "author": "chen8945",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/FOXGAME.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/FOXGAME.har",
       "update": true,
       "comments": "账号 + 密码<br>评论区主楼另提供一份 Cookie版<br>https://www.foxsgame.com/",
       "filename": "templates/signin/FOXGAME.har",
@@ -2296,7 +2296,7 @@
     "TruckGame": {
       "name": "TruckGame",
       "author": "chen8945",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/TruckGame.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/TruckGame.har",
       "update": false,
       "comments": "账号+密码<br>https://truckgame.cn/",
       "filename": "templates/signin/TruckGame.har",
@@ -2308,7 +2308,7 @@
     "遇见小馒头": {
       "name": "遇见小馒头",
       "author": "chen8945",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/遇见小馒头.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E9%81%87%E8%A7%81%E5%B0%8F%E9%A6%92%E5%A4%B4.har",
       "update": false,
       "comments": "账号+密码<br>https://5ixmt.com/",
       "filename": "templates/signin/遇见小馒头.har",
@@ -2320,7 +2320,7 @@
     "观众": {
       "name": "观众",
       "author": "MyFaith",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/audiences.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/audiences.har",
       "update": false,
       "comments": "首页 Cookie<br>https://audiences.me/",
       "filename": "templates/signin/audiences.har",
@@ -2332,7 +2332,7 @@
     "猫站": {
       "name": "猫站",
       "author": "MyFaith",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/pterclub.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/pt/pterclub.har",
       "update": false,
       "comments": "首页 Cookie<br>https://pterclub.com/",
       "filename": "templates/pt/pterclub.har",
@@ -2344,7 +2344,7 @@
     "司机社": {
       "name": "司机社",
       "author": "MyFaith",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/xsijishe.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/xsijishe.har",
       "update": true,
       "comments": "首页 Cookie<br>https://xsijishe.com/",
       "filename": "templates/signin/xsijishe.har",
@@ -2356,7 +2356,7 @@
     "邀玩": {
       "name": "邀玩",
       "author": "MyFaith",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/invites.fun.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/invites.fun.har",
       "update": false,
       "comments": "首页Cookie<br>https://invites.fun/",
       "filename": "templates/signin/invites.fun.har",
@@ -2368,7 +2368,7 @@
     "btschool_保号": {
       "name": "btschool_保号",
       "author": "IITII",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/btschool.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/btschool.har",
       "update": true,
       "comments": "c_secure_uid, c_secure_pass, c_secure_login 自行从 cookies 里面提取<br>flaresolverr 地址填写格式: http://{ip}:{port}/v1, 比如 http://localhost:8191/v1<br>具体看评论区 其他信息 部分<br>https://pt.btschool.club",
       "filename": "templates/signin/btschool.har",
@@ -2380,7 +2380,7 @@
     "sharkpt_鲨鱼_保号": {
       "name": "sharkpt_鲨鱼_保号",
       "author": "IITII",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/sharkpt.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/pt/sharkpt.har",
       "update": false,
       "comments": "用户 Cookies 从 F12 .php 请求获取<br>https://sharkpt.net",
       "filename": "templates/pt/sharkpt.har",
@@ -2392,7 +2392,7 @@
     "torrentleech_保号": {
       "name": "torrentleech_保号",
       "author": "IITII",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/torrentleech.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/pt/torrentleech.har",
       "update": true,
       "comments": "用户 Cookies 从 F12 .php 请求获取, <br>tluid, tlpass 自行从 Cookies 提取. <br>数据没有过多清洗<br>https://www.torrentleech.org",
       "filename": "templates/pt/torrentleech.har",
@@ -2404,7 +2404,7 @@
     "PT通用签到保号": {
       "name": "PT通用签到保号",
       "author": "IITII",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/PT通用签到保号.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/pt/PT%E9%80%9A%E7%94%A8%E7%AD%BE%E5%88%B0%E4%BF%9D%E5%8F%B7.har",
       "update": true,
       "comments": "用户 Cookies 请通过 F12 在 .php 请求获取. <br>签到结果获取目前只适配了原版 NexusPHP",
       "filename": "templates/pt/PT通用签到保号.har",
@@ -2416,7 +2416,7 @@
     "PT通用过CF签到保号": {
       "name": "PT通用过CF签到保号",
       "author": "IITII",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/PT通用过CF签到保号.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/pt/PT%E9%80%9A%E7%94%A8%E8%BF%87CF%E7%AD%BE%E5%88%B0%E4%BF%9D%E5%8F%B7.har",
       "update": true,
       "comments": "c_secure_uid, c_secure_pass, c_secure_login 自行从 cookies 里面提取<br>flaresolverr 地址填写格式: http://{ip}:{port}/v1, <br>比如 http://localhost:8191/v1<br>具体看 评论区 其他信息 部分",
       "filename": "templates/pt/PT通用过CF签到保号.har",
@@ -2428,7 +2428,7 @@
     "op.gg自动刷新LOL战绩": {
       "name": "op.gg自动刷新LOL战绩",
       "author": "嘉然今天吃什么",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/op.gg自动刷新LOL战绩.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/op.gg%E8%87%AA%E5%8A%A8%E5%88%B7%E6%96%B0LOL%E6%88%98%E7%BB%A9.har",
       "update": true,
       "comments": "只需要填id, id为游戏id;<br>模板为日服模板, 其他服务器自己改一下.<br>间隔时间不要太短, 2-3小时以上.<br>QD 框架版本需要大于 20230520.",
       "filename": "templates/signin/op.gg自动刷新LOL战绩.har",
@@ -2440,7 +2440,7 @@
     "189天翼云_账号密码版": {
       "name": "189天翼云_账号密码版",
       "author": "wjf0214,uiolee",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/189天翼云_账号密码版.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/189%E5%A4%A9%E7%BF%BC%E4%BA%91_%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81%E7%89%88.har",
       "update": true,
       "comments": "username:账号<br>password:密码<br>https://cloud.189.cn/<br>QD 框架版本需大于等于 20230626",
       "filename": "templates/signin/189天翼云_账号密码版.har",
@@ -2452,7 +2452,7 @@
     "高清演唱会": {
       "name": "高清演唱会",
       "author": "loveyanglove",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/高清演唱会.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E9%AB%98%E6%B8%85%E6%BC%94%E5%94%B1%E4%BC%9A.har",
       "update": true,
       "comments": "账号密码登录<br>日志显示<br>https://www.yiqibixin.com",
       "filename": "templates/signin/高清演唱会.har",
@@ -2464,7 +2464,7 @@
     "4KHDR": {
       "name": "4KHDR",
       "author": "chen8945",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/4KHDR.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/4KHDR.har",
       "update": true,
       "comments": "用户名 + 密码<br>https://www.4khdr.cn/",
       "filename": "templates/signin/4KHDR.har",
@@ -2476,7 +2476,7 @@
     "科研通": {
       "name": "科研通",
       "author": "李大爷",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/科研通.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E7%A7%91%E7%A0%94%E9%80%9A.har",
       "update": false,
       "comments": "账号密码登录",
       "filename": "templates/signin/科研通.har",
@@ -2488,7 +2488,7 @@
     "爱快论坛": {
       "name": "爱快论坛",
       "author": "刘岗强",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/爱快论坛.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/%E7%88%B1%E5%BF%AB%E8%AE%BA%E5%9D%9B.har",
       "update": true,
       "comments": "账号+密码<br>可以进行爱快论坛登录和连续签到并获取签到排名",
       "filename": "templates/forum/爱快论坛.har",
@@ -2500,7 +2500,7 @@
     "OpenFRP": {
       "name": "OpenFRP",
       "author": "github-h,Learn_Chen",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/OpenFRP.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/OpenFRP.har",
       "update": true,
       "comments": "username:账号 password:密码<br><br>每日领取流量<br><br>https://console.openfrp.net<br><br>适用框架版本 20230718",
       "filename": "templates/signin/OpenFRP.har",
@@ -2512,7 +2512,7 @@
     "真白萌": {
       "name": "真白萌",
       "author": "chen8945",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/真白萌.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E7%9C%9F%E7%99%BD%E8%90%8C.har",
       "update": true,
       "comments": "用户名或邮箱 + 密码<br>flaresolverr_url：flaresolverr 服务地址（示例 http://localhost:8191/v1）<br>需额外修改框架配置，具体请查看评论区主楼<br>https://masiro.me/",
       "filename": "templates/signin/真白萌.har",
@@ -2524,7 +2524,7 @@
     "报告厅": {
       "name": "报告厅",
       "author": "chen8945",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/报告厅.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E6%8A%A5%E5%91%8A%E5%8E%85.har",
       "update": true,
       "comments": "手机号 + 密码<br>https://www.baogaoting.com/",
       "filename": "templates/signin/报告厅.har",
@@ -2536,7 +2536,7 @@
     "萌次元": {
       "name": "萌次元",
       "author": "AlisaCat-S",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/萌次元.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E8%90%8C%E6%AC%A1%E5%85%83.har",
       "update": true,
       "comments": "UA填写UA<br>Cookies填写注意要包含wordpress_sec（抓请求中包含admin字样的CK或者用插件获取CK）<br>国内访问可能不畅",
       "filename": "templates/signin/萌次元.har",
@@ -2548,7 +2548,7 @@
     "贴吧一键签到": {
       "name": "贴吧一键签到",
       "author": "qiandao.today,TigerCubDen",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/贴吧一键签到cookie.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E8%B4%B4%E5%90%A7%E4%B8%80%E9%94%AE%E7%AD%BE%E5%88%B0cookie.har",
       "update": true,
       "comments": "模拟网页端对用户已关注的所有贴吧一键自动签到<br>填入在百度贴吧登录后的cookie即可",
       "filename": "templates/signin/贴吧一键签到cookie.har",
@@ -2560,7 +2560,7 @@
     "T00ls": {
       "name": "T00ls",
       "author": "cheth",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/t00ls论坛.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/t00ls%E8%AE%BA%E5%9D%9B.har",
       "update": false,
       "comments": "一个简单的t00ls签到模板",
       "filename": "templates/forum/t00ls论坛.har",
@@ -2572,7 +2572,7 @@
     "刺猬猫": {
       "name": "刺猬猫",
       "author": "cheth",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/刺猬猫.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E5%88%BA%E7%8C%AC%E7%8C%AB.har",
       "update": true,
       "comments": "欢乐书客简单签到模板",
       "filename": "templates/signin/刺猬猫.har",
@@ -2584,7 +2584,7 @@
     "shadowsky": {
       "name": "shadowsky",
       "author": "joesonshaw",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/shadowsky.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/shadowsky.har",
       "update": false,
       "comments": "cookie 签到领取流量奖励<br>https://www.shadowsky.xyz/",
       "filename": "templates/signin/shadowsky.har",
@@ -2596,7 +2596,7 @@
     "locyanfrp": {
       "name": "locyanfrp",
       "author": "sunnywangzi",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/locyanfrp.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/locyanfrp.har",
       "update": false,
       "comments": "username：用户名/邮箱<br>password：密码<br>https://www.locyanfrp.cn/",
       "filename": "templates/signin/locyanfrp.har",
@@ -2608,7 +2608,7 @@
     "海胆之家haidan.video": {
       "name": "海胆之家haidan.video",
       "author": "zhaoyan42",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/海胆之家haidan.video.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/video/%E6%B5%B7%E8%83%86%E4%B9%8B%E5%AE%B6haidan.video.har",
       "update": false,
       "comments": "https://www.haidan.video/<br>打卡模板，根据pttime模板修改而来",
       "filename": "templates/video/海胆之家haidan.video.har",
@@ -2620,7 +2620,7 @@
     "mossfrp": {
       "name": "mossfrp",
       "author": "sunnywangzi",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/mossfrp.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/mossfrp.har",
       "update": false,
       "comments": "username：邮箱/用户名<br>password：加密后的密码 (抓登录时post传的password的值)<br>https://www.mossfrp.top",
       "filename": "templates/signin/mossfrp.har",
@@ -2632,7 +2632,7 @@
     "影巢": {
       "name": "影巢",
       "author": "chen8945",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/影巢.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E5%BD%B1%E5%B7%A2.har",
       "update": true,
       "comments": "邮箱 + 密码<br>domain：域名（示例 hdhive.com）<br>dg：填写 `yes` 开启赌狗签到，默认普通签到<br>https://hdhive.com/",
       "filename": "templates/signin/影巢.har",
@@ -2644,7 +2644,7 @@
     "橘柚小站": {
       "name": "橘柚小站",
       "author": "李大爷",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/橘柚小站.HAR.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E6%A9%98%E6%9F%9A%E5%B0%8F%E7%AB%99.HAR.har",
       "update": false,
       "comments": "账号密码签到&内含百度网盘在线解析。",
       "filename": "templates/signin/橘柚小站.HAR.har",
@@ -2656,7 +2656,7 @@
     "LSP社区": {
       "name": "LSP社区",
       "author": "myxw",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/LSP社区.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/LSP%E7%A4%BE%E5%8C%BA.har",
       "update": true,
       "comments": "首页Cookie<br>https://lsp.ptlsp.com/",
       "filename": "templates/signin/LSP社区.har",
@@ -2668,7 +2668,7 @@
     "宅领域": {
       "name": "宅领域",
       "author": "李大爷",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/宅领域.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E5%AE%85%E9%A2%86%E5%9F%9F.har",
       "update": false,
       "comments": "账号密码签到",
       "filename": "templates/signin/宅领域.har",
@@ -2680,7 +2680,7 @@
     "二层楼源码网": {
       "name": "二层楼源码网",
       "author": "李大爷",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/二层楼源码网.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E4%BA%8C%E5%B1%82%E6%A5%BC%E6%BA%90%E7%A0%81%E7%BD%91.har",
       "update": false,
       "comments": "账号密码<br>https://www.rclou.cn/",
       "filename": "templates/signin/二层楼源码网.har",
@@ -2692,7 +2692,7 @@
     "飞天资源论坛": {
       "name": "飞天资源论坛",
       "author": "李大爷",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/飞天资源论坛.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/%E9%A3%9E%E5%A4%A9%E8%B5%84%E6%BA%90%E8%AE%BA%E5%9D%9B.har",
       "update": true,
       "comments": "cookie 签到",
       "filename": "templates/forum/飞天资源论坛.har",
@@ -2704,7 +2704,7 @@
     "绅士之庭gmgard.com": {
       "name": "绅士之庭gmgard.com",
       "author": "TheTruthYouKnow",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/gmgard.com绅士之庭.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/gmgard.com%E7%BB%85%E5%A3%AB%E4%B9%8B%E5%BA%AD.har",
       "update": false,
       "comments": "绅士之庭的签到模板，个人能力问题，仅域名为 **gmgard.com** 时可用。<br>该模板因为绅士之庭无法直接访问，故需要自行想办法解决网络问题。。",
       "filename": "templates/signin/gmgard.com绅士之庭.har",
@@ -2716,7 +2716,7 @@
     "STEAM联机账号分享论坛": {
       "name": "STEAM联机账号分享论坛",
       "author": "李大爷",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/STEAM联机账号分享论坛.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/STEAM%E8%81%94%E6%9C%BA%E8%B4%A6%E5%8F%B7%E5%88%86%E4%BA%AB%E8%AE%BA%E5%9D%9B.har",
       "update": false,
       "comments": "签到<br>https://lixianla.com/",
       "filename": "templates/forum/STEAM联机账号分享论坛.har",
@@ -2728,7 +2728,7 @@
     "雨云签到": {
       "name": "雨云签到",
       "author": "lxh",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/雨云签到.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E9%9B%A8%E4%BA%91%E7%AD%BE%E5%88%B0.har",
       "update": true,
       "comments": "雨云自动签到领取积分，apikey在个人资料中生成",
       "filename": "templates/signin/雨云签到.har",
@@ -2740,7 +2740,7 @@
     "图牛助理": {
       "name": "图牛助理",
       "author": "FadeTube",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/图牛助理.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E5%9B%BE%E7%89%9B%E5%8A%A9%E7%90%86.har",
       "update": false,
       "comments": "PS插件图牛助理签到积分",
       "filename": "templates/signin/图牛助理.har",
@@ -2752,7 +2752,7 @@
     "调侃网": {
       "name": "调侃网",
       "author": "吴彦祖",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/tiaokan.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/tiaokan.har",
       "update": false,
       "comments": "登陆后 cookie",
       "filename": "templates/signin/tiaokan.har",
@@ -2764,7 +2764,7 @@
     "幼教库": {
       "name": "幼教库",
       "author": "李大爷",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/幼教库.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E5%B9%BC%E6%95%99%E5%BA%93.har",
       "update": false,
       "comments": "账号密码<br>https://www.youjiaoku.com/",
       "filename": "templates/signin/幼教库.har",
@@ -2776,7 +2776,7 @@
     "哔咔漫画": {
       "name": "哔咔漫画",
       "author": "chen8945",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/哔咔漫画.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E5%93%94%E5%92%94%E6%BC%AB%E7%94%BB.har",
       "update": true,
       "comments": "账号 + 密码<br>https://pica2023.com/",
       "filename": "templates/signin/哔咔漫画.har",
@@ -2788,7 +2788,7 @@
     "百度网盘会员成长值签到": {
       "name": "百度网盘会员成长值签到",
       "author": "1eb",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/百度网盘会员成长值签到.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98%E4%BC%9A%E5%91%98%E6%88%90%E9%95%BF%E5%80%BC%E7%AD%BE%E5%88%B0.har",
       "update": true,
       "comments": "登录后获取页面Cookies并填入,需要有网盘会员<br>https://pan.baidu.com/wap/svip/growth/task",
       "filename": "templates/signin/百度网盘会员成长值签到.har",
@@ -2800,7 +2800,7 @@
     "Link.AI_智能对话": {
       "name": "Link.AI_智能对话",
       "author": "李大爷",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/Link.AI_智能对话.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/Link.AI_%E6%99%BA%E8%83%BD%E5%AF%B9%E8%AF%9D.har",
       "update": false,
       "comments": "账号密码<br>https://link-ai.tech/",
       "filename": "templates/signin/Link.AI_智能对话.har",
@@ -2812,7 +2812,7 @@
     "二次元下午茶": {
       "name": "二次元下午茶",
       "author": "李大爷",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/二次元下午茶.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E4%BA%8C%E6%AC%A1%E5%85%83%E4%B8%8B%E5%8D%88%E8%8C%B6.har",
       "update": false,
       "comments": "账号密码<br>https://teaeee.com/",
       "filename": "templates/signin/二次元下午茶.har",
@@ -2824,7 +2824,7 @@
     "芯幻": {
       "name": "芯幻",
       "author": "chen8945,beefjerky331",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/芯幻.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E8%8A%AF%E5%B9%BB.har",
       "update": true,
       "comments": "domain：域名（示例 xhcyw.com）<br>邮箱 + 密码<br>https://xhcyw.com/",
       "filename": "templates/signin/芯幻.har",
@@ -2836,7 +2836,7 @@
     "咸鱼单机": {
       "name": "咸鱼单机",
       "author": "chen8945,UnicornUnderMoon,linyuaner",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/咸鱼单机.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E5%92%B8%E9%B1%BC%E5%8D%95%E6%9C%BA.har",
       "update": true,
       "comments": "Cookie<br>domain：域名（示例 www.xianyudanji.top）",
       "filename": "templates/signin/咸鱼单机.har",
@@ -2848,7 +2848,7 @@
     "文心一格": {
       "name": "文心一格",
       "author": "chen8945",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/文心一格.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E6%96%87%E5%BF%83%E4%B8%80%E6%A0%BC.har",
       "update": false,
       "comments": "Cookie，完整Cookie或者BDUSS字段均可<br>https://yige.baidu.com/",
       "filename": "templates/signin/文心一格.har",
@@ -2860,7 +2860,7 @@
     "NeoACG": {
       "name": "NeoACG",
       "author": "chen8945",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/NeoACG.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/NeoACG.har",
       "update": false,
       "comments": "用户名 + 密码<br>https://neoacg.com/",
       "filename": "templates/signin/NeoACG.har",
@@ -2872,7 +2872,7 @@
     "2DFan": {
       "name": "2DFan",
       "author": "chen8945",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/2DFan.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/2DFan.har",
       "update": true,
       "comments": "Cookie<br>domain：域名（示例 2dfan.org）<br>https://2dfan.org/",
       "filename": "templates/signin/2DFan.har",
@@ -2884,7 +2884,7 @@
     "禁漫天堂": {
       "name": "禁漫天堂",
       "author": "好人",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/18comic.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/18comic.har",
       "update": true,
       "comments": "每日签到和每日任务，新版发布页支持<br><br>domain：发布页或者禁漫网址【https://xxx.com】<br>username：账号<br>password：密码<br>flaresolverr_url：flaresolverr 服务地址，非必须，访问cf域名时才会使用<br>flaresolverr_proxy_url：flaresolverr 服务使用的代理地址，可不填 【http://192.168.xx.xx:xxxx】<br>flaresolverr_proxy_username：flaresolverr 服务使用的代理地址的账号，可不填<br>flaresolverr_proxy_password：flaresolverr 服务使用的代理地址的密码，可不填",
       "filename": "templates/signin/18comic.har",
@@ -2896,7 +2896,7 @@
     "魔性论坛": {
       "name": "魔性论坛",
       "author": "NSFW",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/moxing.vip.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/moxing.vip.har",
       "update": true,
       "comments": "moxing.vip",
       "filename": "templates/forum/moxing.vip.har",
@@ -2908,7 +2908,7 @@
     "520cc": {
       "name": "520cc",
       "author": "loveqianool",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/520cc.cc.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/520cc.cc.har",
       "update": false,
       "comments": "用户名密码",
       "filename": "templates/signin/520cc.cc.har",
@@ -2920,7 +2920,7 @@
     "acgcbk.top": {
       "name": "acgcbk.top",
       "author": "loveqianool",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/acgcbk.top.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/acgcbk.top.har",
       "update": false,
       "comments": "用户名密码",
       "filename": "templates/signin/acgcbk.top.har",
@@ -2932,7 +2932,7 @@
     "维咔ACG": {
       "name": "维咔ACG",
       "author": "moke233",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/vikacg.com.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/vikacg.com.har",
       "update": true,
       "comments": "登录后点击头像，创作者中心，查看 Post 请求可以看到 authorization。",
       "filename": "templates/signin/vikacg.com.har",
@@ -2944,7 +2944,7 @@
     "WK_综合论坛": {
       "name": "WK_综合论坛",
       "author": "loveqianool",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/waikeung.net.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/waikeung.net.har",
       "update": false,
       "comments": "waikeung.net",
       "filename": "templates/forum/waikeung.net.har",
@@ -2956,7 +2956,7 @@
     "sex8.cc": {
       "name": "sex8.cc",
       "author": "i9366333",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/sex8.cc.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/sex8.cc.har",
       "update": true,
       "comments": "选填",
       "filename": "templates/signin/sex8.cc.har",
@@ -2968,7 +2968,7 @@
     "绅士仓库": {
       "name": "绅士仓库",
       "author": "Nigel_NI",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/Cangku.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/Cangku.har",
       "update": true,
       "comments": "username: 用户名<br>password: 密码<br>https://cangku.moe",
       "filename": "templates/signin/Cangku.har",
@@ -2980,7 +2980,7 @@
     "猴岛论坛": {
       "name": "猴岛论坛",
       "author": "李大爷",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/猴岛论坛.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/%E7%8C%B4%E5%B2%9B%E8%AE%BA%E5%9D%9B.har",
       "update": false,
       "comments": "每日签到",
       "filename": "templates/forum/猴岛论坛.har",
@@ -2992,7 +2992,7 @@
     "HDSay高清乐园": {
       "name": "HDSay高清乐园",
       "author": "李大爷",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/HDSay高清乐园.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/HDSay%E9%AB%98%E6%B8%85%E4%B9%90%E5%9B%AD.har",
       "update": true,
       "comments": "账号密码签到<br>日志输出  20241023 更新域名",
       "filename": "templates/signin/HDSay高清乐园.har",
@@ -3004,7 +3004,7 @@
     "日本代购买买提": {
       "name": "日本代购买买提",
       "author": "李大爷",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/日本代购买买提.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E6%97%A5%E6%9C%AC%E4%BB%A3%E8%B4%AD%E4%B9%B0%E4%B9%B0%E6%8F%90.har",
       "update": false,
       "comments": "账号+密码<br>https://www.jpgoodbuy.com/",
       "filename": "templates/signin/日本代购买买提.har",
@@ -3016,7 +3016,7 @@
     "藏宝湾网游单机站": {
       "name": "藏宝湾网游单机站",
       "author": "z",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/藏宝湾网游单机站.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E8%97%8F%E5%AE%9D%E6%B9%BE%E7%BD%91%E6%B8%B8%E5%8D%95%E6%9C%BA%E7%AB%99.har",
       "update": true,
       "comments": "填入账号密码或者 cookie，每日登录奖励",
       "filename": "templates/signin/藏宝湾网游单机站.har",
@@ -3028,7 +3028,7 @@
     "ECUST_PT_-_花梨月下（华东理工教育站）": {
       "name": "ECUST_PT_-_花梨月下（华东理工教育站）",
       "author": "UnicornUnderMoon",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/ECUST_PT_-_花梨月下（华东理工教育站）.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/pt/ECUST_PT_-_%E8%8A%B1%E6%A2%A8%E6%9C%88%E4%B8%8B%EF%BC%88%E5%8D%8E%E4%B8%9C%E7%90%86%E5%B7%A5%E6%95%99%E8%82%B2%E7%AB%99%EF%BC%89.har",
       "update": true,
       "comments": "本模板修改自[PT通用过CF签到保号](https://github.com/qd-today/templates/issues/329)，对“ECUST PT”站进行适配，修改了登录，签到失败判定，日志记录签到，魔力和上传下载流量信息。<br>需填信息：<br>c_secure_uid, c_secure_pass, c_secure_login 自行从 cookies 里面提取<br>flaresolverr 地址填写格式: http://{ip}:{port}/v1,<br>比如 http://localhost:8191/v1<br>参数设定具体请参看 [PT通用过CF签到保号](https://github.com/qd-today/templates/issues/329)",
       "filename": "templates/pt/ECUST_PT_-_花梨月下（华东理工教育站）.har",
@@ -3040,7 +3040,7 @@
     "国芯论坛": {
       "name": "国芯论坛",
       "author": "loveyanglove",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/国芯论坛.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/%E5%9B%BD%E8%8A%AF%E8%AE%BA%E5%9D%9B.har",
       "update": true,
       "comments": "账号密码登录<br>日志显示",
       "filename": "templates/forum/国芯论坛.har",
@@ -3052,7 +3052,7 @@
     "普广打印机论坛": {
       "name": "普广打印机论坛",
       "author": "loveqianool",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/普广打印机论坛.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/%E6%99%AE%E5%B9%BF%E6%89%93%E5%8D%B0%E6%9C%BA%E8%AE%BA%E5%9D%9B.har",
       "update": false,
       "comments": "https://www.oahelp.net/<br>账户密码",
       "filename": "templates/forum/普广打印机论坛.har",
@@ -3064,7 +3064,7 @@
     "AcgFun": {
       "name": "AcgFun",
       "author": "loveqianool",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/AcgFun.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/AcgFun.har",
       "update": true,
       "comments": "",
       "filename": "templates/signin/AcgFun.har",
@@ -3076,7 +3076,7 @@
     "VR魔趣网": {
       "name": "VR魔趣网",
       "author": "loveqianool",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/VR魔趣网.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/VR%E9%AD%94%E8%B6%A3%E7%BD%91.har",
       "update": true,
       "comments": "https://www.vrmoo.net<br>账户密码",
       "filename": "templates/signin/VR魔趣网.har",
@@ -3088,7 +3088,7 @@
     "中图网(原中国图书网)": {
       "name": "中图网(原中国图书网)",
       "author": "李大爷",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/中图网(原中国图书网).har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E4%B8%AD%E5%9B%BE%E7%BD%91%28%E5%8E%9F%E4%B8%AD%E5%9B%BD%E5%9B%BE%E4%B9%A6%E7%BD%91%29.har",
       "update": false,
       "comments": "cookie签到+日志显示",
       "filename": "templates/signin/中图网(原中国图书网).har",
@@ -3100,7 +3100,7 @@
     "云中漫步": {
       "name": "云中漫步",
       "author": "李大爷",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/云中漫步.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E4%BA%91%E4%B8%AD%E6%BC%AB%E6%AD%A5.har",
       "update": false,
       "comments": "cookie签到+日志输出",
       "filename": "templates/signin/云中漫步.har",
@@ -3112,7 +3112,7 @@
     "SCI_Great_-_优质学术插件分享平台": {
       "name": "SCI_Great_-_优质学术插件分享平台",
       "author": "李大爷",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/SCI_Great_-_优质学术插件分享平台.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/SCI_Great_-_%E4%BC%98%E8%B4%A8%E5%AD%A6%E6%9C%AF%E6%8F%92%E4%BB%B6%E5%88%86%E4%BA%AB%E5%B9%B3%E5%8F%B0.har",
       "update": false,
       "comments": "cookie+日志输出",
       "filename": "templates/signin/SCI_Great_-_优质学术插件分享平台.har",
@@ -3124,7 +3124,7 @@
     "deepfacelab中文网": {
       "name": "deepfacelab中文网",
       "author": "李大爷",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/deepfacelab中文网.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/deepfacelab%E4%B8%AD%E6%96%87%E7%BD%91.har",
       "update": false,
       "comments": "cookie+日志输出",
       "filename": "templates/signin/deepfacelab中文网.har",
@@ -3136,7 +3136,7 @@
     "RenPy中文论坛": {
       "name": "RenPy中文论坛",
       "author": "github-h",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/RenPy中文论坛.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/RenPy%E4%B8%AD%E6%96%87%E8%AE%BA%E5%9D%9B.har",
       "update": false,
       "comments": "cookie<br>每日登录签到<br>https://www.renpy.cn",
       "filename": "templates/forum/RenPy中文论坛.har",
@@ -3148,7 +3148,7 @@
     "keylol(原SteamCN蒸汽论坛)": {
       "name": "keylol(原SteamCN蒸汽论坛)",
       "author": "github-h",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/keylol(原SteamCN蒸汽论坛).har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/keylol%28%E5%8E%9FSteamCN%E8%92%B8%E6%B1%BD%E8%AE%BA%E5%9D%9B%29.har",
       "update": true,
       "comments": "cookie<br><br>每日签到奖励<br><br>https://keylol.com",
       "filename": "templates/forum/keylol(原SteamCN蒸汽论坛).har",
@@ -3160,7 +3160,7 @@
     "summer-plus(原south-plus)": {
       "name": "summer-plus(原south-plus)",
       "author": "github-h,tophtab",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/summer-plus(原south-plus).har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/summer-plus%28%E5%8E%9Fsouth-plus%29.har",
       "update": true,
       "comments": "cookie<br><br>每日、每周签到奖励<br><br>https://www.south-plus.net/",
       "filename": "templates/signin/summer-plus(原south-plus).har",
@@ -3172,7 +3172,7 @@
     "4K世界": {
       "name": "4K世界",
       "author": "李大爷",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/4K世界.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/4K%E4%B8%96%E7%95%8C.har",
       "update": true,
       "comments": "账号密码登录    20240923<br>https://www.4ksj.com/",
       "filename": "templates/signin/4K世界.har",
@@ -3184,7 +3184,7 @@
     "CnGame维基网": {
       "name": "CnGame维基网",
       "author": "李大爷",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/CnGame维基网.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/CnGame%E7%BB%B4%E5%9F%BA%E7%BD%91.har",
       "update": false,
       "comments": "账号密码+日志输出 240324",
       "filename": "templates/signin/CnGame维基网.har",
@@ -3196,7 +3196,7 @@
     "HiFiNi_音乐": {
       "name": "HiFiNi_音乐",
       "author": "李大爷",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/HiFiNi_音乐.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/video/HiFiNi_%E9%9F%B3%E4%B9%90.har",
       "update": false,
       "comments": "cookie | 日志输出",
       "filename": "templates/video/HiFiNi_音乐.har",
@@ -3208,7 +3208,7 @@
     "123云盘分享网": {
       "name": "123云盘分享网",
       "author": "李大爷",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/123云盘分享网.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/123%E4%BA%91%E7%9B%98%E5%88%86%E4%BA%AB%E7%BD%91.har",
       "update": false,
       "comments": "账号密码登录 日志输出",
       "filename": "templates/signin/123云盘分享网.har",
@@ -3220,7 +3220,7 @@
     "SteamTools论坛": {
       "name": "SteamTools论坛",
       "author": "李大爷,chen8945",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/SteamTools论坛.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/SteamTools%E8%AE%BA%E5%9D%9B.har",
       "update": true,
       "comments": "cookie登录+日志输出",
       "filename": "templates/forum/SteamTools论坛.har",
@@ -3232,7 +3232,7 @@
     "Moto17摩托开源技术论坛": {
       "name": "Moto17摩托开源技术论坛",
       "author": "李大爷",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/Moto17摩托开源技术论坛.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/Moto17%E6%91%A9%E6%89%98%E5%BC%80%E6%BA%90%E6%8A%80%E6%9C%AF%E8%AE%BA%E5%9D%9B.har",
       "update": false,
       "comments": "cookie +日志输出",
       "filename": "templates/forum/Moto17摩托开源技术论坛.har",
@@ -3244,7 +3244,7 @@
     "知轩藏书": {
       "name": "知轩藏书",
       "author": "李大爷",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/知轩藏书.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E7%9F%A5%E8%BD%A9%E8%97%8F%E4%B9%A6.har",
       "update": false,
       "comments": "Cookie登陆并显示日志",
       "filename": "templates/signin/知轩藏书.har",
@@ -3256,7 +3256,7 @@
     "奇书阁": {
       "name": "奇书阁",
       "author": "李大爷",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/奇书阁.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E5%A5%87%E4%B9%A6%E9%98%81.har",
       "update": false,
       "comments": "Cookie 日志显示",
       "filename": "templates/signin/奇书阁.har",
@@ -3268,7 +3268,7 @@
     "MuuX论坛": {
       "name": "MuuX论坛",
       "author": "李大爷",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/MuuX论坛.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/MuuX%E8%AE%BA%E5%9D%9B.har",
       "update": false,
       "comments": "cookie 日志显示",
       "filename": "templates/forum/MuuX论坛.har",
@@ -3280,7 +3280,7 @@
     "如此玩GM基地论坛": {
       "name": "如此玩GM基地论坛",
       "author": "李大爷",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/如此玩GM基地论坛.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/%E5%A6%82%E6%AD%A4%E7%8E%A9GM%E5%9F%BA%E5%9C%B0%E8%AE%BA%E5%9D%9B.har",
       "update": false,
       "comments": "cookie",
       "filename": "templates/forum/如此玩GM基地论坛.har",
@@ -3292,7 +3292,7 @@
     "i社中国": {
       "name": "i社中国",
       "author": "李大爷",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/i社中国.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/i%E7%A4%BE%E4%B8%AD%E5%9B%BD.har",
       "update": true,
       "comments": "账号密码<br>日志显示  更新新域名",
       "filename": "templates/signin/i社中国.har",
@@ -3304,7 +3304,7 @@
     "极客VR游戏网": {
       "name": "极客VR游戏网",
       "author": "李大爷",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/极客VR游戏网.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E6%9E%81%E5%AE%A2VR%E6%B8%B8%E6%88%8F%E7%BD%91.har",
       "update": false,
       "comments": "账号密码 日志显示",
       "filename": "templates/signin/极客VR游戏网.har",
@@ -3316,7 +3316,7 @@
     "希沃白板.har": {
       "name": "希沃白板.har",
       "author": "无敌最俊朗",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/希沃白板.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E5%B8%8C%E6%B2%83%E7%99%BD%E6%9D%BF.har",
       "update": false,
       "comments": "电脑端或手机端抓包cookies",
       "filename": "templates/signin/希沃白板.har",
@@ -3328,7 +3328,7 @@
     "天使动漫论坛": {
       "name": "天使动漫论坛",
       "author": "李大爷",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/天使动漫论坛.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/%E5%A4%A9%E4%BD%BF%E5%8A%A8%E6%BC%AB%E8%AE%BA%E5%9D%9B.har",
       "update": false,
       "comments": "cookie  日志显示",
       "filename": "templates/forum/天使动漫论坛.har",
@@ -3340,7 +3340,7 @@
     "腾讯视频vip每日签到": {
       "name": "腾讯视频vip每日签到",
       "author": "DDD",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/腾讯视频vip每日签到.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/video/%E8%85%BE%E8%AE%AF%E8%A7%86%E9%A2%91vip%E6%AF%8F%E6%97%A5%E7%AD%BE%E5%88%B0.har",
       "update": true,
       "comments": "`txspCookie`：腾讯视频app 进入签到页面的Cookie<br>`txspRefreshCookie`、`txspRefreshBody`：腾讯视频网页NewRefresh接口中(https://pbaccess.video.qq.com/trpc.video_account_login.web_login_trpc.WebLoginTrpc/NewRefresh) 的数据，用来刷新Cookie中的vqq_vusession<br>`txspRefreshBody`为json格式，eg:<br>```json<br>{\"type\":\"qq\",\"si\":{\"q36\":\"\",\"h38\":\"xx\",\"o_data\":\"g=xxx\",\"s\":\"xxx\"}}<br>```",
       "filename": "templates/video/腾讯视频vip每日签到.har",
@@ -3352,7 +3352,7 @@
     "狐狸次元": {
       "name": "狐狸次元",
       "author": "李大爷",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/狐狸次元.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E7%8B%90%E7%8B%B8%E6%AC%A1%E5%85%83.har",
       "update": false,
       "comments": "账号密码, 日志显示",
       "filename": "templates/signin/狐狸次元.har",
@@ -3364,7 +3364,7 @@
     "飞雪论坛": {
       "name": "飞雪论坛",
       "author": "夜祀",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/飞雪论坛.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/%E9%A3%9E%E9%9B%AA%E8%AE%BA%E5%9D%9B.har",
       "update": true,
       "comments": "Cookie登录<br>https://feixueacg.com/",
       "filename": "templates/forum/飞雪论坛.har",
@@ -3376,7 +3376,7 @@
     "飞龙（原Dukou）机场签到": {
       "name": "飞龙（原Dukou）机场签到",
       "author": "fl0w1nd,github-h",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/dukou.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/dukou.har",
       "update": true,
       "comments": "username,password<br><br>每日签到<br><br>https://flzt.top/",
       "filename": "templates/signin/dukou.har",
@@ -3388,7 +3388,7 @@
     "理想股票技术论坛": {
       "name": "理想股票技术论坛",
       "author": "李大爷",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/理想股票技术论坛.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/%E7%90%86%E6%83%B3%E8%82%A1%E7%A5%A8%E6%8A%80%E6%9C%AF%E8%AE%BA%E5%9D%9B.har",
       "update": true,
       "comments": "手机号+密码  日志显示",
       "filename": "templates/forum/理想股票技术论坛.har",
@@ -3400,7 +3400,7 @@
     "Aclink云盘搜索不限速": {
       "name": "Aclink云盘搜索不限速",
       "author": "Afsss223",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/Aclink云盘搜索.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/Aclink%E4%BA%91%E7%9B%98%E6%90%9C%E7%B4%A2.har",
       "update": false,
       "comments": "每日签到, 领取积分<br>不限速下载以及下载资源<br><br>username 账号<br>password 密码",
       "filename": "templates/signin/Aclink云盘搜索.har",
@@ -3412,7 +3412,7 @@
     "父子被窝": {
       "name": "父子被窝",
       "author": "李大爷",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/父子被窝.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E7%88%B6%E5%AD%90%E8%A2%AB%E7%AA%9D.har",
       "update": false,
       "comments": "邮箱+密码 日志显示 240806<br>https://www.fzbw.cn/",
       "filename": "templates/signin/父子被窝.har",
@@ -3424,7 +3424,7 @@
     "ns中文网": {
       "name": "ns中文网",
       "author": "loveyanglove",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/ns中文网.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/ns%E4%B8%AD%E6%96%87%E7%BD%91.har",
       "update": false,
       "comments": "账号密码 日志显示",
       "filename": "templates/signin/ns中文网.har",
@@ -3436,7 +3436,7 @@
     "隔壁网(新)": {
       "name": "隔壁网(新)",
       "author": "stay,XuanRui",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/new_gebi1.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/new_gebi1.har",
       "update": true,
       "comments": "username 和 password 是登录的账号密码<br>填写Cookies后无需填写账号和密码<br>https://gebi1.com",
       "filename": "templates/signin/new_gebi1.har",
@@ -3448,7 +3448,7 @@
     "狗破解": {
       "name": "狗破解",
       "author": "loveyanglove",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/狗破解.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/%E7%8B%97%E7%A0%B4%E8%A7%A3.har",
       "update": false,
       "comments": "账号密码登录签到",
       "filename": "templates/forum/狗破解.har",
@@ -3460,7 +3460,7 @@
     "X社区签到": {
       "name": "X社区签到",
       "author": "早点睡",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/x社区签到.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/x%E7%A4%BE%E5%8C%BA%E7%AD%BE%E5%88%B0.har",
       "update": true,
       "comments": "",
       "filename": "templates/signin/x社区签到.har",
@@ -3472,7 +3472,7 @@
     "飞牛私有云论坛": {
       "name": "飞牛私有云论坛",
       "author": "loveyanglove",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/飞牛私有云论坛.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/%E9%A3%9E%E7%89%9B%E7%A7%81%E6%9C%89%E4%BA%91%E8%AE%BA%E5%9D%9B.har",
       "update": true,
       "comments": "账号密码登录签到",
       "filename": "templates/forum/飞牛私有云论坛.har",
@@ -3484,7 +3484,7 @@
     "404ba.har": {
       "name": "404ba.har",
       "author": "NSFW",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/404ba.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/404ba.har",
       "update": true,
       "comments": "暂无",
       "filename": "templates/signin/404ba.har",
@@ -3496,7 +3496,7 @@
     "尚香书苑_sxsy.org": {
       "name": "尚香书苑_sxsy.org",
       "author": "NSFW",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/sxsy.org.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/sxsy.org.har",
       "update": true,
       "comments": "",
       "filename": "templates/signin/sxsy.org.har",
@@ -3508,7 +3508,7 @@
     "91xshuba_尚香书院": {
       "name": "91xshuba_尚香书院",
       "author": "scjtqs",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/91xshuba.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/91xshuba.har",
       "update": true,
       "comments": "账号密码。由于网站域名经常改变，host配置成了变量。需要自行填写，eg `sxsy122.com`",
       "filename": "templates/signin/91xshuba.har",
@@ -3520,7 +3520,7 @@
     "飞牛私有云社区Cookie版": {
       "name": "飞牛私有云社区Cookie版",
       "author": "李大爷",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/飞牛私有云社区.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E9%A3%9E%E7%89%9B%E7%A7%81%E6%9C%89%E4%BA%91%E7%A4%BE%E5%8C%BA.har",
       "update": false,
       "comments": "Cookie版 加日志",
       "filename": "templates/signin/飞牛私有云社区.har",
@@ -3532,7 +3532,7 @@
     "ExcelHome技术论坛": {
       "name": "ExcelHome技术论坛",
       "author": "loveyanglove",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/ExcelHome技术论坛.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/ExcelHome%E6%8A%80%E6%9C%AF%E8%AE%BA%E5%9D%9B.har",
       "update": false,
       "comments": "cookie签到<br>日志显示",
       "filename": "templates/forum/ExcelHome技术论坛.har",
@@ -3544,7 +3544,7 @@
     "浙江职业足球俱乐部": {
       "name": "浙江职业足球俱乐部",
       "author": "loveyanglove",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/浙江职业足球俱乐部.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E6%B5%99%E6%B1%9F%E8%81%8C%E4%B8%9A%E8%B6%B3%E7%90%83%E4%BF%B1%E4%B9%90%E9%83%A8.har",
       "update": false,
       "comments": "cookie签到<br>日志显示",
       "filename": "templates/signin/浙江职业足球俱乐部.har",
@@ -3556,7 +3556,7 @@
     "梦楠分享": {
       "name": "梦楠分享",
       "author": "loveyanglove",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/梦楠分享.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E6%A2%A6%E6%A5%A0%E5%88%86%E4%BA%AB.har",
       "update": true,
       "comments": "专注Windows精简系统分享平台<br>cookie签到<br>日志显示<br>https://www.mnpc.net",
       "filename": "templates/signin/梦楠分享.har",
@@ -3568,7 +3568,7 @@
     "脚本王": {
       "name": "脚本王",
       "author": "loveyanglove",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/脚本王.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E8%84%9A%E6%9C%AC%E7%8E%8B.har",
       "update": false,
       "comments": "https://www.jiaobenwang.com/<br>账号密码签到，日志显示",
       "filename": "templates/signin/脚本王.har",
@@ -3580,7 +3580,7 @@
     "91ACG次元小屋": {
       "name": "91ACG次元小屋",
       "author": "loveyanglove",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/91ACG次元小屋.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/91ACG%E6%AC%A1%E5%85%83%E5%B0%8F%E5%B1%8B.har",
       "update": true,
       "comments": "cookie签到<br>日志显示",
       "filename": "templates/signin/91ACG次元小屋.har",
@@ -3592,7 +3592,7 @@
     "3G壁纸网": {
       "name": "3G壁纸网",
       "author": "loveyanglove",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/3G壁纸网.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/3G%E5%A3%81%E7%BA%B8%E7%BD%91.har",
       "update": true,
       "comments": "account：账号<br>password：密码<br><br>账号密码签到<br>日志显示",
       "filename": "templates/signin/3G壁纸网.har",
@@ -3604,7 +3604,7 @@
     "边界AI": {
       "name": "边界AI",
       "author": "loveyanglove",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/边界AI.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E8%BE%B9%E7%95%8CAI.har",
       "update": true,
       "comments": "账号密码签到<br>日志显示",
       "filename": "templates/signin/边界AI.har",
@@ -3616,7 +3616,7 @@
     "标准网": {
       "name": "标准网",
       "author": "wangleii123",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/标准网.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E6%A0%87%E5%87%86%E7%BD%91.har",
       "update": true,
       "comments": "获取cookie<br>添加日志信息",
       "filename": "templates/signin/标准网.har",
@@ -3628,7 +3628,7 @@
     "立创开源平台签到.har": {
       "name": "立创开源平台签到.har",
       "author": "五月",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/立创开源平台签到.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E7%AB%8B%E5%88%9B%E5%BC%80%E6%BA%90%E5%B9%B3%E5%8F%B0%E7%AD%BE%E5%88%B0.har",
       "update": false,
       "comments": "用于立创开源平台签到获取积分<br>需要https://passport.jlc.com/login下所有cookie",
       "filename": "templates/signin/立创开源平台签到.har",
@@ -3640,7 +3640,7 @@
     "酷家乐": {
       "name": "酷家乐",
       "author": "wjf0214,loveyanglove",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/酷家乐.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E9%85%B7%E5%AE%B6%E4%B9%90.har",
       "update": false,
       "comments": "Cookies:登录后首页cookie<br>https://www.kujiale.com/<br>签到日志显示",
       "filename": "templates/signin/酷家乐.har",
@@ -3652,7 +3652,7 @@
     "深夜读书会": {
       "name": "深夜读书会",
       "author": "z",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/ritdon.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/ritdon.har",
       "update": true,
       "comments": "http://ritdon.com/",
       "filename": "templates/signin/ritdon.har",
@@ -3664,7 +3664,7 @@
     "土星人论坛": {
       "name": "土星人论坛",
       "author": "loveyanglove",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/土星人论坛.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/%E5%9C%9F%E6%98%9F%E4%BA%BA%E8%AE%BA%E5%9D%9B.har",
       "update": true,
       "comments": "cookie签到<br>日志显示<br>https://tuxren.com",
       "filename": "templates/forum/土星人论坛.har",
@@ -3676,7 +3676,7 @@
     "天雪": {
       "name": "天雪",
       "author": "OpportunityLiu",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/天雪.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E5%A4%A9%E9%9B%AA.har",
       "update": false,
       "comments": "账号密码，获取每日登录的 1~2 金币<br>https://skyeysnow.com/",
       "filename": "templates/signin/天雪.har",
@@ -3688,7 +3688,7 @@
     "柠檬HD神游": {
       "name": "柠檬HD神游",
       "author": "XuanRui",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/LemonHDLottery.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/pt/LemonHDLottery.har",
       "update": false,
       "comments": "domain：站点域名-example.com<br>填写Cookies开始神游<br><br>修改神游类型（Request Payload中type的值）：<br>0 —— 免费一次<br>1 —— 神游一次<br>2 —— 神游十次<br>以此类推",
       "filename": "templates/pt/LemonHDLottery.har",
@@ -3700,7 +3700,7 @@
     "奶圈": {
       "name": "奶圈",
       "author": "NSFW",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/naiquan.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/naiquan.har",
       "update": false,
       "comments": "https://naiq.cc/<br>账户内密码",
       "filename": "templates/signin/naiquan.har",
@@ -3712,7 +3712,7 @@
     "麦块联机": {
       "name": "麦块联机",
       "author": "loveyanglove",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/麦块联机.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E9%BA%A6%E5%9D%97%E8%81%94%E6%9C%BA.har",
       "update": true,
       "comments": "填写cookie，账号密码<br>日志显示<br><br>首页cookie",
       "filename": "templates/signin/麦块联机.har",
@@ -3724,7 +3724,7 @@
     "多看聚影": {
       "name": "多看聚影",
       "author": "loveyanglove",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/多看聚影.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E5%A4%9A%E7%9C%8B%E8%81%9A%E5%BD%B1.har",
       "update": true,
       "comments": "用户名密码登录签到<br>日志显示<br>https://duokan.club",
       "filename": "templates/signin/多看聚影.har",
@@ -3736,7 +3736,7 @@
     "秘籍网": {
       "name": "秘籍网",
       "author": "loveyanglove",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/秘籍网.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E7%A7%98%E7%B1%8D%E7%BD%91.har",
       "update": false,
       "comments": "账号密码登录签到<br>日志显示",
       "filename": "templates/signin/秘籍网.har",
@@ -3748,7 +3748,7 @@
     "icc2022": {
       "name": "icc2022",
       "author": "好人",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/icc2022.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/icc2022.har",
       "update": false,
       "comments": "每日签到和查询账号信息<br>需要使用cookie",
       "filename": "templates/signin/icc2022.har",
@@ -3760,7 +3760,7 @@
     "Mac青桔网": {
       "name": "Mac青桔网",
       "author": "loveyanglove",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/Mac青桔网.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/Mac%E9%9D%92%E6%A1%94%E7%BD%91.har",
       "update": false,
       "comments": "账号密码登录签到<br>日志显示",
       "filename": "templates/signin/Mac青桔网.har",
@@ -3772,7 +3772,7 @@
     "gamegamept": {
       "name": "gamegamept",
       "author": "fengymi",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/gamegamept.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/pt/gamegamept.har",
       "update": true,
       "comments": "支持gamegamept自动签到",
       "filename": "templates/pt/gamegamept.har",
@@ -3784,7 +3784,7 @@
     "帕斯内网穿透": {
       "name": "帕斯内网穿透",
       "author": "loveyanglove",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/帕斯内网穿透.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E5%B8%95%E6%96%AF%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F.har",
       "update": false,
       "comments": "手机号+密码登录签到<br>日志显示<br>https://www.passnat.com/",
       "filename": "templates/signin/帕斯内网穿透.har",
@@ -3796,7 +3796,7 @@
     "源社区": {
       "name": "源社区",
       "author": "Test",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/ysqbbs.com.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/ysqbbs.com.har",
       "update": true,
       "comments": "阅读书源论坛，登陆签到<br>https://ysqbbs.com/",
       "filename": "templates/forum/ysqbbs.com.har",
@@ -3808,7 +3808,7 @@
     "源社区签到": {
       "name": "源社区签到",
       "author": "早点睡",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/ysqqd.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/ysqqd.har",
       "update": true,
       "comments": "每日签到和查询账号信息<br>需要使用cookie",
       "filename": "templates/signin/ysqqd.har",
@@ -3820,7 +3820,7 @@
     "菜玩社区": {
       "name": "菜玩社区",
       "author": "chen8945",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/菜玩社区.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E8%8F%9C%E7%8E%A9%E7%A4%BE%E5%8C%BA.har",
       "update": true,
       "comments": "Cookie<br>https://caigamer.cn/",
       "filename": "templates/signin/菜玩社区.har",
@@ -3832,7 +3832,7 @@
     "pandafly-自动续期": {
       "name": "pandafly-自动续期",
       "author": "Trainliang",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/pandafly-自动续期.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/pandafly-%E8%87%AA%E5%8A%A8%E7%BB%AD%E6%9C%9F.har",
       "update": false,
       "comments": "自动创建续期订单",
       "filename": "templates/signin/pandafly-自动续期.har",
@@ -3844,7 +3844,7 @@
     "iptv_论坛": {
       "name": "iptv_论坛",
       "author": "z",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/iptv.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/pt/iptv.har",
       "update": false,
       "comments": "https://iptv.cc",
       "filename": "templates/pt/iptv.har",
@@ -3856,7 +3856,7 @@
     "永硕E盘活跃签到ys168": {
       "name": "永硕E盘活跃签到ys168",
       "author": "Trainliang",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/永硕活跃签到ys168.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E6%B0%B8%E7%A1%95%E6%B4%BB%E8%B7%83%E7%AD%BE%E5%88%B0ys168.har",
       "update": true,
       "comments": "用户名密码登录，默认建议调整到每季度一次登录即可激活账号，官方要求每年至少一次登录<br>http://www.ys168.com/<br>作为国内老一代云盘选手，从网吧时代坚挺到现在，为老板点赞",
       "filename": "templates/signin/永硕活跃签到ys168.har",
@@ -3868,7 +3868,7 @@
     "有道云笔记IOS端签到": {
       "name": "有道云笔记IOS端签到",
       "author": "Trainliang",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/有道云笔记IOS端.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0IOS%E7%AB%AF.har",
       "update": false,
       "comments": "需要用户使用ios端Stream抓取cookie，手机端的cookie失效时间应该比网页端时间长，<br>实测签到后手机端依然提示未签到但不影响空间已到账，请配合另一个模版【有道云笔记】使用，建议ios版先签到，<br>ios端如果想空间最大化可以再打开app进行视广告频签到，预计还可以增加2M。",
       "filename": "templates/signin/有道云笔记IOS端.har",
@@ -3880,7 +3880,7 @@
     "盘搜pro": {
       "name": "盘搜pro",
       "author": "loveyanglove",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/盘搜pro.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E7%9B%98%E6%90%9Cpro.har",
       "update": false,
       "comments": "账号密码登录<br>日志显示<br>https://panso.pro/",
       "filename": "templates/signin/盘搜pro.har",
@@ -3892,7 +3892,7 @@
     "猫熊网络加速器": {
       "name": "猫熊网络加速器",
       "author": "loveyanglove",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/猫熊网络加速器.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E7%8C%AB%E7%86%8A%E7%BD%91%E7%BB%9C%E5%8A%A0%E9%80%9F%E5%99%A8.har",
       "update": false,
       "comments": "邮箱密码登录<br>日志显示",
       "filename": "templates/signin/猫熊网络加速器.har",
@@ -3904,7 +3904,7 @@
     "u2动漫花园": {
       "name": "u2动漫花园",
       "author": "u771998463",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/U2动漫花园.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/U2%E5%8A%A8%E6%BC%AB%E8%8A%B1%E5%9B%AD.har",
       "update": false,
       "comments": "自动选择签到问题中的第一个进行签到，所以不能保证正确性。",
       "filename": "templates/signin/U2动漫花园.har",
@@ -3916,7 +3916,7 @@
     "母带吧音乐": {
       "name": "母带吧音乐",
       "author": "loveyanglove",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/母带吧音乐.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/video/%E6%AF%8D%E5%B8%A6%E5%90%A7%E9%9F%B3%E4%B9%90.har",
       "update": false,
       "comments": "cookie签到<br>日志显示<br>https://mudaiba.com",
       "filename": "templates/video/母带吧音乐.har",
@@ -3928,7 +3928,7 @@
     "通用pt签到保号支持雨星陨阁": {
       "name": "通用pt签到保号支持雨星陨阁",
       "author": "thhbdd",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/通用pt签到保号支持雨星陨阁.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/pt/%E9%80%9A%E7%94%A8pt%E7%AD%BE%E5%88%B0%E4%BF%9D%E5%8F%B7%E6%94%AF%E6%8C%81%E9%9B%A8%E6%98%9F%E9%99%A8%E9%98%81.har",
       "update": false,
       "comments": "f12获取cookie，填入pt站点的域名，参考了作者 @IITII 制作的通用pt签到保号脚本，在原作者基础上删去了部分请求头并添加了一些新请求头，用来签到雨和星陨阁pt站点，但不清楚改动后的请求头后还是否能用在他站点签到，自己只测试试验了部分小的站点是可以，和原作者一样只原版 NexusPHP。<br>不知道改动是否会影响其他站点使用，就提交了新的模板，如果用不了就请使用IITII制作的har。",
       "filename": "templates/pt/通用pt签到保号支持雨星陨阁.har",
@@ -3940,7 +3940,7 @@
     "链滴": {
       "name": "链滴",
       "author": "loveyanglove",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/链滴.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E9%93%BE%E6%BB%B4.har",
       "update": false,
       "comments": "账号密码登录<br>日志显示<br>思源笔记",
       "filename": "templates/signin/链滴.har",
@@ -3952,7 +3952,7 @@
     "七日杀中文网": {
       "name": "七日杀中文网",
       "author": "loveyanglove",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/七日杀中文网.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E4%B8%83%E6%97%A5%E6%9D%80%E4%B8%AD%E6%96%87%E7%BD%91.har",
       "update": false,
       "comments": "账号密码登录<br>日志显示",
       "filename": "templates/signin/七日杀中文网.har",
@@ -3964,7 +3964,7 @@
     "www.diygm.com": {
       "name": "www.diygm.com",
       "author": "",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/www.diygm.com.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/www.diygm.com.har",
       "update": false,
       "comments": "传奇DIYGM论坛每日登录领取金币",
       "filename": "templates/signin/www.diygm.com.har",
@@ -3976,7 +3976,7 @@
     "www.anywlan.com": {
       "name": "www.anywlan.com",
       "author": "zhangminghao1989",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/www.anywlan.com.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/www.anywlan.com.har",
       "update": false,
       "comments": "Anywlan无线论坛",
       "filename": "templates/signin/www.anywlan.com.har",
@@ -3988,7 +3988,7 @@
     "奶昔论坛": {
       "name": "奶昔论坛",
       "author": "loveyanglove",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/奶昔论坛.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/%E5%A5%B6%E6%98%94%E8%AE%BA%E5%9D%9B.har",
       "update": false,
       "comments": "账号密码登录<br>日志显示",
       "filename": "templates/forum/奶昔论坛.har",
@@ -4000,7 +4000,7 @@
     "绅士之庭": {
       "name": "绅士之庭",
       "author": "",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/gmgard.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/gmgard.har",
       "update": false,
       "comments": "qd_email：签到框架的登录账号<br>qd_pwd：签到框架的登录密码<br>id_notepad：记事本的ID<br>初次使用需要在“工具箱->记事本”功能里创建一个记事本，记住记事本id并填写至id_notepad，在记事本内容粘贴cookie内容即可",
       "filename": "templates/signin/gmgard.har",
@@ -4012,7 +4012,7 @@
     "魔兽有爱论坛": {
       "name": "魔兽有爱论坛",
       "author": "loveyanglove",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/魔兽有爱论坛.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/%E9%AD%94%E5%85%BD%E6%9C%89%E7%88%B1%E8%AE%BA%E5%9D%9B.har",
       "update": true,
       "comments": "账号密码登录<br>日志显示<br>https://uiwow.com/",
       "filename": "templates/forum/魔兽有爱论坛.har",
@@ -4024,7 +4024,7 @@
     "www.gycq.net": {
       "name": "www.gycq.net",
       "author": "",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/www.gycq.net.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/www.gycq.net.har",
       "update": true,
       "comments": "公益传奇网每日登录领取金币",
       "filename": "templates/signin/www.gycq.net.har",
@@ -4036,7 +4036,7 @@
     "ME_Frp_幻缘映射": {
       "name": "ME_Frp_幻缘映射",
       "author": "loveyanglove",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/ME_Frp.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/ME_Frp.har",
       "update": false,
       "comments": "账号密码登录<br>日志显示",
       "filename": "templates/signin/ME_Frp.har",
@@ -4048,7 +4048,7 @@
     "XDOUBAN": {
       "name": "XDOUBAN",
       "author": "loveyanglove",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/XDOUBAN.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/XDOUBAN.har",
       "update": false,
       "comments": "cookie登录<br>日志显示",
       "filename": "templates/signin/XDOUBAN.har",
@@ -4060,7 +4060,7 @@
     "花夏数娱": {
       "name": "花夏数娱",
       "author": "loveyanglove",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/花夏数娱.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E8%8A%B1%E5%A4%8F%E6%95%B0%E5%A8%B1.har",
       "update": false,
       "comments": "账号密码登录<br>日志显示",
       "filename": "templates/signin/花夏数娱.har",
@@ -4072,7 +4072,7 @@
     "爱阅书吧": {
       "name": "爱阅书吧",
       "author": "loveyanglove",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/爱阅书吧.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E7%88%B1%E9%98%85%E4%B9%A6%E5%90%A7.har",
       "update": false,
       "comments": "cookie登录<br>日志显示",
       "filename": "templates/signin/爱阅书吧.har",
@@ -4084,7 +4084,7 @@
     "搜书吧": {
       "name": "搜书吧",
       "author": "fireflyfeihuo",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/搜书吧.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E6%90%9C%E4%B9%A6%E5%90%A7.har",
       "update": true,
       "comments": "网址请填入host",
       "filename": "templates/signin/搜书吧.har",
@@ -4096,7 +4096,7 @@
     "欧亿AI-8.0_Pro": {
       "name": "欧亿AI-8.0_Pro",
       "author": "loveyanglove",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/欧亿AI-8.0_Pro.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E6%AC%A7%E4%BA%BFAI-8.0_Pro.har",
       "update": false,
       "comments": "账号密码登录<br>日志显示",
       "filename": "templates/signin/欧亿AI-8.0_Pro.har",
@@ -4108,7 +4108,7 @@
     "单机Game怀旧馆": {
       "name": "单机Game怀旧馆",
       "author": "loveyanglove",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/单机Game怀旧馆.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E5%8D%95%E6%9C%BAGame%E6%80%80%E6%97%A7%E9%A6%86.har",
       "update": false,
       "comments": "账号密码登录<br>DOMAIN填写网站地址www.huixlife.com<br>日志显示",
       "filename": "templates/signin/单机Game怀旧馆.har",
@@ -4120,7 +4120,7 @@
     "Anycubic": {
       "name": "Anycubic",
       "author": "loveyanglove",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/Anycubic.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/Anycubic.har",
       "update": false,
       "comments": "cookie签到<br>首页cookie<br>日志显示",
       "filename": "templates/signin/Anycubic.har",
@@ -4132,7 +4132,7 @@
     "冲上云霄": {
       "name": "冲上云霄",
       "author": "loveyanglove",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/冲上云霄.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E5%86%B2%E4%B8%8A%E4%BA%91%E9%9C%84.har",
       "update": false,
       "comments": "账号密码登录<br>日志显示",
       "filename": "templates/signin/冲上云霄.har",
@@ -4144,7 +4144,7 @@
     "夸父资源社": {
       "name": "夸父资源社",
       "author": "loveyanglove",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/夸父资源社.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E5%A4%B8%E7%88%B6%E8%B5%84%E6%BA%90%E7%A4%BE.har",
       "update": true,
       "comments": "",
       "filename": "templates/signin/夸父资源社.har",
@@ -4156,7 +4156,7 @@
     "VR玩吧": {
       "name": "VR玩吧",
       "author": "loveyanglove",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/VR玩吧.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/VR%E7%8E%A9%E5%90%A7.har",
       "update": false,
       "comments": "cookie签到<br>日志显示",
       "filename": "templates/signin/VR玩吧.har",
@@ -4168,7 +4168,7 @@
     "知轩藏书zxcstxt": {
       "name": "知轩藏书zxcstxt",
       "author": "FellBan,zhoucheng8023",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/知轩藏书zxcstxt.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E7%9F%A5%E8%BD%A9%E8%97%8F%E4%B9%A6zxcstxt.har",
       "update": false,
       "comments": "主站地址更新,原模版在https://github.com/qd-today/templates/issues/653<br>替换zxcsol.com为zxcstxt.com<br>@FellBan",
       "filename": "templates/signin/知轩藏书zxcstxt.har",
@@ -4180,7 +4180,7 @@
     "Modubox_魅魔岛": {
       "name": "Modubox_魅魔岛",
       "author": "Kaler",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/Modubox.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/Modubox.har",
       "update": false,
       "comments": "账号密码登录<br>Domain域名配置<br>日志显示",
       "filename": "templates/signin/Modubox.har",
@@ -4192,7 +4192,7 @@
     "NS云社区": {
       "name": "NS云社区",
       "author": "Key-kun",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/NS云社区.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/NS%E4%BA%91%E7%A4%BE%E5%8C%BA.har",
       "update": false,
       "comments": "Cookie login<br>Signin Check<br>Lottery Pull if have ticket",
       "filename": "templates/signin/NS云社区.har",
@@ -4204,7 +4204,7 @@
     "玩转MAC": {
       "name": "玩转MAC",
       "author": "loveyanglove",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/玩转MAC.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E7%8E%A9%E8%BD%ACMAC.har",
       "update": false,
       "comments": "cookie签到<br>日志显示",
       "filename": "templates/signin/玩转MAC.har",
@@ -4216,7 +4216,7 @@
     "MB博客": {
       "name": "MB博客",
       "author": "loveyanglove",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/MB博客.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/MB%E5%8D%9A%E5%AE%A2.har",
       "update": false,
       "comments": "账号密码登录<br>日志显示",
       "filename": "templates/signin/MB博客.har",
@@ -4228,7 +4228,7 @@
     "逃离塔科夫中文社区": {
       "name": "逃离塔科夫中文社区",
       "author": "loveyanglove",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/逃离塔科夫中文社区.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E9%80%83%E7%A6%BB%E5%A1%94%E7%A7%91%E5%A4%AB%E4%B8%AD%E6%96%87%E7%A4%BE%E5%8C%BA.har",
       "update": false,
       "comments": "账号密码登录<br>日志显示",
       "filename": "templates/signin/逃离塔科夫中文社区.har",
@@ -4240,7 +4240,7 @@
     "Totoro论坛": {
       "name": "Totoro论坛",
       "author": "Adonis142857",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/Totoro论坛.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/Totoro%E8%AE%BA%E5%9D%9B.har",
       "update": false,
       "comments": "登录后首页cookie<br>https://totoro.im/",
       "filename": "templates/forum/Totoro论坛.har",
@@ -4252,7 +4252,7 @@
     "Xhifini": {
       "name": "Xhifini",
       "author": "Key-kun",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/Xhifini.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/Xhifini.har",
       "update": true,
       "comments": "update domain",
       "filename": "templates/signin/Xhifini.har",
@@ -4264,7 +4264,7 @@
     "Hifiti": {
       "name": "Hifiti",
       "author": "李大爷, Key-kun",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/Hifiti.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/Hifiti.har",
       "update": false,
       "comments": "cookie | 日志输出",
       "filename": "templates/signin/Hifiti.har",
@@ -4276,7 +4276,7 @@
     "anime字幕论坛": {
       "name": "anime字幕论坛",
       "author": "loveyanglove",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/anime字幕论坛.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/anime%E5%AD%97%E5%B9%95%E8%AE%BA%E5%9D%9B.har",
       "update": false,
       "comments": "账号密码登录<br>日志显示",
       "filename": "templates/forum/anime字幕论坛.har",
@@ -4288,7 +4288,7 @@
     "港剧天堂": {
       "name": "港剧天堂",
       "author": "loveyanglove",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/港剧天堂.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E6%B8%AF%E5%89%A7%E5%A4%A9%E5%A0%82.har",
       "update": false,
       "comments": "账号密码登录<br>日志显示",
       "filename": "templates/signin/港剧天堂.har",
@@ -4300,7 +4300,7 @@
     "E-Hentai请求新闻": {
       "name": "E-Hentai请求新闻",
       "author": "Herokine",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/E-Hentai请求新闻.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/E-Hentai%E8%AF%B7%E6%B1%82%E6%96%B0%E9%97%BB.har",
       "update": true,
       "comments": "定时请求 E-Hentai 的新闻发布页，以获取一些 EXP 和 Credits。推荐将请求时间设置为每天的早晨八点（即 UTC 时间的零点）。",
       "filename": "templates/signin/E-Hentai请求新闻.har",
@@ -4312,7 +4312,7 @@
     "再漫画": {
       "name": "再漫画",
       "author": "dabaisi",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/再漫画.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E5%86%8D%E6%BC%AB%E7%94%BB.har",
       "update": true,
       "comments": "账号+密码登录<br>日志输出<br>镜像需要使用ja3-dev版本",
       "filename": "templates/signin/再漫画.har",
@@ -4324,7 +4324,7 @@
     "瀚思彼岸.har": {
       "name": "瀚思彼岸.har",
       "author": "zdyu",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/瀚思彼岸.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E7%80%9A%E6%80%9D%E5%BD%BC%E5%B2%B8.har",
       "update": false,
       "comments": "每日签到，金钱显示。",
       "filename": "templates/signin/瀚思彼岸.har",
@@ -4336,7 +4336,7 @@
     "影链湾": {
       "name": "影链湾",
       "author": "loveyanglove",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/影链湾.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E5%BD%B1%E9%93%BE%E6%B9%BE.har",
       "update": true,
       "comments": "账号密码登录<br>日志显示",
       "filename": "templates/signin/影链湾.har",
@@ -4348,7 +4348,7 @@
     "LunovaFrp内网穿透": {
       "name": "LunovaFrp内网穿透",
       "author": "WayneXuCN",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/LunovaFrp内网穿透.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/LunovaFrp%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F.har",
       "update": false,
       "comments": "账号+密码登录签到<br><br>https://console.xhfrp.xhuzim.top",
       "filename": "templates/signin/LunovaFrp内网穿透.har",
@@ -4360,7 +4360,7 @@
     "绿联NAS私有云社区": {
       "name": "绿联NAS私有云社区",
       "author": "happy",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/绿联NAS私有云社区.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E7%BB%BF%E8%81%94NAS%E7%A7%81%E6%9C%89%E4%BA%91%E7%A4%BE%E5%8C%BA.har",
       "update": false,
       "comments": "cookie登录<br>日志显示<br>https://club.ugnas.com/",
       "filename": "templates/signin/绿联NAS私有云社区.har",
@@ -4372,7 +4372,7 @@
     "90wd论坛签到": {
       "name": "90wd论坛签到",
       "author": "xxcyou",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/90wd论坛签到.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/90wd%E8%AE%BA%E5%9D%9B%E7%AD%BE%E5%88%B0.har",
       "update": false,
       "comments": "cookie登录",
       "filename": "templates/forum/90wd论坛签到.har",
@@ -4384,7 +4384,7 @@
     "去盘搜": {
       "name": "去盘搜",
       "author": "loveyanglove",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/去盘搜.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E5%8E%BB%E7%9B%98%E6%90%9C.har",
       "update": false,
       "comments": "账号密码登录<br>DOMAIN填写网站地址<br>日志显示",
       "filename": "templates/signin/去盘搜.har",
@@ -4396,7 +4396,7 @@
     "谷粉互助": {
       "name": "谷粉互助",
       "author": "loveyanglove",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/谷粉互助.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E8%B0%B7%E7%B2%89%E4%BA%92%E5%8A%A9.har",
       "update": false,
       "comments": "账号密码登录<br>日志显示",
       "filename": "templates/signin/谷粉互助.har",
@@ -4408,7 +4408,7 @@
     "理想股票论坛": {
       "name": "理想股票论坛",
       "author": "loveyanglove",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/理想股票论坛.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/%E7%90%86%E6%83%B3%E8%82%A1%E7%A5%A8%E8%AE%BA%E5%9D%9B.har",
       "update": false,
       "comments": "cookie签到<br>日志显示",
       "filename": "templates/forum/理想股票论坛.har",
@@ -4420,7 +4420,7 @@
     "apktw": {
       "name": "apktw",
       "author": "YOON",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/apktw.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/apktw.har",
       "update": true,
       "comments": "账号密码登陆<br><br>每日签到和每周打卡任务<br><br>https://apk.tw",
       "filename": "templates/signin/apktw.har",
@@ -4432,7 +4432,7 @@
     "一番魂": {
       "name": "一番魂",
       "author": "YOON",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/一番魂.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E4%B8%80%E7%95%AA%E9%AD%82.har",
       "update": true,
       "comments": "邮箱密码登陆<br><br>日志显示<br><br>https://yifanhune.com/",
       "filename": "templates/signin/一番魂.har",
@@ -4444,7 +4444,7 @@
     "初音的青葱": {
       "name": "初音的青葱",
       "author": "YOON",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/初音的青葱.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E5%88%9D%E9%9F%B3%E7%9A%84%E9%9D%92%E8%91%B1.har",
       "update": true,
       "comments": "邮箱密码登陆<br><br>包含日志<br><br>守护灵自动寻宝<br><br>domain：域名  示例 www.fufugal.com",
       "filename": "templates/signin/初音的青葱.har",
@@ -4456,7 +4456,7 @@
     "nodeloc": {
       "name": "nodeloc",
       "author": "YOON",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/nodeloc.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/nodeloc.har",
       "update": true,
       "comments": "账号密码登陆<br><br>timezone需要填时区<br><br>美国推荐  America/Los_Angeles<br><br>香港时区 Asia/Hong_Kong",
       "filename": "templates/signin/nodeloc.har",
@@ -4468,7 +4468,7 @@
     "精睿论坛": {
       "name": "精睿论坛",
       "author": "YOON",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/精睿论坛.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/%E7%B2%BE%E7%9D%BF%E8%AE%BA%E5%9D%9B.har",
       "update": false,
       "comments": "账号密码登陆<br><br>日志显示",
       "filename": "templates/forum/精睿论坛.har",
@@ -4480,7 +4480,7 @@
     "动感炫音": {
       "name": "动感炫音",
       "author": "YOON",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/动感炫音.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E5%8A%A8%E6%84%9F%E7%82%AB%E9%9F%B3.har",
       "update": false,
       "comments": "账号密码登陆<br><br>日志显示",
       "filename": "templates/signin/动感炫音.har",
@@ -4492,7 +4492,7 @@
     "hifilib": {
       "name": "hifilib",
       "author": "YOON",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/hifilib.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/hifilib.har",
       "update": false,
       "comments": "账号密码登陆<br><br>日志显示",
       "filename": "templates/signin/hifilib.har",
@@ -4504,7 +4504,7 @@
     "落雪音乐助手": {
       "name": "落雪音乐助手",
       "author": "YOON",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/落雪音乐助手.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/video/%E8%90%BD%E9%9B%AA%E9%9F%B3%E4%B9%90%E5%8A%A9%E6%89%8B.har",
       "update": false,
       "comments": "Cookie签到 15天过期一次",
       "filename": "templates/video/落雪音乐助手.har",
@@ -4516,7 +4516,7 @@
     "glados": {
       "name": "glados",
       "author": "YOON",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/glados.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/glados.har",
       "update": true,
       "comments": "F12 获取 Cookie，token<br><br>token是签到请求payload提交的域名<br><br>token可能和当前域名不一致，故需要填写三个参数",
       "filename": "templates/signin/glados.har",
@@ -4528,7 +4528,7 @@
     "bbs9090118.har": {
       "name": "bbs9090118.har",
       "author": "大母鸡",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/bbs9090118.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/bbs9090118.har",
       "update": true,
       "comments": "感谢 无垠原野 测试。",
       "filename": "templates/forum/bbs9090118.har",
@@ -4540,7 +4540,7 @@
     "哼哼猫": {
       "name": "哼哼猫",
       "author": "YOON",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/哼哼猫.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E5%93%BC%E5%93%BC%E7%8C%AB.har",
       "update": false,
       "comments": "账号密码<br><br>日志显示",
       "filename": "templates/signin/哼哼猫.har",
@@ -4552,7 +4552,7 @@
     "品技论坛": {
       "name": "品技论坛",
       "author": "夜祀",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/品技论坛.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/%E5%93%81%E6%8A%80%E8%AE%BA%E5%9D%9B.har",
       "update": false,
       "comments": "登录后首页Cookie",
       "filename": "templates/forum/品技论坛.har",
@@ -4564,7 +4564,7 @@
     "2Libra每日签到": {
       "name": "2Libra每日签到",
       "author": "leic4u",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/2Libra每日签到.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/2Libra%E6%AF%8F%E6%97%A5%E7%AD%BE%E5%88%B0.har",
       "update": true,
       "comments": "输入 cookie 或 Authorization 其中之一签到",
       "filename": "templates/signin/2Libra每日签到.har",
@@ -4576,7 +4576,7 @@
     "tencent_cloudstudio": {
       "name": "tencent_cloudstudio",
       "author": "wllzhang",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/tencent_cloudstudio.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/tencent_cloudstudio.har",
       "update": false,
       "comments": "",
       "filename": "templates/signin/tencent_cloudstudio.har",
@@ -4588,7 +4588,7 @@
     "迅维网.har": {
       "name": "迅维网.har",
       "author": "mjlissa",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/迅维网.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E8%BF%85%E7%BB%B4%E7%BD%91.har",
       "update": false,
       "comments": "https://www.chinafix.com  迅维网 cookie 签到har",
       "filename": "templates/signin/迅维网.har",
@@ -4600,7 +4600,7 @@
     "SMZDM_FIXED": {
       "name": "SMZDM_FIXED",
       "author": "i9366333",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/SMZDM_FIXED.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/SMZDM_FIXED.har",
       "update": false,
       "comments": "",
       "filename": "templates/signin/SMZDM_FIXED.har",
@@ -4612,7 +4612,7 @@
     "Linux_SB": {
       "name": "Linux_SB",
       "author": "JayHome137",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/Linux_SB.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/Linux_SB.har",
       "update": true,
       "comments": "Cookie 登录，用于 https://linux.sb/ 每日签到。<br><br>Cookie 获取方式：在 Chrome 安装“Cookies获取助手 2.3.2”，在 QD 新建任务或测试模板时，点击 Cookies 变量旁的“点击获取”自动获取。",
       "filename": "templates/signin/Linux_SB.har",
@@ -4624,7 +4624,7 @@
     "米坛社区BandBBS": {
       "name": "米坛社区BandBBS",
       "author": "hao1196561270",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/米坛社区BandBBS_账号密码版.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/%E7%B1%B3%E5%9D%9B%E7%A4%BE%E5%8C%BABandBBS_%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81%E7%89%88.har",
       "update": false,
       "comments": "",
       "filename": "templates/forum/米坛社区BandBBS_账号密码版.har",
@@ -4636,7 +4636,7 @@
     "52frp": {
       "name": "52frp",
       "author": "loveomglove",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/52frp.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/52frp.har",
       "update": true,
       "comments": "邮箱和密码登录<br>日志显示",
       "filename": "templates/signin/52frp.har",
@@ -4648,7 +4648,7 @@
     "雅迪智行每日签到": {
       "name": "雅迪智行每日签到",
       "author": "xkgg昕风挽笑",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/雅迪智行每日签到.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E9%9B%85%E8%BF%AA%E6%99%BA%E8%A1%8C%E6%AF%8F%E6%97%A5%E7%AD%BE%E5%88%B0.har",
       "update": true,
       "comments": "雅迪智行app抓包获取Token内容进行登录<br>日志显示",
       "filename": "templates/signin/雅迪智行每日签到.har",
@@ -4660,7 +4660,7 @@
     "4399小游戏": {
       "name": "4399小游戏",
       "author": "xkgg昕风挽笑",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/4399小游戏.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/4399%E5%B0%8F%E6%B8%B8%E6%88%8F.har",
       "update": false,
       "comments": "Cookies 登录<br>每日签到积分<br>日志显示<br>https://my.4399.com/",
       "filename": "templates/signin/4399小游戏.har",
@@ -4672,7 +4672,7 @@
     "NodeSeek签到": {
       "name": "NodeSeek签到",
       "author": "hao1196561270",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/NodeSeek签到_Cookie版.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/NodeSeek%E7%AD%BE%E5%88%B0_Cookie%E7%89%88.har",
       "update": false,
       "comments": "_No response_",
       "filename": "templates/signin/NodeSeek签到_Cookie版.har",
@@ -4684,7 +4684,7 @@
     "Flybuys": {
       "name": "Flybuys",
       "author": "kongwy",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/Flybuys.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/Flybuys.har",
       "update": false,
       "comments": "自动激活澳洲 Flybuys 所有可用活动<br><br>init_refresh_token: 初始 Refresh Token，打开 Chrome DevTools 的 Network 工具进行登录操作抓取<br>notepad_id: 用于记录更新后 Refresh Token 的记事本编号<br>qd_email: QD 用户邮箱<br>qd_pwd: QD 用户密码",
       "filename": "templates/signin/Flybuys.har",
@@ -4696,7 +4696,7 @@
     "Everyday_Rewards": {
       "name": "Everyday_Rewards",
       "author": "kongwy",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/Everyday_Rewards.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/Everyday_Rewards.har",
       "update": false,
       "comments": "自动激活澳洲 Everyday Rewards 所有可用活动<br><br>card_number: 会员卡号",
       "filename": "templates/signin/Everyday_Rewards.har",
@@ -4708,7 +4708,7 @@
     "TiDB_社区会员中心": {
       "name": "TiDB_社区会员中心",
       "author": "YOON",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/TiDB_社区会员中心.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/TiDB_%E7%A4%BE%E5%8C%BA%E4%BC%9A%E5%91%98%E4%B8%AD%E5%BF%83.har",
       "update": false,
       "comments": "用户名密码登陆<br><br>用户名为邮箱和手机号",
       "filename": "templates/signin/TiDB_社区会员中心.har",
@@ -4720,7 +4720,7 @@
     "123云盘资源社区": {
       "name": "123云盘资源社区",
       "author": "YOON",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/123云盘资源社区.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/123%E4%BA%91%E7%9B%98%E8%B5%84%E6%BA%90%E7%A4%BE%E5%8C%BA.har",
       "update": false,
       "comments": "COOKIE签到",
       "filename": "templates/signin/123云盘资源社区.har",
@@ -4732,7 +4732,7 @@
     "33台词": {
       "name": "33台词",
       "author": "YOON",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/33台词.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/33%E5%8F%B0%E8%AF%8D.har",
       "update": false,
       "comments": "邮箱密码签到<br><br>versioin获取方式，访问 https://33tc.net/ ，F12打开审查元素，搜索_versioin，目前是0.2.5",
       "filename": "templates/signin/33台词.har",
@@ -4744,7 +4744,7 @@
     "米坛社区": {
       "name": "米坛社区",
       "author": "YOON",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/米坛社区.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E7%B1%B3%E5%9D%9B%E7%A4%BE%E5%8C%BA.har",
       "update": false,
       "comments": "用户名密码签到",
       "filename": "templates/signin/米坛社区.har",
@@ -4756,7 +4756,7 @@
     "老六游戏": {
       "name": "老六游戏",
       "author": "YOON",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/老六游戏.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E8%80%81%E5%85%AD%E6%B8%B8%E6%88%8F.har",
       "update": false,
       "comments": "用户名密码登陆",
       "filename": "templates/signin/老六游戏.har",
@@ -4768,7 +4768,7 @@
     "问道论坛": {
       "name": "问道论坛",
       "author": "YOON",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/问道论坛.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/forum/%E9%97%AE%E9%81%93%E8%AE%BA%E5%9D%9B.har",
       "update": false,
       "comments": "Cookie签到",
       "filename": "templates/forum/问道论坛.har",
@@ -4780,7 +4780,7 @@
     "哈基米API": {
       "name": "哈基米API",
       "author": "YOON",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/哈基米API.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E5%93%88%E5%9F%BA%E7%B1%B3API.har",
       "update": false,
       "comments": "_No response_",
       "filename": "templates/signin/哈基米API.har",
@@ -4792,7 +4792,7 @@
     "港知堂": {
       "name": "港知堂",
       "author": "YOON",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/港知堂.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E6%B8%AF%E7%9F%A5%E5%A0%82.har",
       "update": false,
       "comments": "_No response_",
       "filename": "templates/signin/港知堂.har",
@@ -4804,7 +4804,7 @@
     "乐淘一番": {
       "name": "乐淘一番",
       "author": "YOON",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/乐淘一番.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/%E4%B9%90%E6%B7%98%E4%B8%80%E7%95%AA.har",
       "update": false,
       "comments": "邮箱密码登陆<br><br>domain <br><br>api.mall.leyifan.cn 大陆<br><br>api.mall.leyifan.com 港澳台海外",
       "filename": "templates/signin/乐淘一番.har",
@@ -4816,7 +4816,7 @@
     "永恒心锁": {
       "name": "永恒心锁",
       "author": "Slave",
-      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/yhxs3344-checkin.native.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/yhxs3344-checkin.native.har",
       "update": false,
       "comments": "Cookie签到",
       "filename": "templates/signin/yhxs3344-checkin.native.har",
