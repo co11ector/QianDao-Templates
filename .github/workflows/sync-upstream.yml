@@ -1,0 +1,68 @@
+name: Sync and curate upstream templates
+
+# Copy this file into co11ector/QianDao-Templates at .github/workflows/sync-upstream.yml,
+# and copy ops/templates/normalize.py from the QianDao repository into that repository
+# as tools/normalize.py. The script has to live next to the workflow because our main
+# repository is private and this one is public; note in the copy that QianDao holds the
+# canonical version.
+#
+# It keeps our public template repository in step with the upstream community one and
+# lays it out the way we publish it: templates/<category>/<file>.har with a regenerated
+# tpls_history.json whose filenames carry the category path. It pushes back to itself
+# with the built-in GITHUB_TOKEN, so no personal access token is involved.
+#
+# One-time setup: if QianDao-Templates was created as a fork, GitHub disables scheduled
+# workflows on forks by default. After pushing this file, open Actions -> Sync and
+# curate upstream templates -> enable the schedule, or run it once with "Run workflow".
+
+on:
+  schedule:
+    - cron: '17 3 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: master
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Fetch upstream
+        run: |
+          rm -rf upstream
+          git clone --depth 1 https://github.com/qd-today/templates.git upstream
+
+      - name: Curate into the published layout
+        run: |
+          rm -rf curated
+          python tools/normalize.py upstream curated
+
+      - name: Copy the curated tree over this repository
+        run: |
+          rm -rf templates
+          cp -r curated/templates templates
+          cp curated/tpls_history.json tpls_history.json
+          cp curated/README.md README.md
+          cp curated/CATEGORIES.md CATEGORIES.md
+          rm -rf curated upstream
+
+      - name: Commit if anything changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [ -n "$(git status --porcelain)" ]; then
+            git add -A
+            git commit -m "chore: sync upstream templates ($(date -u +%Y-%m-%d))"
+            git push origin master
+          else
+            echo "No template changes"
+          fi
