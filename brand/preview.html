@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>QianDao Templates 官方品牌视觉资产套件 (Brand Assets)</title>
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --border: #e2e8f0;
+      --ink: #0f172a;
+      --ink-soft: #475569;
+      --ink-faint: #64748b;
+      --primary: #2563eb;
+      --primary-soft: #eff6ff;
+      --cyan: #0284c7;
+      --radius: 12px;
+      --shadow: 0 4px 6px -1px rgba(0,0,0,0.06), 0 2px 4px -2px rgba(0,0,0,0.04);
+      --shadow-lg: 0 12px 30px -4px rgba(0,0,0,0.1), 0 4px 8px -2px rgba(0,0,0,0.05);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+      padding-bottom: 80px;
+    }
+    header {
+      background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 48px 24px 36px;
+      text-align: center;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      border: 1px solid #bfdbfe;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+    h1 {
+      font-size: clamp(28px, 4vw, 38px);
+      font-weight: 850;
+      letter-spacing: -0.03em;
+      margin-bottom: 10px;
+      color: var(--ink);
+    }
+    .sub {
+      color: var(--ink-soft);
+      font-size: 16px;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 36px auto 0;
+      padding: 0 20px;
+    }
+    .section-title {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin-bottom: 32px;
+      box-shadow: var(--shadow);
+    }
+    .banner-preview-wrap {
+      width: 100%;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      margin-top: 14px;
+      background: #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color .2s ease;
+    }
+    .banner-preview-wrap img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .theme-switcher {
+      display: inline-flex;
+      background: #f1f5f9;
+      padding: 4px;
+      border-radius: 8px;
+      gap: 4px;
+      margin-bottom: 16px;
+    }
+    .theme-btn {
+      border: 0;
+      background: transparent;
+      padding: 6px 16px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 650;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: all .15s ease;
+    }
+    .theme-btn.active {
+      background: #ffffff;
+      color: var(--primary);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .avatar-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px;
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      text-align: center;
+    }
+    .avatar-card.dark {
+      background: #090d16;
+      border-color: #1e293b;
+      color: #f8fafc;
+    }
+    .avatar-card img {
+      width: 180px;
+      height: 180px;
+      border-radius: 36px;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow-lg);
+    }
+    .avatar-title {
+      font-size: 16px;
+      font-weight: 750;
+      margin-bottom: 6px;
+    }
+    .avatar-desc {
+      font-size: 13px;
+      color: var(--ink-faint);
+      margin-bottom: 14px;
+    }
+    .avatar-card.dark .avatar-desc {
+      color: #94a3b8;
+    }
+    .code-box {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 16px 20px;
+      border-radius: 8px;
+      font-family: "Cascadia Mono", Consolas, monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      overflow-x: auto;
+      margin-top: 10px;
+      position: relative;
+    }
+    .code-box code {
+      color: #38bdf8;
+    }
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: 6px;
+      background: var(--primary);
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 650;
+      transition: background-color .15s ease;
+      cursor: pointer;
+      border: none;
+    }
+    .download-btn:hover {
+      background: #1d4ed8;
+    }
+    .color-swatches {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+    .swatch {
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: #fff;
+    }
+    .swatch-color {
+      height: 48px;
+      border-radius: 6px;
+      margin-bottom: 8px;
+    }
+    .swatch-name {
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .swatch-hex {
+      font-size: 12px;
+      font-family: monospace;
+      color: var(--ink-faint);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="badge">🎨 QianDao Templates Brand Identity</div>
+    <h1>QianDao Templates 官方品牌视觉资产套件</h1>
+    <p class="sub">专为 <code>co11ector/QianDao-Templates</code> 项目量身打造的开源品牌 LOGO、README 顶头横幅与高清头像体系。</p>
+  </header>
+
+  <main class="container">
+    <div class="section-title">🖼️ 仓库 README 顶头横幅 (Hero Banner)</div>
+    <div class="card">
+      <p style="color: var(--ink-soft); font-size: 14.5px; margin-bottom: 12px;">
+        提供适配 GitHub 的双主题横幅（2560 × 720 Retina 高清渲染）。点击下方按钮切换查看不同主题效果：
+      </p>
+
+      <div class="theme-switcher">
+        <button type="button" class="theme-btn active" onclick="switchBanner('light')">☀️ 亮色模式 (Light Mode)</button>
+        <button type="button" class="theme-btn" onclick="switchBanner('dark')">🌙 暗色模式 (Dark Mode)</button>
+      </div>
+
+      <div class="banner-preview-wrap" id="bannerWrap">
+        <img id="bannerImg" src="qiandao-templates-banner-light.png" alt="QianDao Templates Banner">
+      </div>
+
+      <div style="margin-top: 20px; display: flex; gap: 12px; flex-wrap: wrap;">
+        <a class="download-btn" href="qiandao-templates-banner-light.png" download>📥 下载亮色横幅 (Banner Light)</a>
+        <a class="download-btn" href="qiandao-templates-banner-dark.png" download style="background: #334155;">📥 下载暗色横幅 (Banner Dark)</a>
+      </div>
+
+      <h3 style="font-size: 15px; margin-top: 24px; font-weight: 750;">📋 GitHub README 一键使用代码（支持随系统明暗模式自动切换）：</h3>
+      <div class="code-box">
+<pre>&lt;p align="center"&gt;
+  &lt;picture&gt;
+    &lt;source media="(prefers-color-scheme: dark)" srcset="brand/qiandao-templates-banner-dark.png"&gt;
+    &lt;source media="(prefers-color-scheme: light)" srcset="brand/qiandao-templates-banner-light.png"&gt;
+    &lt;img alt="QianDao Templates" src="brand/qiandao-templates-banner-light.png" width="100%"&gt;
+  &lt;/picture&gt;
+&lt;/p&gt;</pre>
+      </div>
+    </div>
+
+    <div class="section-title">👤 仓库头像与应用图标 (Avatar & App Icon)</div>
+    <div class="card">
+      <div class="grid-2">
+        <div class="avatar-card">
+          <img src="qiandao-templates-avatar-light.png" alt="Avatar Light">
+          <div class="avatar-title">亮色正方图标 (1024 × 1024)</div>
+          <div class="avatar-desc">适合用作 GitHub 仓库头像、文档 Favicon 或社交分享卡片</div>
+          <a class="download-btn" href="qiandao-templates-avatar-light.png" download>📥 下载头像 (Light)</a>
+        </div>
+
+        <div class="avatar-card dark">
+          <img src="qiandao-templates-avatar-dark.png" alt="Avatar Dark">
+          <div class="avatar-title">暗色科技图标 (1024 × 1024)</div>
+          <div class="avatar-desc">深邃星空底色 + 霓虹电光青立体发光，极具极客科技质感</div>
+          <a class="download-btn" href="qiandao-templates-avatar-dark.png" download style="background: #0284c7;">📥 下载头像 (Dark)</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-title">📐 透明横版徽标 (Transparent Lockup)</div>
+    <div class="card">
+      <p style="color: var(--ink-soft); font-size: 14.5px; margin-bottom: 14px;">
+        1600 × 480 纯透明背景图，可内嵌于网页导航栏、页脚或技术文档中：
+      </p>
+      <div style="background: #ffffff; padding: 24px; border-radius: 8px; border: 1px solid var(--border); display: flex; justify-content: center; margin-bottom: 12px;">
+        <img src="qiandao-templates-lockup-light.png" alt="Lockup Light" style="max-width: 500px; width: 100%;">
+      </div>
+      <a class="download-btn" href="qiandao-templates-lockup-light.png" download>📥 下载透明横版徽标 (Light)</a>
+      <a class="download-btn" href="qiandao-templates-lockup-dark.png" download style="background: #0f172a; margin-left: 8px;">📥 下载透明横版徽标 (Dark)</a>
+    </div>
+
+    <div class="section-title">🎨 品牌标准色板 (Color Palette)</div>
+    <div class="card">
+      <div class="color-swatches">
+        <div class="swatch">
+          <div class="swatch-color" style="background: #1e40af;"></div>
+          <div class="swatch-name">QD Royal Blue</div>
+          <div class="swatch-hex">#1E40AF</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background: #2563eb;"></div>
+          <div class="swatch-name">Electric Azure</div>
+          <div class="swatch-hex">#2563EB</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background: #0284c7;"></div>
+          <div class="swatch-name">Sky Cyan</div>
+          <div class="swatch-hex">#0284C7</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background: #00c1ed;"></div>
+          <div class="swatch-name">Neon Cyan</div>
+          <div class="swatch-hex">#00C1ED</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background: #090d16;"></div>
+          <div class="swatch-name">Obsidian Slate</div>
+          <div class="swatch-hex">#090D16</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function switchBanner(theme) {
+      var img = document.getElementById('bannerImg');
+      var btns = document.querySelectorAll('.theme-btn');
+      btns.forEach(b => b.classList.remove('active'));
+      if (theme === 'dark') {
+        img.src = 'qiandao-templates-banner-dark.png';
+        btns[1].classList.add('active');
+        document.getElementById('bannerWrap').style.background = '#090d16';
+      } else {
+        img.src = 'qiandao-templates-banner-light.png';
+        btns[0].classList.add('active');
+        document.getElementById('bannerWrap').style.background = '#f1f5f9';
+      }
+    }
+  </script>
+</body>
+</html>
