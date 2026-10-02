@@ -50,10 +50,26 @@
 
 ## 许可与来源
 
-- **模板数据**镜像自上游 [qd-today/templates](https://github.com/qd-today/templates)。该仓库**未声明许可证**，其 README 注明「项目中的模板均为开源模板，仅供学习参考使用，请勿用于商业用途」；本仓库按同样口径向个人用户提供学习参考，**请勿商用**。
-- **作者与出处**：每个模板的 `author`、`comments`、`commenturl` 都保留在 [`tpls_history.json`](tpls_history.json) 里，权利归原作者所有。原作者要求移除时提 issue 即可，我们会处理。
-- **整理脚本与品牌资产**来自 [QianDao](https://github.com/co11ector/QianDao)（MIT License，Copyright © 2021 QD-Today、2026 co11ector），与模板数据分属不同的授权范围。
+本仓库的内容分属**三种不同的授权范围**，请分别看待：
+
+| 内容 | 来源 | 授权 |
+| --- | --- | --- |
+| `templates/` 模板数据、`tpls_history.json` 索引 | 上游 [qd-today/templates](https://github.com/qd-today/templates) | 上游**未声明许可证** |
+| `tools/`、`tests/`、`.github/`、`docs/` | 本项目（[QianDao](https://github.com/co11ector/QianDao)） | MIT License，Copyright © 2021 QD-Today、2026 co11ector |
+| `brand/` 品牌资产 | 本项目（[QianDao](https://github.com/co11ector/QianDao)） | 同上（MIT） |
+
+### 学习用途
+
+上游 README 注明「项目中的模板均为开源模板，仅供学习参考使用，请勿用于商业用途」。本仓库按同样口径提供，**仅供个人学习参考，请勿商用**。
+
+### 作者与出处
+
+每个模板的 `author`、`comments`、`commenturl` 都保留在 [`tpls_history.json`](tpls_history.json) 里，**权利归原作者所有**。本仓库只做同步、校验与整理，不对模板数据主张任何权利。
+
+### 请求移除
+
+如果某个模板侵犯了你的权利、违反所在站点的规则，或你作为原作者希望移除它，请提 issue 说明，我们会尽快处理。
 
 ## 反馈
 
-模板分类不合适、某个模板已经失效，或你认为某个模板侵犯了你的权利 —— 提 issue 说明即可。
+模板分类不合适、某个模板已经失效，或对整理方式有建议 —— 提 issue 说明即可。
