@@ -114,10 +114,10 @@ def test_the_repository_gets_a_readme(tmp_path):
     assert "forum/" in readme and "pt/" in readme
     assert (target / "CATEGORIES.md").is_file()
 
-    # The header is ordered: square logo, then the centred title, then the wide banner.
+    # The header is the square logo with the centred title under it. The wide banner is
+    # reserved for the repository's social preview and must not appear in the readme.
     logo = readme.index("qiandao-templates-avatar-light.png")
     title = readme.index('<h1 align="center">QianDao Templates</h1>')
-    banner = readme.index("qiandao-templates-banner-light.png")
-    assert logo < title < banner, "readme header order changed"
-    # Both images follow the reader's theme.
-    assert readme.count("prefers-color-scheme: dark") == 2
+    assert logo < title, "the logo must sit above the centred title"
+    assert "qiandao-templates-banner" not in readme
+    assert readme.count("prefers-color-scheme: dark") == 1
