@@ -1,3 +1,8 @@
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="brand/qiandao-templates-banner-dark.png">
+  <img alt="QianDao Templates — 官方精选公共模板仓库" src="brand/qiandao-templates-banner-light.png">
+</picture>
+
 # QianDao Templates
 
 「QianDao 自动化运行台」的公共模板仓库。这里的模板由上游社区仓库`qd-today/templates` **自动同步并按站点类型整理**后发布，供 [QianDao](https://github.com/co11ector/QianDao)的用户一键创建定时签到任务。
