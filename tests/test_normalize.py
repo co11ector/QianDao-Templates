@@ -7,6 +7,7 @@ this suite before it publishes anything.
 """
 
 import json
+import re
 import sys
 from pathlib import Path
 from urllib.parse import quote
@@ -121,3 +122,9 @@ def test_the_repository_gets_a_readme(tmp_path):
     assert logo < title, "the logo must sit above the centred title"
     assert "qiandao-templates-banner" not in readme
     assert readme.count("prefers-color-scheme: dark") == 1
+
+    # The avatar carries its own wordmark, so it has to be rendered big enough to read;
+    # at 140px the "TEMPLATES" line inside it was illegible.
+    width = re.search(r'qiandao-templates-avatar-light\.png" width="(\d+)"', readme)
+    assert width, "the logo has no explicit width"
+    assert int(width.group(1)) >= 180, "the logo is too small to read its wordmark"
