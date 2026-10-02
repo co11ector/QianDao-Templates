@@ -43,7 +43,7 @@
 
 | 模板 | 位置 |
 | --- | --- |
-| ithome | [`templates/signin/ithome.har`](templates/signin/ithome.har) |
+| IT之家 | [`templates/signin/ithome.har`](templates/signin/ithome.har) |
 
 ## 自动同步
 
