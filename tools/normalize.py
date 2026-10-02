@@ -137,19 +137,26 @@ def normalise(source: Path, target: Path) -> dict:
         if report["categories"].get(category)
     ]
     lines = [
+        # The logo is the square avatar; the title sits centred directly under it.
         '<p align="center">',
         '<picture>',
-        '  <source media="(prefers-color-scheme: dark)" srcset="brand/qiandao-templates-banner-dark.png">',
-        '  <img alt="QianDao Templates — QianDao 的公共模板模块" src="brand/qiandao-templates-banner-light.png">',
+        '  <source media="(prefers-color-scheme: dark)" srcset="brand/qiandao-templates-avatar-dark.png">',
+        '  <img alt="QianDao Templates" src="brand/qiandao-templates-avatar-light.png" width="140">',
         '</picture>',
         '</p>',
         "",
-        # The title sits centred under the banner, which carries the logo and wordmark.
         '<h1 align="center">QianDao Templates</h1>',
+        '<p align="center">QianDao 的公共模板模块 · 上游社区模板每日自动同步并按站点类型整理</p>',
         "",
-        "QianDao 的**公共模板模块**：这里的模板由上游社区仓库 `qd-today/templates`"
-        "**每日自动同步并按站点类型整理**后发布，供 [QianDao](https://github.com/co11ector/QianDao)"
-        " 的用户一键创建定时签到任务。",
+        '<p align="center">',
+        '<picture>',
+        '  <source media="(prefers-color-scheme: dark)" srcset="brand/qiandao-templates-banner-dark.png">',
+        '  <img alt="QianDao Templates" src="brand/qiandao-templates-banner-light.png" width="100%">',
+        '</picture>',
+        '</p>',
+        "",
+        "这里的模板由上游社区仓库 `qd-today/templates` **每日自动同步并按站点类型整理**后发布，"
+        "供 [QianDao](https://github.com/co11ector/QianDao) 的用户一键创建定时签到任务。",
         "",
         "仓库与本地目录单独存在只因为两件事：模板必须能被**公开抓取**（主仓是私库，"
         "而 GitHub 的可见性是仓库级的），以及让本地文件管理更清楚。",

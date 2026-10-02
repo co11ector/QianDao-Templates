@@ -1,0 +1,9 @@
+# Byte-code caches: the workflow runs the test suite before every sync, and `git add -A`
+# used to commit the caches that produced, every single run.
+__pycache__/
+*.py[cod]
+
+# The sync fetches upstream and builds the curated tree here; both are removed again at
+# the end of the job, and neither should ever be committed.
+upstream/
+curated/

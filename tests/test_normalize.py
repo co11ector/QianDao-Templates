@@ -112,5 +112,12 @@ def test_the_repository_gets_a_readme(tmp_path):
     readme = (target / "README.md").read_text(encoding="utf-8")
     assert "QianDao Templates" in readme
     assert "forum/" in readme and "pt/" in readme
-    assert "brand/qiandao-templates-banner-light.png" in readme
     assert (target / "CATEGORIES.md").is_file()
+
+    # The header is ordered: square logo, then the centred title, then the wide banner.
+    logo = readme.index("qiandao-templates-avatar-light.png")
+    title = readme.index('<h1 align="center">QianDao Templates</h1>')
+    banner = readme.index("qiandao-templates-banner-light.png")
+    assert logo < title < banner, "readme header order changed"
+    # Both images follow the reader's theme.
+    assert readme.count("prefers-color-scheme: dark") == 2
