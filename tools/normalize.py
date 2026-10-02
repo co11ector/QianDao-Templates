@@ -80,7 +80,7 @@ def local_root_default() -> Path:
     return Path(__file__).resolve().parent.parent / "local"
 
 
-def local_record_metadata(path: Path, comment_url: str) -> dict:
+def local_record_metadata(path: Path, comment_url: str, meta_path: Path = None) -> dict:
     """The version/date/update/commenturl fields the application expects on a record.
 
     version must be an int-comparable date because the app decides whether to re-import
@@ -110,6 +110,26 @@ def local_record_metadata(path: Path, comment_url: str) -> dict:
         stamp = None
     if stamp is None:
         stamp = datetime.datetime.fromtimestamp(path.stat().st_mtime)
+    # A metadata-only change (display name, discussion link) has to move the version too,
+    # or the app compares equal to what it already stored and skips the row until someone
+    # presses 重建缓存 - which is exactly the trap the day-granularity version set.
+    if meta_path is not None and Path(meta_path).is_file():
+        meta_stamp = datetime.datetime.fromtimestamp(Path(meta_path).stat().st_mtime)
+        try:
+            completed = subprocess.run(
+                ["git", "log", "-1", "--format=%cd",
+                 "--date=format:%Y%m%d%H%M%S", "--", str(meta_path)],
+                cwd=str(Path(meta_path).parent),
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            raw_meta = completed.stdout.strip()
+            if completed.returncode == 0 and raw_meta:
+                meta_stamp = datetime.datetime.strptime(raw_meta, "%Y%m%d%H%M%S")
+        except (OSError, ValueError):
+            pass
+        stamp = max(stamp, meta_stamp)
     return {
         "version": stamp.strftime("%Y%m%d%H%M"),
         "date": stamp.strftime("%Y-%m-%d %H:%M:%S"),
@@ -118,14 +138,16 @@ def local_record_metadata(path: Path, comment_url: str) -> dict:
     }
 
 
-def read_local_comment_urls(local_root: Path) -> dict:
-    """Per-template discussion URLs from local/comments.json.
+def read_local_metadata(local_root: Path) -> dict:
+    """Per-template metadata from local/meta.json: the display name and the discussion link.
 
     Upstream gives every template its own 「评论区」 issue and the app's 评论 button opens
-    it, so ours are mapped the same way. Anything unmapped falls back to the request
-    board, which is still somewhere a reader can actually leave a comment.
+    it, so ours are mapped the same way. The display name can differ from the file name,
+    which stays ASCII and stable because the app's identity is (name, repo, url, branch).
+    Anything unmapped falls back to the request board, which is still somewhere a reader
+    can actually leave a comment.
     """
-    path = Path(local_root) / "comments.json"
+    path = Path(local_root) / "meta.json"
     if not path.is_file():
         return {}
     try:
@@ -134,11 +156,18 @@ def read_local_comment_urls(local_root: Path) -> dict:
         return {}
     if not isinstance(data, dict):
         return {}
-    return {
-        str(name): str(url)
-        for name, url in data.items()
-        if isinstance(url, str) and url.startswith("http")
-    }
+
+    result = {}
+    for name, value in data.items():
+        if isinstance(value, str) and value.startswith("http"):
+            result[str(name)] = {"name": None, "commenturl": value}
+        elif isinstance(value, dict):
+            comment_url = str(value.get("commenturl") or "")
+            result[str(name)] = {
+                "name": str(value["name"]) if value.get("name") else None,
+                "commenturl": comment_url if comment_url.startswith("http") else None,
+            }
+    return result
 
 
 def read_local_entries(local_root: Path):
@@ -236,7 +265,7 @@ def normalise(source: Path, target: Path, local_root=None) -> dict:
     resolved_local_root = (
         local_root_default() if local_root is None else Path(local_root)
     )
-    comment_urls = read_local_comment_urls(resolved_local_root)
+    local_metadata = read_local_metadata(resolved_local_root)
     for path, category in read_local_entries(resolved_local_root):
         try:
             document = json.loads(path.read_text(encoding="utf-8"))
@@ -258,7 +287,9 @@ def normalise(source: Path, target: Path, local_root=None) -> dict:
         if isinstance(first, dict):
             comment = str(first.get("comment") or "")
 
-        name = path.stem
+        entry = local_metadata.get(path.stem) or {}
+        name = entry.get("name") or path.stem
+        comment_url = entry.get("commenturl") or LOCAL_COMMENT_URL
         relative = "templates/%s/%s" % (category, path.name)
         destination = target / relative
         destination.parent.mkdir(parents=True, exist_ok=True)
@@ -279,7 +310,7 @@ def normalise(source: Path, target: Path, local_root=None) -> dict:
             # unreliable from the NAS.
             "content": base64.b64encode(path.read_bytes()).decode("ascii"),
             **local_record_metadata(
-                path, comment_urls.get(name, LOCAL_COMMENT_URL)
+                path, comment_url, resolved_local_root / "meta.json"
             ),
         }
         report["local"] += 1

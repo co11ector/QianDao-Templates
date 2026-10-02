@@ -289,8 +289,13 @@ def test_a_mapped_comment_url_wins_over_the_request_board(tmp_path):
         },
     )
     local = build_local(tmp_path)
-    (local / "comments.json").write_text(
-        json.dumps({"ithome": "https://github.com/co11ector/QianDao-Templates/issues/2"}),
+    (local / "meta.json").write_text(
+        json.dumps({
+            "ithome": {
+                "name": "IT之家",
+                "commenturl": "https://github.com/co11ector/QianDao-Templates/issues/2",
+            }
+        }, ensure_ascii=False),
         encoding="utf-8",
     )
     target = tmp_path / "out"
@@ -298,7 +303,12 @@ def test_a_mapped_comment_url_wins_over_the_request_board(tmp_path):
     normalize.normalise(upstream, target, local_root=local)
 
     index = json.loads((target / "tpls_history.json").read_text(encoding="utf-8"))
-    assert index["har"]["ithome"]["commenturl"].endswith("/issues/2")
+    # The display name comes from the metadata file, while the file keeps its stable
+    # ASCII name: the app's identity is (name, repo, url, branch), so a rename here is a
+    # one-off that leaves the old row behind, not something to do casually.
+    assert "IT之家" in index["har"]
+    assert index["har"]["IT之家"]["filename"] == "templates/signin/ithome.har"
+    assert index["har"]["IT之家"]["commenturl"].endswith("/issues/2")
 
 
 def test_a_local_template_wins_over_an_upstream_name(tmp_path):
