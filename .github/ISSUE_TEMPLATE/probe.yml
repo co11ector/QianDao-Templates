@@ -1,0 +1,9 @@
+name: probe
+description: isolated check that GitHub reads the issue template directory
+body:
+  - type: input
+    id: probe
+    attributes:
+      label: probe
+    validations:
+      required: false
