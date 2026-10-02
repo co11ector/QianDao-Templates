@@ -1,7 +1,7 @@
 <p align="center">
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="brand/qiandao-templates-avatar-dark.png">
-  <img alt="QianDao Templates" src="brand/qiandao-templates-avatar-light.png" width="140">
+  <img alt="QianDao Templates" src="brand/qiandao-templates-avatar-light.png" width="200">
 </picture>
 </p>
 
