@@ -35,19 +35,6 @@
 
 共 **402** 个模板，索引见 [`tpls_history.json`](tpls_history.json)。
 
-## 仓库结构
-
-```
-templates/<分类>/<模板文件>.har    按站点类型摆放，文件名与上游保持一致
-tpls_history.json                  索引：filename 为相对路径，url 指向本仓库
-brand/                             品牌资产（顶部 LOGO 与横幅，含明暗两版）
-tools/normalize.py                 整理脚本（同步流水线调用）
-tests/test_normalize.py            整理脚本的测试（同步前先跑）
-CATEGORIES.md                      分类规则
-```
-
-应用按 `<仓库地址>/<filename>` 抓取。索引里的 `filename` 是相对路径，例如 `templates/forum/saraba1st.har`。
-
 ## 自动同步
 
 `.github/workflows/sync-upstream.yml` 每天 **03:17 UTC（北京时间 11:17）** 自动执行，也可以手动触发：
