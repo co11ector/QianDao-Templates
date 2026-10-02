@@ -1,11 +1,15 @@
+<p align="center">
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="brand/qiandao-templates-banner-dark.png">
-  <img alt="QianDao Templates — 官方精选公共模板仓库" src="brand/qiandao-templates-banner-light.png">
+  <img alt="QianDao Templates — QianDao 的公共模板模块" src="brand/qiandao-templates-banner-light.png">
 </picture>
+</p>
 
-# QianDao Templates
+<h1 align="center">QianDao Templates</h1>
 
-「QianDao 自动化运行台」的公共模板仓库。这里的模板由上游社区仓库`qd-today/templates` **自动同步并按站点类型整理**后发布，供 [QianDao](https://github.com/co11ector/QianDao)的用户一键创建定时签到任务。
+QianDao 的**公共模板模块**：这里的模板由上游社区仓库 `qd-today/templates`**每日自动同步并按站点类型整理**后发布，供 [QianDao](https://github.com/co11ector/QianDao) 的用户一键创建定时签到任务。
+
+仓库与本地目录单独存在只因为两件事：模板必须能被**公开抓取**（主仓是私库，而 GitHub 的可见性是仓库级的），以及让本地文件管理更清楚。
 
 ## 模板数量
 
