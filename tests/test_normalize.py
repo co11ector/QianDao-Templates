@@ -56,7 +56,7 @@ def test_templates_are_sorted_into_categories(tmp_path):
 def test_the_index_carries_the_new_paths(tmp_path):
     root = build_upstream(tmp_path)
     target = tmp_path / "out"
-    normalize.normalise(root, target)
+    normalize.normalise(root, target, local_root=tmp_path / "local")
 
     index = json.loads((target / "tpls_history.json").read_text(encoding="utf-8"))
     records = index["har"]
@@ -89,7 +89,7 @@ def test_the_mapping_index_shape_is_supported(tmp_path):
     root = build_upstream(tmp_path, index=upstream_index)
     target = tmp_path / "out"
 
-    report = normalize.normalise(root, target)
+    report = normalize.normalise(root, target, local_root=tmp_path / "local")
 
     assert report["moved"] == 2
     index = json.loads((target / "tpls_history.json").read_text(encoding="utf-8"))
@@ -108,7 +108,7 @@ def test_the_mapping_index_shape_is_supported(tmp_path):
 def test_the_repository_gets_a_readme(tmp_path):
     root = build_upstream(tmp_path)
     target = tmp_path / "out"
-    normalize.normalise(root, target)
+    normalize.normalise(root, target, local_root=tmp_path / "local")
 
     readme = (target / "README.md").read_text(encoding="utf-8")
     assert "QianDao Templates" in readme
@@ -134,7 +134,7 @@ def test_the_readme_tells_readers_how_to_subscribe(tmp_path):
     """The readme is the only place a reader learns the address and branch to add."""
     root = build_upstream(tmp_path)
     target = tmp_path / "out"
-    normalize.normalise(root, target)
+    normalize.normalise(root, target, local_root=tmp_path / "local")
 
     readme = (target / "README.md").read_text(encoding="utf-8")
 
@@ -148,7 +148,7 @@ def test_the_readme_describes_categories_without_counts(tmp_path):
     """The overview explains what each directory is for; the counts are left to the app."""
     root = build_upstream(tmp_path)
     target = tmp_path / "out"
-    normalize.normalise(root, target)
+    normalize.normalise(root, target, local_root=tmp_path / "local")
 
     readme = (target / "README.md").read_text(encoding="utf-8")
 
@@ -165,7 +165,7 @@ def test_the_licence_section_separates_the_scopes(tmp_path):
     """Three different scopes: upstream template data, our code, our brand assets."""
     root = build_upstream(tmp_path)
     target = tmp_path / "out"
-    normalize.normalise(root, target)
+    normalize.normalise(root, target, local_root=tmp_path / "local")
 
     readme = (target / "README.md").read_text(encoding="utf-8")
 
@@ -177,3 +177,115 @@ def test_the_licence_section_separates_the_scopes(tmp_path):
     # reason we ask readers not to use the data commercially. Both facts must survive.
     assert "未声明许可证" in readme
     assert "请勿商用" in readme
+
+
+def build_local(tmp_path, category="signin", name="ithome",
+                comment="IT之家 每日签到（App 接口 napi.ithome.com）"):
+    """A template this project maintains itself, laid out like local/<category>/<name>.har."""
+    root = tmp_path / "local"
+    directory = root / category
+    directory.mkdir(parents=True, exist_ok=True)
+    (directory / ("%s.har" % name)).write_text(
+        json.dumps(
+            [
+                {
+                    "comment": comment,
+                    "request": {
+                        "method": "GET",
+                        "url": "https://napi.ithome.com/api/usersign/sign?userHash={{userHash}}",
+                    },
+                    "rule": {
+                        "success_asserts": [{"re": '"ok":(0|1)', "from": "content"}],
+                        "failed_asserts": [{"re": "^(4|5)\\d\\d$", "from": "status"}],
+                    },
+                }
+            ],
+            ensure_ascii=False,
+        ),
+        encoding="utf-8",
+    )
+    return root
+
+
+def test_the_default_local_root_is_the_repository_local_directory():
+    """The CLI has to find local/ without a flag, whatever the working directory is."""
+    assert normalize.local_root_default() == (
+        Path(normalize.__file__).resolve().parents[1] / "local"
+    )
+
+
+def test_local_templates_are_merged_and_survive_the_sync(tmp_path):
+    """The whole point: templates/ is rebuilt daily, so a hand-made one must live outside it."""
+    upstream = build_upstream(
+        tmp_path,
+        index={
+            "S1 论坛": {"name": "S1 论坛", "filename": "s1-forum.har",
+                        "author": "Antiky", "url": "https://bbs.saraba1st.com/"},
+        },
+    )
+    local = build_local(tmp_path)
+    target = tmp_path / "out"
+
+    report = normalize.normalise(upstream, target, local_root=local)
+
+    assert report["local"] == 1
+    assert report["moved"] == 1
+
+    published = target / "templates" / "signin" / "ithome.har"
+    assert published.is_file()
+    # Copied verbatim, so a user-facing template is never rewritten in transit.
+    assert published.read_text(encoding="utf-8") == (
+        local / "signin" / "ithome.har"
+    ).read_text(encoding="utf-8")
+
+    index = json.loads((target / "tpls_history.json").read_text(encoding="utf-8"))
+    entry = index["har"]["ithome"]
+    assert entry["author"] == "QianDao"
+    assert entry["filename"] == "templates/signin/ithome.har"
+    assert entry["url"] == (
+        "https://raw.githubusercontent.com/co11ector/QianDao-Templates/"
+        "master/templates/signin/ithome.har"
+    )
+    # The app shows comments in the template list, so the first step's comment is carried
+    # through as instructions for the variable the user has to fill in.
+    assert entry["comments"].startswith("IT之家 每日签到")
+
+    readme = (target / "README.md").read_text(encoding="utf-8")
+    assert "本项目自有的模板" in readme
+    assert "templates/signin/ithome.har" in readme
+
+
+def test_a_local_template_wins_over_an_upstream_name(tmp_path):
+    """If the names collide the maintained one is the one that ships, and it is reported."""
+    upstream = build_upstream(
+        tmp_path,
+        index={
+            "ithome": {"name": "ithome", "filename": "s1-forum.har",
+                       "author": "someone", "url": "https://example.invalid/"},
+        },
+    )
+    local = build_local(tmp_path)
+    target = tmp_path / "out"
+
+    report = normalize.normalise(upstream, target, local_root=local)
+
+    assert report["overridden"] == ["ithome"]
+    index = json.loads((target / "tpls_history.json").read_text(encoding="utf-8"))
+    assert index["har"]["ithome"]["author"] == "QianDao"
+
+
+def test_an_unreadable_local_template_is_reported_not_published(tmp_path):
+    upstream = build_upstream(tmp_path)
+    local = tmp_path / "local"
+    (local / "signin").mkdir(parents=True)
+    (local / "signin" / "broken.har").write_text("not json", encoding="utf-8")
+    (local / "signin" / "empty.har").write_text("[]", encoding="utf-8")
+    target = tmp_path / "out"
+
+    report = normalize.normalise(upstream, target, local_root=local)
+
+    assert report["local"] == 0
+    assert not (target / "templates" / "signin" / "broken.har").exists()
+    assert any("local/signin/broken.har" in item for item in report["skipped"])
+    assert any("local/signin/empty.har" in item for item in report["skipped"])
+

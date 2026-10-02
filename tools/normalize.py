@@ -33,6 +33,8 @@ from pathlib import Path
 from urllib.parse import quote
 
 PUBLISHED_REPOSITORY = "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master"
+# Shown as the author of the templates this project writes itself, under local/.
+LOCAL_AUTHOR = "QianDao"
 
 CATEGORY_KEYWORDS = (
     ("pt", ("pt", "torrent", "seed", "leaguehd", "hdsky", "柠檬", "pt站")),
@@ -68,6 +70,29 @@ def categorise(name: str, url: str, author: str) -> str:
     return DEFAULT_CATEGORY
 
 
+def local_root_default() -> Path:
+    """The repository's own hand-maintained templates: <repo>/local/<category>/*.har."""
+    return Path(__file__).resolve().parent.parent / "local"
+
+
+def read_local_entries(local_root: Path):
+    """Yield (path, category) for the templates this project maintains itself.
+
+    The daily sync rebuilds templates/ and tpls_history.json from upstream, so a template
+    dropped into templates/ by hand disappears on the next run. Anything under
+    local/<category>/ is merged into that output instead, in category order so the
+    generated index stays stable between runs.
+    """
+    if local_root is None or not Path(local_root).is_dir():
+        return
+    for category in CATEGORY_ORDER:
+        directory = Path(local_root) / category
+        if not directory.is_dir():
+            continue
+        for path in sorted(directory.glob("*.har")):
+            yield path, category
+
+
 def read_har_entries(source: Path):
     """Yield (record, category) for every template the index points at.
 
@@ -89,8 +114,15 @@ def read_har_entries(source: Path):
         yield record, categorise(name, record.get("url") or "", record.get("author") or "")
 
 
-def normalise(source: Path, target: Path) -> dict:
-    report = {"moved": 0, "skipped": [], "categories": {}}
+def normalise(source: Path, target: Path, local_root=None) -> dict:
+    report = {
+        "moved": 0,
+        "local": 0,
+        "skipped": [],
+        "overridden": [],
+        "categories": {},
+        "local_templates": [],
+    }
     if target.exists():
         shutil.rmtree(target)
     (target / "templates").mkdir(parents=True)
@@ -132,10 +164,58 @@ def normalise(source: Path, target: Path) -> dict:
         report["categories"].setdefault(category, 0)
         report["categories"][category] += 1
 
+    # Merge the templates this project maintains itself. They are copied verbatim and
+    # indexed like the upstream ones, except that the category comes from the directory
+    # rather than from keyword matching, and a local name wins over an upstream one.
+    resolved_local_root = (
+        local_root_default() if local_root is None else Path(local_root)
+    )
+    for path, category in read_local_entries(resolved_local_root):
+        try:
+            document = json.loads(path.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, UnicodeDecodeError) as error:
+            report["skipped"].append(
+                "local/%s/%s: unreadable (%s)"
+                % (category, path.name, error.__class__.__name__)
+            )
+            continue
+        if not isinstance(document, list) or not document:
+            report["skipped"].append(
+                "local/%s/%s: not a non-empty JSON array"
+                % (category, path.name)
+            )
+            continue
+
+        comment = ""
+        first = document[0]
+        if isinstance(first, dict):
+            comment = str(first.get("comment") or "")
+
+        name = path.stem
+        relative = "templates/%s/%s" % (category, path.name)
+        destination = target / relative
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(path, destination)
+
+        if name in stored_by_name:
+            report["overridden"].append(name)
+        stored_by_name[name] = {
+            "name": name,
+            "filename": relative,
+            "url": "%s/%s" % (PUBLISHED_REPOSITORY, quote(relative)),
+            "author": LOCAL_AUTHOR,
+            "comments": comment,
+        }
+        report["local"] += 1
+        report["local_templates"].append((name, relative))
+        report["categories"].setdefault(category, 0)
+        report["categories"][category] += 1
+
     if mapping:
         index["har"] = stored_by_name
     else:
         index["har"] = list(stored_by_name.values())
+
     (target / "tpls_history.json").write_text(
         json.dumps(index, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
@@ -183,6 +263,22 @@ def normalise(source: Path, target: Path) -> dict:
         "完整列表见 [`tpls_history.json`](tpls_history.json)：索引里 `filename` 为相对路径，"
         "`url` 指向本仓库，应用按 `<仓库地址>/<filename>` 抓取。",
         "",
+        *(
+            [
+                "其中 **%d 个是本项目自有的模板**（放在 `local/` 下，每日同步不会覆盖）："
+                % report["local"],
+                "",
+                "| 模板 | 位置 |",
+                "| --- | --- |",
+                *[
+                    "| %s | [`%s`](%s) |" % (name, relative, relative)
+                    for name, relative in report["local_templates"]
+                ],
+                "",
+            ]
+            if report["local"]
+            else []
+        ),
         "## 自动同步",
         "",
         "`.github/workflows/sync-upstream.yml` 每天 **03:17 UTC（北京时间 11:17）** 自动执行，"
@@ -270,7 +366,11 @@ def main(argv):
         print("usage: normalize.py <source> <target>")
         return 2
     report = normalise(Path(argv[1]), Path(argv[2]))
-    print("moved %d" % report["moved"])
+    print("moved %d (%d local)" % (report["moved"], report["local"]))
+    for name, relative in report["local_templates"]:
+        print("  local %s -> %s" % (name, relative))
+    for name in report["overridden"]:
+        print("  local override %s" % name)
     for category in CATEGORY_ORDER:
         if report["categories"].get(category):
             print("  %-8s %d" % (category, report["categories"][category]))
