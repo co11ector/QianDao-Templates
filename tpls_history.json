@@ -4824,6 +4824,13 @@
       "date": "2026-09-30 17:48:38",
       "version": "20260930",
       "commenturl": "https://github.com/qd-today/templates/issues/1179"
+    },
+    "ithome": {
+      "name": "ithome",
+      "filename": "templates/signin/ithome.har",
+      "url": "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master/templates/signin/ithome.har",
+      "author": "QianDao",
+      "comments": "IT之家 每日签到（App 接口 napi.ithome.com）。变量 userHash 填 cookie「jwtuser」的完整值，形如 Bearer%20eyJ…：在浏览器登录 www.ithome.com 后，用开发者工具或本项目的 Cookie 提取扩展复制该 cookie 即可（不要去掉 Bearer%20 前缀，也不要解码）。签到结果会写在任务日志里；重复执行只回复「今日已签到」，不会重复领金币。"
     }
   }
 }

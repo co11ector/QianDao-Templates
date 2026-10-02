@@ -6,9 +6,9 @@
 </p>
 
 <h1 align="center">QianDao Templates</h1>
-<p align="center">QianDao 官方精选公共模板仓库 · 社区模板每日自动同步与分类整理</p>
+<p align="center">QianDao 的公共模板模块 · 上游社区模板每日自动同步并按站点类型整理</p>
 
-「QianDao 自动化运行台」**官方精选公共模板仓库**：持续从上游社区仓库 `qd-today/templates` 每日自动同步、校验并按站点类型分类整理，支持在 [QianDao](https://github.com/co11ector/QianDao) 中开箱即用、一键订阅与创建定时签到任务。
+「QianDao 自动化运行台」的**公共模板模块**：把上游社区仓库 `qd-today/templates` 的模板每天自动同步、校验并按站点类型整理，供 [QianDao](https://github.com/co11ector/QianDao) 的用户一键创建定时签到任务。
 
 - **开箱可用**：订阅本仓库即可在应用内挑选模板，不必自己收集
 - **每日更新**：上游一有变化，24 小时内自动跟上
@@ -29,6 +29,12 @@
 | [`signin/`](templates/signin) | 通用签到 | 其余站点；未命中上面关键词的都归到这里 |
 
 完整列表见 [`tpls_history.json`](tpls_history.json)：索引里 `filename` 为相对路径，`url` 指向本仓库，应用按 `<仓库地址>/<filename>` 抓取。
+
+其中 **1 个是本项目自有的模板**（放在 `local/` 下，每日同步不会覆盖）：
+
+| 模板 | 位置 |
+| --- | --- |
+| ithome | [`templates/signin/ithome.har`](templates/signin/ithome.har) |
 
 ## 自动同步
 
