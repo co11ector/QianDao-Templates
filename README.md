@@ -76,6 +76,8 @@
 
 如果某个模板侵犯了你的权利、违反所在站点的规则，或你作为原作者希望移除它，请提 issue 说明，我们会尽快处理。
 
-## 反馈
+## 反馈与求模板
 
-模板分类不合适、某个模板已经失效，或对整理方式有建议 —— 提 issue 说明即可。
+- **求模板**：用[模板请求表单](https://github.com/co11ector/QianDao-Templates/issues/new?template=template-request.yml)提交（填站点名称、地址、是否需要登录即可）；也可以直接在[模板请求板](https://github.com/co11ector/QianDao-Templates/issues/1)下面留言。
+- **想自己动手**：应用内有 HAR 编辑器，抓包导出 `.har` 后可以向上游社区仓库提 PR，同步后这里也会跟着更新。
+- **分类不合适 / 模板已失效 / 其他建议**：同样提 issue 说明即可。
