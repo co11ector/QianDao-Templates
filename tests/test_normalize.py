@@ -6,6 +6,7 @@ templates repository is the versioned home of tools/normalize.py, and the workfl
 this suite before it publishes anything.
 """
 
+import base64
 import json
 import re
 import sys
@@ -249,6 +250,15 @@ def test_local_templates_are_merged_and_survive_the_sync(tmp_path):
     # The app shows comments in the template list, so the first step's comment is carried
     # through as instructions for the variable the user has to fill in.
     assert entry["comments"].startswith("IT之家 每日签到")
+    # The body is embedded like the upstream records do, so importing one of our
+    # templates does not need a second fetch of the published file.
+    assert json.loads(base64.b64decode(entry["content"]).decode("utf-8"))[0]["request"][
+        "url"
+    ].endswith("?userHash={{userHash}}")
+    # No credential may ever travel with a published template: the placeholder is all
+    # there is, and the real value lives only in the user's own task. The prose may say
+    # "Bearer prefix", so look for a token actually stuck to it.
+    assert not re.search(r"Bearer\S{20,}", json.dumps(entry, ensure_ascii=False))
 
     readme = (target / "README.md").read_text(encoding="utf-8")
     assert "本项目自有的模板" in readme

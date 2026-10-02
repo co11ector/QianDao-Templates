@@ -26,6 +26,7 @@ reported, so one broken upload cannot stop a sync. The app fetches as
 resolves exactly like a root-level file did.
 """
 
+import base64
 import json
 import shutil
 import sys
@@ -205,6 +206,11 @@ def normalise(source: Path, target: Path, local_root=None) -> dict:
             "url": "%s/%s" % (PUBLISHED_REPOSITORY, quote(relative)),
             "author": LOCAL_AUTHOR,
             "comments": comment,
+            # Upstream records embed the template body and the app uses it when present.
+            # Embedding ours too means importing one of our templates does not depend on
+            # a second fetch of the published file, which is the step that already proved
+            # unreliable from the NAS.
+            "content": base64.b64encode(path.read_bytes()).decode("ascii"),
         }
         report["local"] += 1
         report["local_templates"].append((name, relative))
