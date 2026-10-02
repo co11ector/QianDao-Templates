@@ -1,0 +1,68 @@
+name: 模板请求
+description: 请求添加某个站点的签到模板
+title: "[模板请求] "
+labels: ["模板请求"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        请**一次只提一个站点**，方便逐个处理。提交前先在
+        [`tpls_history.json`](../../blob/master/tpls_history.json) 或应用内「模板库 → 公共模板」搜一下，
+        也许已经有现成的模板了。
+
+  - type: input
+    id: site
+    attributes:
+      label: 站点名称
+      placeholder: 例如：某某论坛
+    validations:
+      required: true
+
+  - type: input
+    id: url
+    attributes:
+      label: 站点地址
+      description: 首页或签到页的地址
+      placeholder: https://example.com/
+    validations:
+      required: true
+
+  - type: dropdown
+    id: login
+    attributes:
+      label: 是否需要登录
+      options:
+        - 需要登录
+        - 不需要登录
+        - 不确定
+    validations:
+      required: true
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: 签到方式（如果知道）
+      options:
+        - 网页表单提交
+        - 点击按钮
+        - 接口请求（XHR/fetch）
+        - 不清楚
+    validations:
+      required: false
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: 备注
+      description: 签到入口在哪个页面、需要什么动作、或者你已经试过哪个模板但没成功
+      placeholder: 例如：签到按钮在首页右上角，点完会弹一个确认框
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: 确认
+      options:
+        - label: 我只对自己有权访问的站点提请求，并会遵守该站点的服务条款
+          required: true

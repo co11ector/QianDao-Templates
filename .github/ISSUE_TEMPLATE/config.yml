@@ -1,0 +1,10 @@
+# Only the structured form is offered: a template request needs the site name, address
+# and whether it needs a login, and free-form issues rarely include them.
+blank_issues_enabled: false
+contact_links:
+  - name: 模板请求板（留言与进度）
+    url: https://github.com/co11ector/QianDao-Templates/issues/1
+    about: 想留言、追问进度，或不确定该怎么填，直接在那个帖子里回帖
+  - name: 已有哪些模板
+    url: https://github.com/co11ector/QianDao-Templates/blob/master/tpls_history.json
+    about: 完整索引；应用内「模板库 → 公共模板」也可以直接搜索
