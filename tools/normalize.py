@@ -49,6 +49,15 @@ CATEGORY_LABELS = {
     "shop": "购物",
     "signin": "通用签到",
 }
+# What belongs in each directory. The readme describes the categories rather than
+# counting them: a number that changes daily is noise for a reader deciding where to look.
+CATEGORY_NOTES = {
+    "pt": "需要登录的私有 PT 站，多为签到与保号类任务",
+    "forum": "Discuz、Flarum 等论坛的每日签到与打卡",
+    "video": "视频与音乐站点的签到、试听与日常任务",
+    "shop": "电商与购物类站点的签到、领券与日常任务",
+    "signin": "其余站点；未命中上面关键词的都归到这里",
+}
 
 
 def categorise(name: str, url: str, author: str) -> str:
@@ -131,9 +140,9 @@ def normalise(source: Path, target: Path) -> dict:
         json.dumps(index, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
 
-    counts = [
-        "| [`%s/`](templates/%s) | %s | %d |"
-        % (category, category, CATEGORY_LABELS[category], report["categories"].get(category, 0))
+    structure_rows = [
+        "| [`%s/`](templates/%s) | %s | %s |"
+        % (category, category, CATEGORY_LABELS[category], CATEGORY_NOTES[category])
         for category in CATEGORY_ORDER
         if report["categories"].get(category)
     ]
@@ -163,13 +172,16 @@ def normalise(source: Path, target: Path) -> dict:
         "仓库与本地目录单独存在只因为两件事：模板必须能被**公开抓取**（主仓是私库，"
         "而 GitHub 的可见性是仓库级的），以及让本地文件管理更清楚。",
         "",
-        "## 模板概览",
+        "## 模板分类",
         "",
-        "| 分类 | 说明 | 数量 |",
+        "模板按站点类型分目录摆放，应用内「模板库 → 公共模板」可以直接搜索与订阅：",
+        "",
+        "| 目录 | 分类 | 说明 |",
         "| --- | --- | --- |",
-        *counts,
+        *structure_rows,
         "",
-        "共 **%d** 个模板，索引见 [`tpls_history.json`](tpls_history.json)。" % report["moved"],
+        "完整列表见 [`tpls_history.json`](tpls_history.json)：索引里 `filename` 为相对路径，"
+        "`url` 指向本仓库，应用按 `<仓库地址>/<filename>` 抓取。",
         "",
         "## 自动同步",
         "",

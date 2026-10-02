@@ -130,6 +130,23 @@ def test_the_repository_gets_a_readme(tmp_path):
     assert int(width.group(1)) >= 180, "the logo is too small to read its wordmark"
 
 
+def test_the_readme_describes_categories_without_counts(tmp_path):
+    """The overview explains what each directory is for; the counts are left to the app."""
+    root = build_upstream(tmp_path)
+    target = tmp_path / "out"
+    normalize.normalise(root, target)
+
+    readme = (target / "README.md").read_text(encoding="utf-8")
+
+    assert "| 目录 | 分类 | 说明 |" in readme
+    # No counts: not as a column and not as a total. ("每个模板" is fine - that is prose
+    # about templates, not a number.)
+    assert "数量" not in readme
+    assert "共 **" not in readme
+    # The notes are what make the table worth reading, so at least one has to appear.
+    assert any(note in readme for note in normalize.CATEGORY_NOTES.values())
+
+
 def test_the_licence_section_separates_the_scopes(tmp_path):
     """Three different scopes: upstream template data, our code, our brand assets."""
     root = build_upstream(tmp_path)
