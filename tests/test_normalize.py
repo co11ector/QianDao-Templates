@@ -261,7 +261,12 @@ def test_local_templates_are_merged_and_survive_the_sync(tmp_path):
     assert entry["version"].isdigit()
     assert entry["date"]
     assert isinstance(entry["update"], int)
-    assert entry["commenturl"] == entry["url"]
+    # commenturl is where the app sends people who press 评论. Every upstream record is a
+    # /issues/ link; ours was the template file at first, which made the button dump raw
+    # JSON at the reader.
+    assert "/issues/" in entry["commenturl"]
+    assert entry["commenturl"] != entry["url"]
+    assert entry["commenturl"] == normalize.LOCAL_COMMENT_URL
     # And it must move forward when the template changes, or updates would never land.
     assert entry["version"] >= "20" + entry["date"][2:4] + entry["date"][5:7] + entry["date"][8:10]
     # No credential may ever travel with a published template: the placeholder is all
@@ -272,6 +277,28 @@ def test_local_templates_are_merged_and_survive_the_sync(tmp_path):
     readme = (target / "README.md").read_text(encoding="utf-8")
     assert "本项目自有的模板" in readme
     assert "templates/signin/ithome.har" in readme
+
+
+def test_a_mapped_comment_url_wins_over_the_request_board(tmp_path):
+    """Each template gets its own 评论区 issue, like the upstream repository does."""
+    upstream = build_upstream(
+        tmp_path,
+        index={
+            "S1 论坛": {"name": "S1 论坛", "filename": "s1-forum.har",
+                        "author": "Antiky", "url": "https://bbs.saraba1st.com/"},
+        },
+    )
+    local = build_local(tmp_path)
+    (local / "comments.json").write_text(
+        json.dumps({"ithome": "https://github.com/co11ector/QianDao-Templates/issues/2"}),
+        encoding="utf-8",
+    )
+    target = tmp_path / "out"
+
+    normalize.normalise(upstream, target, local_root=local)
+
+    index = json.loads((target / "tpls_history.json").read_text(encoding="utf-8"))
+    assert index["har"]["ithome"]["commenturl"].endswith("/issues/2")
 
 
 def test_a_local_template_wins_over_an_upstream_name(tmp_path):

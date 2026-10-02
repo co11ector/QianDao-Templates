@@ -38,6 +38,8 @@ from urllib.parse import quote
 PUBLISHED_REPOSITORY = "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master"
 # Shown as the author of the templates this project writes itself, under local/.
 LOCAL_AUTHOR = "QianDao"
+# Where the app's 评论 button sends people for a local template with no dedicated issue.
+LOCAL_COMMENT_URL = "https://github.com/co11ector/QianDao-Templates/issues/1"
 
 CATEGORY_KEYWORDS = (
     ("pt", ("pt", "torrent", "seed", "leaguehd", "hdsky", "柠檬", "pt站")),
@@ -78,7 +80,7 @@ def local_root_default() -> Path:
     return Path(__file__).resolve().parent.parent / "local"
 
 
-def local_record_metadata(path: Path, published_url: str) -> dict:
+def local_record_metadata(path: Path, comment_url: str) -> dict:
     """The version/date/update/commenturl fields the application expects on a record.
 
     version must be an int-comparable date because the app decides whether to re-import
@@ -87,6 +89,10 @@ def local_record_metadata(path: Path, published_url: str) -> dict:
     file keeps the value stable across checkouts - the file mtime does not, and the daily
     workflow would then emit a new index every run - while still moving forward whenever
     the template is actually edited. Outside a work tree it falls back to the mtime.
+
+    commenturl is where the app's 评论 button sends people. Every upstream record points
+    at the issue where that template was discussed, so ours points at this project's
+    request board; pointing it at the template file made the button dump raw JSON.
     """
     stamp = None
     try:
@@ -108,7 +114,30 @@ def local_record_metadata(path: Path, published_url: str) -> dict:
         "version": stamp.strftime("%Y%m%d"),
         "date": stamp.strftime("%Y-%m-%d %H:%M:%S"),
         "update": int(stamp.timestamp()),
-        "commenturl": published_url,
+        "commenturl": comment_url,
+    }
+
+
+def read_local_comment_urls(local_root: Path) -> dict:
+    """Per-template discussion URLs from local/comments.json.
+
+    Upstream gives every template its own 「评论区」 issue and the app's 评论 button opens
+    it, so ours are mapped the same way. Anything unmapped falls back to the request
+    board, which is still somewhere a reader can actually leave a comment.
+    """
+    path = Path(local_root) / "comments.json"
+    if not path.is_file():
+        return {}
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, UnicodeDecodeError):
+        return {}
+    if not isinstance(data, dict):
+        return {}
+    return {
+        str(name): str(url)
+        for name, url in data.items()
+        if isinstance(url, str) and url.startswith("http")
     }
 
 
@@ -207,6 +236,7 @@ def normalise(source: Path, target: Path, local_root=None) -> dict:
     resolved_local_root = (
         local_root_default() if local_root is None else Path(local_root)
     )
+    comment_urls = read_local_comment_urls(resolved_local_root)
     for path, category in read_local_entries(resolved_local_root):
         try:
             document = json.loads(path.read_text(encoding="utf-8"))
@@ -248,7 +278,9 @@ def normalise(source: Path, target: Path, local_root=None) -> dict:
             # a second fetch of the published file, which is the step that already proved
             # unreliable from the NAS.
             "content": base64.b64encode(path.read_bytes()).decode("ascii"),
-            **local_record_metadata(path, published_url),
+            **local_record_metadata(
+                path, comment_urls.get(name, LOCAL_COMMENT_URL)
+            ),
         }
         report["local"] += 1
         report["local_templates"].append((name, relative))
