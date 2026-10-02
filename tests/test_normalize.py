@@ -128,3 +128,21 @@ def test_the_repository_gets_a_readme(tmp_path):
     width = re.search(r'qiandao-templates-avatar-light\.png" width="(\d+)"', readme)
     assert width, "the logo has no explicit width"
     assert int(width.group(1)) >= 180, "the logo is too small to read its wordmark"
+
+
+def test_the_licence_section_separates_the_scopes(tmp_path):
+    """Three different scopes: upstream template data, our code, our brand assets."""
+    root = build_upstream(tmp_path)
+    target = tmp_path / "out"
+    normalize.normalise(root, target)
+
+    readme = (target / "README.md").read_text(encoding="utf-8")
+
+    assert "三种不同的授权范围" in readme
+    assert "| 内容 | 来源 | 授权 |" in readme
+    for heading in ("### 学习用途", "### 作者与出处", "### 请求移除"):
+        assert heading in readme
+    # The upstream repository declares no licence, and its learning-only wording is the
+    # reason we ask readers not to use the data commercially. Both facts must survive.
+    assert "未声明许可证" in readme
+    assert "请勿商用" in readme
