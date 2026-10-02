@@ -1,19 +1,19 @@
 name: Sync and curate upstream templates
 
-# Copy this file into co11ector/QianDao-Templates at .github/workflows/sync-upstream.yml,
-# and copy ops/templates/normalize.py from the QianDao repository into that repository
-# as tools/normalize.py. The script has to live next to the workflow because our main
-# repository is private and this one is public; note in the copy that QianDao holds the
-# canonical version.
+# This repository is the versioned home of the pipeline: tools/normalize.py, its test in
+# tests/, the brand assets in brand/ and this workflow. The private QianDao repository
+# used to keep a nested copy and no longer does, so edits belong here first.
 #
-# It keeps our public template repository in step with the upstream community one and
-# lays it out the way we publish it: templates/<category>/<file>.har with a regenerated
-# tpls_history.json whose filenames carry the category path. It pushes back to itself
-# with the built-in GITHUB_TOKEN, so no personal access token is involved.
+# The job keeps our public template repository in step with the upstream community one
+# and lays it out the way we publish it: templates/<category>/<file>.har with a
+# regenerated tpls_history.json whose filenames carry the category path. It pushes back
+# to itself with the built-in GITHUB_TOKEN, so no personal access token is involved.
 #
-# One-time setup: if QianDao-Templates was created as a fork, GitHub disables scheduled
-# workflows on forks by default. After pushing this file, open Actions -> Sync and
-# curate upstream templates -> enable the schedule, or run it once with "Run workflow".
+# The normaliser's test suite runs before anything is fetched, so a broken script stops
+# the sync instead of publishing a mangled index.
+#
+# Only templates/, tpls_history.json, README.md and CATEGORIES.md are replaced; brand/
+# and tools/ are left alone.
 
 on:
   schedule:
@@ -35,6 +35,12 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.13'
+
+      - name: Install test dependencies
+        run: python -m pip install --quiet pytest
+
+      - name: Verify the normaliser before publishing
+        run: python -m pytest tests -q
 
       - name: Fetch upstream
         run: |
