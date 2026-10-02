@@ -8,13 +8,6 @@
 <h1 align="center">QianDao Templates</h1>
 <p align="center">QianDao 的公共模板模块 · 上游社区模板每日自动同步并按站点类型整理</p>
 
-<p align="center">
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="brand/qiandao-templates-banner-dark.png">
-  <img alt="QianDao Templates" src="brand/qiandao-templates-banner-light.png" width="100%">
-</picture>
-</p>
-
 「QianDao 自动化运行台」的**公共模板模块**：把上游社区仓库 `qd-today/templates` 的模板每天自动同步、校验并按站点类型整理，供 [QianDao](https://github.com/co11ector/QianDao) 的用户一键创建定时签到任务。
 
 - **开箱可用**：订阅本仓库即可在应用内挑选模板，不必自己收集
