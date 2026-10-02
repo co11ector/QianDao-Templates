@@ -130,6 +130,20 @@ def test_the_repository_gets_a_readme(tmp_path):
     assert int(width.group(1)) >= 180, "the logo is too small to read its wordmark"
 
 
+def test_the_readme_tells_readers_how_to_subscribe(tmp_path):
+    """The readme is the only place a reader learns the address and branch to add."""
+    root = build_upstream(tmp_path)
+    target = tmp_path / "out"
+    normalize.normalise(root, target)
+
+    readme = (target / "README.md").read_text(encoding="utf-8")
+
+    assert "https://github.com/co11ector/QianDao-Templates" in readme
+    assert "master" in readme
+    # The app fetches <base>/<filename>; that contract is stated for anyone integrating.
+    assert "<仓库地址>/<filename>" in readme
+
+
 def test_the_readme_describes_categories_without_counts(tmp_path):
     """The overview explains what each directory is for; the counts are left to the app."""
     root = build_upstream(tmp_path)
