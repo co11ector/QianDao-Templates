@@ -209,6 +209,28 @@ def read_har_entries(source: Path):
         yield record, categorise(name, record.get("url") or "", record.get("author") or "")
 
 
+def dedupe_by_filename(stored_by_name):
+    """Keep one record per published filename, the newest version.
+
+    The application matches a subscription on "<filename>|<reponame>", so two records for one
+    filename mean two library rows and a duplicate entry in the public list - and the older one
+    can never be displaced, because the index keeps offering it. Returns the collapsed mapping
+    and the names that were dropped.
+    """
+    best = {}
+    dropped = []
+    for name, record in stored_by_name.items():
+        filename = record.get("filename") or ""
+        current = best.get(filename)
+        if current is None or str(record.get("version") or "") > str(current[1].get("version") or ""):
+            if current is not None:
+                dropped.append(current[0])
+            best[filename] = (name, record)
+        else:
+            dropped.append(name)
+    return {name: record for name, record in best.values()}, dropped
+
+
 def normalise(source: Path, target: Path, local_root=None) -> dict:
     report = {
         "moved": 0,
@@ -322,6 +344,9 @@ def normalise(source: Path, target: Path, local_root=None) -> dict:
         index["har"] = stored_by_name
     else:
         index["har"] = list(stored_by_name.values())
+
+    stored_by_name, dropped = dedupe_by_filename(stored_by_name)
+    report["deduped"] = dropped
 
     (target / "tpls_history.json").write_text(
         json.dumps(index, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"

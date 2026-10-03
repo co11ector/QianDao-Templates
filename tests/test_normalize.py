@@ -345,3 +345,51 @@ def test_an_unreadable_local_template_is_reported_not_published(tmp_path):
     assert any("local/signin/broken.har" in item for item in report["skipped"])
     assert any("local/signin/empty.har" in item for item in report["skipped"])
 
+
+
+def test_records_sharing_a_filename_collapse_to_the_newest():
+    """Upstream publishes one template twice, once with .har in the name.
+
+    The application keys a subscription by filename, so two records for one file become two
+    library rows and a duplicate in the public list - and the older one can never be displaced
+    while the index keeps offering it.
+    """
+    stored = {
+        "\u8fc5\u7ef4\u7f51": {"filename": "templates/signin/\u8fc5\u7ef4\u7f51.har", "version": "20220302"},
+        "\u8fc5\u7ef4\u7f51.har": {"filename": "templates/signin/\u8fc5\u7ef4\u7f51.har", "version": "20260425"},
+        "\u522b\u7684": {"filename": "templates/signin/\u522b\u7684.har", "version": "20240101"},
+    }
+
+    kept, dropped = normalize.dedupe_by_filename(stored)
+
+    assert set(kept) == {"\u8fc5\u7ef4\u7f51.har", "\u522b\u7684"}
+    assert dropped == ["\u8fc5\u7ef4\u7f51"]
+    assert kept["\u8fc5\u7ef4\u7f51.har"]["version"] == "20260425"
+
+
+def test_the_newest_version_wins_whatever_the_order():
+    older = {"filename": "a.har", "version": "20200101"}
+    newer = {"filename": "a.har", "version": "20260101"}
+
+    assert set(normalize.dedupe_by_filename({"old": older, "new": newer})[0]) == {"new"}
+    assert set(normalize.dedupe_by_filename({"new": newer, "old": older})[0]) == {"new"}
+
+
+def test_a_record_without_a_version_does_not_displace_a_dated_one():
+    kept, dropped = normalize.dedupe_by_filename({
+        "dated": {"filename": "a.har", "version": "20260101"},
+        "undated": {"filename": "a.har"},
+    })
+
+    assert set(kept) == {"dated"}
+    assert dropped == ["undated"]
+
+
+def test_records_for_different_files_are_untouched():
+    kept, dropped = normalize.dedupe_by_filename({
+        "one": {"filename": "a.har", "version": "20260101"},
+        "two": {"filename": "b.har", "version": "20260101"},
+    })
+
+    assert set(kept) == {"one", "two"}
+    assert dropped == []
