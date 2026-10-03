@@ -393,3 +393,30 @@ def test_records_for_different_files_are_untouched():
 
     assert set(kept) == {"one", "two"}
     assert dropped == []
+
+
+def test_the_written_index_holds_one_record_per_filename(tmp_path):
+    """The dedupe must reach the written file, not just the mapping it works on.
+
+    Its first version collapsed the local variable after index["har"] had already been assigned
+    to it, so the unit test passed while the published index still carried both records.
+    """
+    records = [
+        {"name": "\u8fc5\u7ef4\u7f51", "filename": "s1-forum.har", "author": "x", "url": "",
+         "version": "20220302"},
+        {"name": "\u8fc5\u7ef4\u7f51.har", "filename": "s1-forum.har", "author": "x", "url": "",
+         "version": "20260425"},
+    ]
+    root = build_upstream(tmp_path, index=records)
+    target = tmp_path / "out"
+
+    report = normalize.normalise(root, target, local_root=tmp_path / "local")
+
+    written = json.loads((target / "tpls_history.json").read_text(encoding="utf-8"))["har"]
+    if isinstance(written, dict):
+        written = list(written.values())
+    # The category comes from the classifier, so only the file and the count are asserted here.
+    assert len(written) == 1
+    assert written[0]["filename"].endswith("s1-forum.har")
+    assert written[0]["version"] == "20260425"
+    assert report["deduped"] == ["\u8fc5\u7ef4\u7f51"]

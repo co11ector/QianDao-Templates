@@ -340,13 +340,13 @@ def normalise(source: Path, target: Path, local_root=None) -> dict:
         report["categories"].setdefault(category, 0)
         report["categories"][category] += 1
 
+    stored_by_name, dropped = dedupe_by_filename(stored_by_name)
+    report["deduped"] = dropped
+
     if mapping:
         index["har"] = stored_by_name
     else:
         index["har"] = list(stored_by_name.values())
-
-    stored_by_name, dropped = dedupe_by_filename(stored_by_name)
-    report["deduped"] = dropped
 
     (target / "tpls_history.json").write_text(
         json.dumps(index, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
