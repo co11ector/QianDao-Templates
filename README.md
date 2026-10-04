@@ -39,10 +39,11 @@
 
 完整列表见 [`tpls_history.json`](tpls_history.json)：索引里 `filename` 为相对路径，`url` 指向本仓库，应用按 `<仓库地址>/<filename>` 抓取。
 
-其中 **1 个是本项目自有的模板**（放在 `local/` 下，每日同步不会覆盖）：
+其中 **2 个是本项目自有的模板**（放在 `local/` 下，每日同步不会覆盖）：
 
 | 模板 | 位置 |
 | --- | --- |
+| 梦幻天堂·龙网每日登录奖励 | [`templates/forum/lwgod.har`](templates/forum/lwgod.har) |
 | IT之家 | [`templates/signin/ithome.har`](templates/signin/ithome.har) |
 
 ## 自动同步
