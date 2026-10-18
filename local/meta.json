@@ -1,10 +1,86 @@
 {
+  "hdsky-daily-signin": {
+    "name": "HDSky天空论坛每日签到",
+    "commenturl": "https://github.com/co11ector/QianDao-Templates/issues/1"
+  },
+  "3dm-daily-login-reward": {
+    "name": "3DM论坛每日登录奖励",
+    "commenturl": "https://github.com/co11ector/QianDao-Templates/issues/1"
+  },
+  "fnnas-forum-daily-signin": {
+    "name": "飞牛私有云论坛",
+    "commenturl": "https://github.com/co11ector/QianDao-Templates/issues/1"
+  },
+  "ymlyhd-daily-signin": {
+    "name": "影迷乐园每日签到",
+    "commenturl": "https://github.com/co11ector/QianDao-Templates/issues/1"
+  },
+  "bilibili-daily-suite": {
+    "name": "B站每日综合签到",
+    "commenturl": "https://github.com/co11ector/QianDao-Templates/issues/1"
+  },
+  "right-forum-daily-signin": {
+    "name": "恩山无线论坛",
+    "commenturl": "https://github.com/co11ector/QianDao-Templates/issues/1"
+  },
+  "huorong-forum-daily-login": {
+    "name": "火绒安全论坛",
+    "commenturl": "https://github.com/co11ector/QianDao-Templates/issues/1"
+  },
+  "chiphell-daily-login": {
+    "name": "Chiphell每日登录访问",
+    "commenturl": "https://github.com/co11ector/QianDao-Templates/issues/1"
+  },
+  "pcbeta-daily-login": {
+    "name": "远景论坛",
+    "commenturl": "https://github.com/co11ector/QianDao-Templates/issues/1"
+  },
+  "koolcenter-daily-login": {
+    "name": "酷友社每日登录",
+    "commenturl": "https://github.com/co11ector/QianDao-Templates/issues/1"
+  },
+  "smzdm-daily-signin": {
+    "name": "什么值得买每日登录",
+    "commenturl": "https://github.com/co11ector/QianDao-Templates/issues/1"
+  },
+  "hdduck-daily-signin": {
+    "name": "高清鸭每日签到",
+    "commenturl": "https://github.com/co11ector/QianDao-Templates/issues/1"
+  },
+  "ali213-daily-signin": {
+    "name": "游侠论坛每日签到",
+    "commenturl": "https://github.com/co11ector/QianDao-Templates/issues/1"
+  },
+  "10001-daily-login": {
+    "name": "高清影视之家每日登录奖励",
+    "commenturl": "https://github.com/co11ector/QianDao-Templates/issues/1"
+  },
+  "sglynp-daily-login": {
+    "name": "三宫六院每日登录",
+    "commenturl": "https://github.com/co11ector/QianDao-Templates/issues/1"
+  },
+  "acgrip-daily-signin": {
+    "name": "Anime字幕论坛每日签到",
+    "commenturl": "https://github.com/co11ector/QianDao-Templates/issues/1"
+  },
+  "bookmarkmars-daily-login": {
+    "name": "BookmarkMars每日登录访问",
+    "commenturl": "https://github.com/co11ector/QianDao-Templates/issues/1"
+  },
+  "ssdforum-daily-signin": {
+    "name": "SSDForum每日签到",
+    "commenturl": "https://github.com/co11ector/QianDao-Templates/issues/1"
+  },
+  "ptshare-daily-signin": {
+    "name": "PTShare每日签到",
+    "commenturl": "https://github.com/co11ector/QianDao-Templates/issues/1"
+  },
+  "gangzhitang-daily-signin": {
+    "name": "港知堂每日签到",
+    "commenturl": "https://github.com/co11ector/QianDao-Templates/issues/1"
+  },
   "ithome": {
     "name": "IT之家",
     "commenturl": "https://github.com/co11ector/QianDao-Templates/issues/2"
-  },
-  "lwgod": {
-    "name": "梦幻天堂·龙网每日登录奖励",
-    "commenturl": "https://github.com/co11ector/QianDao-Templates/issues/1"
   }
 }

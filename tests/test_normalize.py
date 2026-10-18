@@ -326,6 +326,8 @@ def test_a_local_template_wins_over_an_upstream_name(tmp_path):
     report = normalize.normalise(upstream, target, local_root=local)
 
     assert report["overridden"] == ["ithome"]
+    assert report["pruned"] == ["templates/signin/s1-forum.har"]
+    assert not (target / "templates" / "signin" / "s1-forum.har").exists()
     index = json.loads((target / "tpls_history.json").read_text(encoding="utf-8"))
     assert index["har"]["ithome"]["author"] == normalize.LOCAL_AUTHOR
 
@@ -344,6 +346,35 @@ def test_an_unreadable_local_template_is_reported_not_published(tmp_path):
     assert not (target / "templates" / "signin" / "broken.har").exists()
     assert any("local/signin/broken.har" in item for item in report["skipped"])
     assert any("local/signin/empty.har" in item for item in report["skipped"])
+
+
+def test_retired_local_entries_are_removed_from_upstream_and_local(tmp_path):
+    upstream = build_upstream(
+        tmp_path,
+        index={
+            "旧浏览器模板": {
+                "name": "旧浏览器模板",
+                "filename": "s1-forum.har",
+                "author": "someone",
+                "url": "https://example.invalid/",
+            },
+        },
+    )
+    local = build_local(tmp_path, name="retired-local")
+    (local / "retired.json").write_text(
+        json.dumps(["旧浏览器模板", "retired-local"], ensure_ascii=False),
+        encoding="utf-8",
+    )
+    target = tmp_path / "out"
+
+    report = normalize.normalise(upstream, target, local_root=local)
+
+    assert report["moved"] == 0
+    assert report["local"] == 0
+    assert set(report["retired"]) == {"旧浏览器模板", "retired-local"}
+    assert not list((target / "templates").rglob("*.har"))
+    index = json.loads((target / "tpls_history.json").read_text(encoding="utf-8"))
+    assert index["har"] == {}
 
 
 

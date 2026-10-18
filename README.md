@@ -39,12 +39,31 @@
 
 完整列表见 [`tpls_history.json`](tpls_history.json)：索引里 `filename` 为相对路径，`url` 指向本仓库，应用按 `<仓库地址>/<filename>` 抓取。
 
-其中 **2 个是本项目自有的模板**（放在 `local/` 下，每日同步不会覆盖）：
+其中 **21 个是本项目自有的模板**（放在 `local/` 下，每日同步不会覆盖）：
 
 | 模板 | 位置 |
 | --- | --- |
-| 梦幻天堂·龙网每日登录奖励 | [`templates/forum/lwgod.har`](templates/forum/lwgod.har) |
+| HDSky天空论坛每日签到 | [`templates/pt/hdsky-daily-signin.har`](templates/pt/hdsky-daily-signin.har) |
+| PTShare每日签到 | [`templates/pt/ptshare-daily-signin.har`](templates/pt/ptshare-daily-signin.har) |
+| 3DM论坛每日登录奖励 | [`templates/forum/3dm-daily-login-reward.har`](templates/forum/3dm-daily-login-reward.har) |
+| Anime字幕论坛每日签到 | [`templates/forum/acgrip-daily-signin.har`](templates/forum/acgrip-daily-signin.har) |
+| 游侠论坛每日签到 | [`templates/forum/ali213-daily-signin.har`](templates/forum/ali213-daily-signin.har) |
+| Chiphell每日登录访问 | [`templates/forum/chiphell-daily-login.har`](templates/forum/chiphell-daily-login.har) |
+| 飞牛私有云论坛 | [`templates/forum/fnnas-forum-daily-signin.har`](templates/forum/fnnas-forum-daily-signin.har) |
+| 火绒安全论坛 | [`templates/forum/huorong-forum-daily-login.har`](templates/forum/huorong-forum-daily-login.har) |
+| 远景论坛 | [`templates/forum/pcbeta-daily-login.har`](templates/forum/pcbeta-daily-login.har) |
+| 恩山无线论坛 | [`templates/forum/right-forum-daily-signin.har`](templates/forum/right-forum-daily-signin.har) |
+| SSDForum每日签到 | [`templates/forum/ssdforum-daily-signin.har`](templates/forum/ssdforum-daily-signin.har) |
+| B站每日综合签到 | [`templates/video/bilibili-daily-suite.har`](templates/video/bilibili-daily-suite.har) |
+| 高清影视之家每日登录奖励 | [`templates/signin/10001-daily-login.har`](templates/signin/10001-daily-login.har) |
+| BookmarkMars每日登录访问 | [`templates/signin/bookmarkmars-daily-login.har`](templates/signin/bookmarkmars-daily-login.har) |
+| 港知堂每日签到 | [`templates/signin/gangzhitang-daily-signin.har`](templates/signin/gangzhitang-daily-signin.har) |
+| 高清鸭每日签到 | [`templates/signin/hdduck-daily-signin.har`](templates/signin/hdduck-daily-signin.har) |
 | IT之家 | [`templates/signin/ithome.har`](templates/signin/ithome.har) |
+| 酷友社每日登录 | [`templates/signin/koolcenter-daily-login.har`](templates/signin/koolcenter-daily-login.har) |
+| 三宫六院每日登录 | [`templates/signin/sglynp-daily-login.har`](templates/signin/sglynp-daily-login.har) |
+| 什么值得买每日登录 | [`templates/signin/smzdm-daily-signin.har`](templates/signin/smzdm-daily-signin.har) |
+| 影迷乐园每日签到 | [`templates/signin/ymlyhd-daily-signin.har`](templates/signin/ymlyhd-daily-signin.har) |
 
 ## 自动同步
 

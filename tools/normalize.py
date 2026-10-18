@@ -170,6 +170,39 @@ def read_local_metadata(local_root: Path) -> dict:
     return result
 
 
+def read_retired_local_entries(local_root: Path) -> set:
+    """Names or filename stems this project has deliberately retired.
+
+    The public repository still mirrors the upstream index, and an older
+    project-owned template can therefore survive in that index after its
+    source has been removed from local/. A small explicit retirement list
+    keeps those entries out of both the copied tree and the published index.
+    """
+    path = Path(local_root) / "retired.json"
+    if not path.is_file():
+        return set()
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, UnicodeDecodeError):
+        return set()
+    if not isinstance(data, list):
+        return set()
+    return {
+        str(value).strip().casefold()
+        for value in data
+        if isinstance(value, str) and str(value).strip()
+    }
+
+
+def is_retired(record: dict, retired_entries: set) -> bool:
+    filename = str(record.get("filename") or "")
+    candidates = {
+        str(record.get("name") or "").casefold(),
+        Path(filename).stem.casefold(),
+    }
+    return bool(candidates & retired_entries)
+
+
 def read_local_entries(local_root: Path):
     """Yield (path, category) for the templates this project maintains itself.
 
@@ -237,6 +270,8 @@ def normalise(source: Path, target: Path, local_root=None) -> dict:
         "local": 0,
         "skipped": [],
         "overridden": [],
+        "retired": [],
+        "pruned": [],
         "categories": {},
         "local_templates": [],
     }
@@ -248,9 +283,16 @@ def normalise(source: Path, target: Path, local_root=None) -> dict:
     records = index.get("har")
     mapping = isinstance(records, dict)
     stored_by_name = {}
+    resolved_local_root = (
+        local_root_default() if local_root is None else Path(local_root)
+    )
+    retired_entries = read_retired_local_entries(resolved_local_root)
 
     for record, category in read_har_entries(source):
         filename = record.get("filename") or ""
+        if is_retired(record, retired_entries):
+            report["retired"].append(record.get("name") or filename)
+            continue
         source_file = source / filename
         if not source_file.is_file():
             source_file = source / filename.lstrip("/")
@@ -284,11 +326,11 @@ def normalise(source: Path, target: Path, local_root=None) -> dict:
     # Merge the templates this project maintains itself. They are copied verbatim and
     # indexed like the upstream ones, except that the category comes from the directory
     # rather than from keyword matching, and a local name wins over an upstream one.
-    resolved_local_root = (
-        local_root_default() if local_root is None else Path(local_root)
-    )
     local_metadata = read_local_metadata(resolved_local_root)
     for path, category in read_local_entries(resolved_local_root):
+        if path.stem.casefold() in retired_entries:
+            report["retired"].append(path.stem)
+            continue
         try:
             document = json.loads(path.read_text(encoding="utf-8"))
         except (json.JSONDecodeError, UnicodeDecodeError) as error:
@@ -342,6 +384,15 @@ def normalise(source: Path, target: Path, local_root=None) -> dict:
 
     stored_by_name, dropped = dedupe_by_filename(stored_by_name)
     report["deduped"] = dropped
+
+    published_filenames = {
+        record.get("filename") for record in stored_by_name.values()
+    }
+    for path in sorted((target / "templates").rglob("*.har")):
+        relative = path.relative_to(target).as_posix()
+        if relative not in published_filenames:
+            path.unlink()
+            report["pruned"].append(relative)
 
     if mapping:
         index["har"] = stored_by_name
@@ -510,6 +561,10 @@ def main(argv):
         print("  local %s -> %s" % (name, relative))
     for name in report["overridden"]:
         print("  local override %s" % name)
+    for name in report["retired"]:
+        print("  retired %s" % name)
+    for name in report["pruned"]:
+        print("  pruned %s" % name)
     for category in CATEGORY_ORDER:
         if report["categories"].get(category):
             print("  %-8s %d" % (category, report["categories"][category]))
