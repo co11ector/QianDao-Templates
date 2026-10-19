@@ -63,7 +63,9 @@ jobs:
           rm -rf curated upstream
 
       - name: Verify the published tree is Cookie-only
-        run: python -B -m pytest tests/test_official_templates.py -q
+        run: |
+          python -B tools/normalize.py --validate . 400
+          python -B -m pytest tests/test_official_templates.py -q
 
       - name: Commit if anything changed
         run: |

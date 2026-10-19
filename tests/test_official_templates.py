@@ -63,10 +63,10 @@ def test_official_public_templates_are_published_from_local():
     assert not {"linux-sb-daily-signin", "lwgod-daily-login"} & set(templates)
 
 
-def test_the_published_tree_contains_only_official_cookie_only_templates():
+def test_every_published_template_is_cookie_only_and_local_templates_are_included():
     published = published_templates()
 
-    assert set(published) == set(local_templates())
+    assert set(local_templates()) <= set(published)
     for slug, (path, document) in published.items():
         assert normalize.cookie_only_violation(document) is None, (slug, path)
 

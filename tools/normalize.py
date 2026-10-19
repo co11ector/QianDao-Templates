@@ -18,11 +18,13 @@ This script produces the layout we publish:
     tpls_history.json   (same records; filename carries the category path, url points
                          at our repository rather than upstream)
 
-The published library is Cookie-only. Every external HTTP(S) request must carry exactly
-one ``Cookie: {{cookie}}`` header and one ``User-Agent: {{user_agent}}`` header.
-Upstream templates using ``browser://`` or any other credential transport are rejected
-instead of being rewritten into a flow we cannot verify. Local templates are held to the
-same rule and fail the whole sync when they regress.
+The published library is Cookie-backed HTTP only. Upstream captures are normalized before
+publication: captured Cookie values, hard-coded User-Agent strings, literal credential
+headers, request cookie arrays, and response cookie metadata are removed. Every external
+HTTP(S) request then receives exactly one ``Cookie: {{cookie}}`` and one
+``User-Agent: {{user_agent}}`` header. Templates using ``browser://`` are rejected. Local
+templates are held to the same final identity rule and fail the whole sync when they
+regress.
 
 It is deliberately conservative about names: upstream filenames are referenced by the
 app's records and by operators, so files are moved, never renamed. Files that are not
@@ -35,6 +37,7 @@ resolves exactly like a root-level file did.
 import base64
 import datetime
 import json
+import re
 import shutil
 import subprocess
 import sys
@@ -58,6 +61,32 @@ CATEGORY_ORDER = ("pt", "forum", "video", "shop", "signin")
 COOKIE_PLACEHOLDER = "{{cookie}}"
 USER_AGENT_PLACEHOLDER = "{{user_agent}}"
 RETIRED_BROWSER_MARKERS = ("browser://", "browser_worker", "browser-worker")
+SENSITIVE_HEADER_NAMES = frozenset(
+    (
+        "authorization",
+        "proxy-authorization",
+        "x-api-key",
+        "x-auth-token",
+        "x-csrf-token",
+        "x-xsrf-token",
+        "token",
+    )
+)
+RESPONSE_COOKIE_HEADER_NAMES = frozenset(("set-cookie", "set-cookie2"))
+TEMPLATE_EXPRESSION = re.compile(r"\{\{.*?\}\}|\{%.*?%\}", re.DOTALL)
+TEMPLATE_QUOTED_OPAQUE = re.compile(r"""['"]([A-Za-z0-9._~+/=-]{16,})['"]""")
+OPAQUE_TOKEN = re.compile(r"[A-Za-z0-9._~+/=-]{12,}")
+LITERAL_SECRET_ASSIGNMENT = re.compile(
+    r"(?i)(?:^|[^a-z0-9_])"
+    r"(?:api[_-]?key|api[_-]?secret|client[_-]?secret|access[_-]?token|"
+    r"refresh[_-]?token|password|passwd|pwd|secret|token)"
+    r"\s*[:=]\s*[\"']?([A-Za-z0-9._~+/=-]{16,})[\"']?"
+)
+LITERAL_AUTHORIZATION = re.compile(
+    r"(?i)\b(?:authorization|proxy-authorization)\s*[:=]\s*"
+    r"(?:bearer|basic)\s+[A-Za-z0-9._~+/=-]{12,}"
+)
+URL_USERINFO = re.compile(r"(?i)https?://[^/\s:@]+:[^/\s@]+@")
 CATEGORY_LABELS = {
     "pt": "PT 站",
     "forum": "论坛社区",
@@ -74,6 +103,145 @@ CATEGORY_NOTES = {
     "shop": "电商与购物类站点的签到、领券与日常任务",
     "signin": "其余站点；未命中上面关键词的都归到这里",
 }
+
+
+def _header_name(header: dict) -> str:
+    return str(header.get("name") or "").strip().casefold()
+
+
+def _header_value(header: dict) -> str:
+    return str(header.get("value") or "")
+
+
+def _templated_secret_value_is_safe(value: str) -> bool:
+    """Allow runtime-derived credentials without allowing captured literal values."""
+    if not TEMPLATE_EXPRESSION.search(value):
+        return False
+    if TEMPLATE_QUOTED_OPAQUE.search(value):
+        return False
+    literal = TEMPLATE_EXPRESSION.sub("", value)
+    # Prefixes such as ``Bearer `` and ``Basic `` remain after removing the template.
+    # A long opaque remainder is likely a captured credential beside a placeholder.
+    return OPAQUE_TOKEN.search(literal) is None
+
+
+def _request_secret_violation(request: dict) -> str | None:
+    """Reject high-confidence literal credentials outside the known header fields."""
+    values = [str(request.get("url") or ""), str(request.get("data") or "")]
+    headers = request.get("headers")
+    if isinstance(headers, list):
+        for header in headers:
+            if isinstance(header, dict):
+                values.append(_header_value(header))
+    for value in values:
+        if URL_USERINFO.search(value):
+            return "request URLs must not contain embedded credentials"
+        if LITERAL_AUTHORIZATION.search(value):
+            return "literal authorization values must not be published"
+        if LITERAL_SECRET_ASSIGNMENT.search(value):
+            return "literal request credentials must not be published"
+    return None
+
+
+def _requests(document):
+    if not isinstance(document, list):
+        return
+    for step in document:
+        if not isinstance(step, dict):
+            continue
+        request = step.get("request")
+        if not isinstance(request, dict):
+            continue
+        yield step, request
+
+
+def _is_external_request(request: dict) -> bool:
+    return str(request.get("url") or "").startswith(("http://", "https://"))
+
+
+def normalise_upstream_document(document):
+    """Return a sanitized Cookie-backed document and a count of removed fields."""
+    changes = {
+        "cookie_headers": 0,
+        "user_agent_headers": 0,
+        "sensitive_headers": 0,
+        "request_cookies": 0,
+        "response_cookies": 0,
+    }
+    if not isinstance(document, list) or not document:
+        return None, "not a non-empty JSON array", changes
+
+    encoded = json.dumps(document, ensure_ascii=False).casefold()
+    if any(marker in encoded for marker in RETIRED_BROWSER_MARKERS):
+        return None, "browser execution is retired", changes
+
+    external_requests = 0
+    for step, request in _requests(document):
+        is_external = _is_external_request(request)
+        if is_external:
+            external_requests += 1
+        headers = request.get("headers")
+        if not isinstance(headers, list):
+            headers = []
+        sanitized_headers = []
+        for header in headers:
+            if not isinstance(header, dict):
+                continue
+            name = _header_name(header)
+            value = _header_value(header)
+            if name == "cookie":
+                if value != COOKIE_PLACEHOLDER:
+                    changes["cookie_headers"] += 1
+                continue
+            if name == "user-agent":
+                if value != USER_AGENT_PLACEHOLDER:
+                    changes["user_agent_headers"] += 1
+                continue
+            if name in SENSITIVE_HEADER_NAMES and not _templated_secret_value_is_safe(
+                value
+            ):
+                changes["sensitive_headers"] += 1
+                continue
+            sanitized_headers.append(header)
+        request["headers"] = (
+            [
+                {"name": "Cookie", "value": COOKIE_PLACEHOLDER},
+                {"name": "User-Agent", "value": USER_AGENT_PLACEHOLDER},
+                *sanitized_headers,
+            ]
+            if is_external
+            else sanitized_headers
+        )
+        if request.pop("cookies", None):
+            changes["request_cookies"] += 1
+
+        response = step.get("response")
+        if not isinstance(response, dict):
+            continue
+        response_headers = response.get("headers")
+        if isinstance(response_headers, list):
+            kept = []
+            for header in response_headers:
+                if not isinstance(header, dict):
+                    continue
+                name = _header_name(header)
+                if (
+                    name in RESPONSE_COOKIE_HEADER_NAMES
+                    or name in SENSITIVE_HEADER_NAMES
+                ):
+                    changes["sensitive_headers"] += 1
+                    continue
+                kept.append(header)
+            response["headers"] = kept
+        if response.pop("cookies", None):
+            changes["response_cookies"] += 1
+
+    if not external_requests:
+        return None, "no external HTTP(S) request", changes
+    violation = cookie_only_violation(document)
+    if violation is not None:
+        return None, violation, changes
+    return document, None, changes
 
 
 def cookie_only_violation(document) -> str | None:
@@ -93,9 +261,9 @@ def cookie_only_violation(document) -> str | None:
         if not isinstance(request, dict):
             continue
         url = str(request.get("url") or "")
-        if not url.startswith(("http://", "https://")):
-            continue
-        external_requests += 1
+        is_external = url.startswith(("http://", "https://"))
+        if is_external:
+            external_requests += 1
         headers = request.get("headers")
         if not isinstance(headers, list):
             headers = []
@@ -110,13 +278,48 @@ def cookie_only_violation(document) -> str | None:
                 cookie_values.append(value)
             elif name == "user-agent":
                 user_agent_values.append(value)
-        if cookie_values != [COOKIE_PLACEHOLDER]:
-            return "every external request must use exactly one Cookie: {{cookie}}"
-        if user_agent_values != [USER_AGENT_PLACEHOLDER]:
-            return (
-                "every external request must use exactly one "
-                "User-Agent: {{user_agent}}"
-            )
+            elif name in SENSITIVE_HEADER_NAMES and not _templated_secret_value_is_safe(
+                value
+            ):
+                return "request credential header values must be templated"
+        if is_external:
+            if cookie_values != [COOKIE_PLACEHOLDER]:
+                return "every external request must use exactly one Cookie: {{cookie}}"
+            if user_agent_values != [USER_AGENT_PLACEHOLDER]:
+                return (
+                    "every external request must use exactly one "
+                    "User-Agent: {{user_agent}}"
+                )
+        elif any(value != COOKIE_PLACEHOLDER for value in cookie_values):
+            return "internal request Cookie values must not be published"
+        elif any(value != USER_AGENT_PLACEHOLDER for value in user_agent_values):
+            return "internal request User-Agent values must not be published"
+        secret_violation = _request_secret_violation(request)
+        if secret_violation is not None:
+            return secret_violation
+        response = step.get("response")
+        if isinstance(response, dict):
+            for header in response.get("headers") or []:
+                if not isinstance(header, dict):
+                    continue
+                if _header_name(header) in (
+                    RESPONSE_COOKIE_HEADER_NAMES | SENSITIVE_HEADER_NAMES
+                ):
+                    return "response credential headers must not be published"
+            response_cookies = response.get("cookies")
+            if isinstance(response_cookies, list):
+                for cookie in response_cookies:
+                    if isinstance(cookie, dict) and not _templated_secret_value_is_safe(
+                        _header_value(cookie)
+                    ):
+                        return "response cookie values must be templated"
+        request_cookies = request.get("cookies")
+        if isinstance(request_cookies, list):
+            for cookie in request_cookies:
+                if isinstance(cookie, dict) and not _templated_secret_value_is_safe(
+                    _header_value(cookie)
+                ):
+                    return "request cookie values must be templated"
 
     if not external_requests:
         return "no external HTTP(S) request"
@@ -328,6 +531,65 @@ def dedupe_by_filename(stored_by_name):
     return {name: record for name, record in best.values()}, dropped
 
 
+def _canonical_document_bytes(document) -> bytes:
+    return (json.dumps(document, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
+
+
+def validate_published_tree(root: Path, minimum_templates: int = 0) -> dict:
+    """Validate the generated public tree without trusting its index or embedded bodies."""
+    root = Path(root)
+    index = json.loads((root / "tpls_history.json").read_text(encoding="utf-8"))
+    records = index.get("har") or {}
+    records = list(records.values()) if isinstance(records, dict) else list(records)
+    if len(records) < minimum_templates:
+        raise ValueError(
+            "published template count %d is below the required minimum %d"
+            % (len(records), minimum_templates)
+        )
+
+    seen = set()
+    indexed_files = set()
+    for record in records:
+        if not isinstance(record, dict):
+            raise ValueError("published index contains a non-object template record")
+        filename = str(record.get("filename") or "")
+        if not filename:
+            raise ValueError("published index contains a record without a filename")
+        if filename in seen:
+            raise ValueError("published index contains duplicate filename %s" % filename)
+        seen.add(filename)
+        indexed_files.add(filename)
+        path = root / filename
+        if not path.is_file():
+            raise ValueError("published index points at missing file %s" % filename)
+        try:
+            document = json.loads(path.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, UnicodeDecodeError) as error:
+            raise ValueError("published template is unreadable: %s" % filename) from error
+        violation = cookie_only_violation(document)
+        if violation is not None:
+            raise ValueError("%s violates the Cookie-only policy: %s" % (filename, violation))
+        try:
+            embedded = base64.b64decode(str(record.get("content") or ""), validate=True)
+        except (ValueError, TypeError) as error:
+            raise ValueError("published record has invalid embedded content: %s" % filename) from error
+        if embedded != path.read_bytes():
+            raise ValueError("published record content does not match %s" % filename)
+
+    actual_files = {
+        path.relative_to(root).as_posix()
+        for path in (root / "templates").rglob("*.har")
+    }
+    if actual_files != indexed_files:
+        missing = sorted(indexed_files - actual_files)
+        orphaned = sorted(actual_files - indexed_files)
+        raise ValueError(
+            "published tree/index mismatch (missing=%s, orphaned=%s)"
+            % (missing[:5], orphaned[:5])
+        )
+    return {"templates": len(records), "files": len(actual_files)}
+
+
 def normalise(source: Path, target: Path, local_root=None) -> dict:
     report = {
         "moved": 0,
@@ -337,6 +599,14 @@ def normalise(source: Path, target: Path, local_root=None) -> dict:
         "retired": [],
         "pruned": [],
         "rejected_cookie_only": [],
+        "transformed": 0,
+        "removed": {
+            "cookie_headers": 0,
+            "user_agent_headers": 0,
+            "sensitive_headers": 0,
+            "request_cookies": 0,
+            "response_cookies": 0,
+        },
         "categories": {},
         "local_templates": [],
     }
@@ -371,17 +641,25 @@ def normalise(source: Path, target: Path, local_root=None) -> dict:
                 "%s: unreadable (%s)" % (filename, error.__class__.__name__)
             )
             continue
-        violation = cookie_only_violation(document)
+        document, violation, changes = normalise_upstream_document(document)
         if violation is not None:
+            if violation == "no external HTTP(S) request":
+                report["skipped"].append("%s: %s" % (filename, violation))
+                continue
             report["rejected_cookie_only"].append(
                 "%s: %s" % (filename, violation)
             )
             continue
+        if any(changes.values()):
+            report["transformed"] += 1
+        for key, count in changes.items():
+            report["removed"][key] += count
 
         relative = "templates/%s/%s" % (category, source_file.name)
         destination = target / relative
         destination.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copyfile(source_file, destination)
+        transformed_bytes = _canonical_document_bytes(document)
+        destination.write_bytes(transformed_bytes)
 
         stored = dict(record)
         stored["filename"] = relative
@@ -393,9 +671,7 @@ def normalise(source: Path, target: Path, local_root=None) -> dict:
         # a stale browser or legacy body in upstream metadata cannot bypass the published
         # file's Cookie-only gate. Universal-newline reading plus UTF-8 encoding prevents
         # Windows CRLF checkout bytes from changing the generated index on GitHub Actions.
-        stored["content"] = base64.b64encode(
-            _canonical_har_bytes(source_file)
-        ).decode("ascii")
+        stored["content"] = base64.b64encode(transformed_bytes).decode("ascii")
         stored_by_name[record.get("name") or source_file.name] = stored
         report["moved"] += 1
         report["categories"].setdefault(category, 0)
@@ -435,7 +711,8 @@ def normalise(source: Path, target: Path, local_root=None) -> dict:
         relative = "templates/%s/%s" % (category, path.name)
         destination = target / relative
         destination.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copyfile(path, destination)
+        local_bytes = _canonical_har_bytes(path)
+        destination.write_bytes(local_bytes)
 
         if name in stored_by_name:
             report["overridden"].append(name)
@@ -450,7 +727,7 @@ def normalise(source: Path, target: Path, local_root=None) -> dict:
             # Embedding ours too means importing one of our templates does not depend on
             # a second fetch of the published file, which is the step that already proved
             # unreliable from the NAS.
-            "content": base64.b64encode(_canonical_har_bytes(path)).decode("ascii"),
+            "content": base64.b64encode(local_bytes).decode("ascii"),
             **local_record_metadata(
                 path, comment_url, resolved_local_root / "meta.json"
             ),
@@ -554,9 +831,12 @@ def normalise(source: Path, target: Path, local_root=None) -> dict:
         "",
         "1. 先跑整理脚本的测试 —— **不通过就中止**，不会发布被改坏的索引；",
         "2. 浅克隆上游仓库；",
-        "3. 只接收 Cookie-only HAR：拒绝 `browser://`，并要求每个外部 HTTP(S) 请求"
-        "恰好携带一份 `Cookie: {{cookie}}` 与一份 `User-Agent: {{user_agent}}`；",
-        "4. 重新生成 README 与 CATEGORIES，有变化才提交推送。",
+        "3. 自动清理抓包里的 Cookie、硬编码 UA、静态凭据 Header 与 Cookie 元数据，"
+        "并拒绝请求 URL/请求体中的字面凭据；",
+        "4. 为每个外部 HTTP(S) 请求补齐一份 `Cookie: {{cookie}}` 与一份 "
+        "`User-Agent: {{user_agent}}`，拒绝 `browser://`；",
+        "5. 发布前硬门禁要求至少 400 个模板，且索引内容必须与 HAR 文件逐字一致；",
+        "6. 重新生成 README 与 CATEGORIES，有变化才提交推送。",
         "",
         "全程使用仓库内置的 `GITHUB_TOKEN`，**不需要个人访问令牌**。",
         "",
@@ -631,11 +911,36 @@ def normalise(source: Path, target: Path, local_root=None) -> dict:
 
 
 def main(argv):
+    if len(argv) in (3, 4) and argv[1] == "--validate":
+        minimum = int(argv[3]) if len(argv) == 4 else 0
+        try:
+            report = validate_published_tree(Path(argv[2]), minimum)
+        except (OSError, ValueError, json.JSONDecodeError) as error:
+            print("published tree validation failed: %s" % error)
+            return 1
+        print(
+            "validated %d Cookie-only templates (%d files)"
+            % (report["templates"], report["files"])
+        )
+        return 0
     if len(argv) != 3:
         print("usage: normalize.py <source> <target>")
+        print("       normalize.py --validate <published-root> [minimum]")
         return 2
     report = normalise(Path(argv[1]), Path(argv[2]))
     print("moved %d (%d local)" % (report["moved"], report["local"]))
+    print("transformed upstream %d" % report["transformed"])
+    print(
+        "removed cookie=%d user-agent=%d sensitive=%d request-cookies=%d "
+        "response-cookies=%d"
+        % (
+            report["removed"]["cookie_headers"],
+            report["removed"]["user_agent_headers"],
+            report["removed"]["sensitive_headers"],
+            report["removed"]["request_cookies"],
+            report["removed"]["response_cookies"],
+        )
+    )
     for name, relative in report["local_templates"]:
         print("  local %s -> %s" % (name, relative))
     for name in report["overridden"]:

@@ -78,17 +78,59 @@ def test_templates_are_sorted_into_categories(tmp_path):
     assert any("ghost.har" in item for item in report["skipped"])
 
 
-def test_upstream_templates_without_paired_identity_are_rejected(tmp_path):
+def test_upstream_templates_are_normalized_to_paired_cookie_identity(tmp_path):
     root = build_upstream(tmp_path)
     (root / "s1-forum.har").write_text(
         json.dumps(
             [
                 {
+                    "comment": "fixture",
                     "request": {
                         "method": "GET",
                         "url": "https://bbs.saraba1st.com/",
-                        "headers": [{"name": "Cookie", "value": "{{cookie}}"}],
-                    }
+                        "headers": [
+                            {
+                                "name": "Cookie",
+                                "value": "session=fixture-literal-cookie",
+                            },
+                            {
+                                "name": "User-Agent",
+                                "value": "FixtureBrowser/1.0",
+                            },
+                            {
+                                "name": "Authorization",
+                                "value": "Bearer fixture-literal-secret",
+                            },
+                            {
+                                "name": "X-CSRF-Token",
+                                "value": "{{csrf_token}}",
+                            },
+                        ],
+                        "cookies": [
+                            {
+                                "name": "session",
+                                "value": "fixture-literal-cookie",
+                            }
+                        ],
+                    },
+                    "response": {
+                        "headers": [
+                            {
+                                "name": "Set-Cookie",
+                                "value": "session=fixture-literal-cookie",
+                            },
+                            {
+                                "name": "Content-Type",
+                                "value": "text/html",
+                            },
+                        ],
+                        "cookies": [
+                            {
+                                "name": "session",
+                                "value": "fixture-literal-cookie",
+                            }
+                        ],
+                    },
                 }
             ]
         ),
@@ -98,9 +140,148 @@ def test_upstream_templates_without_paired_identity_are_rejected(tmp_path):
 
     report = normalize.normalise(root, target, local_root=tmp_path / "local")
 
+    assert report["moved"] == 2
+    assert report["transformed"] == 1
+    assert report["removed"] == {
+        "cookie_headers": 1,
+        "user_agent_headers": 1,
+        "sensitive_headers": 2,
+        "request_cookies": 1,
+        "response_cookies": 1,
+    }
+    published = target / "templates" / "forum" / "s1-forum.har"
+    document = json.loads(published.read_text(encoding="utf-8"))
+    request = document[0]["request"]
+    headers = [
+        (str(header["name"]).casefold(), str(header["value"]))
+        for header in request["headers"]
+    ]
+    assert [value for name, value in headers if name == "cookie"] == ["{{cookie}}"]
+    assert [value for name, value in headers if name == "user-agent"] == [
+        "{{user_agent}}"
+    ]
+    assert ("x-csrf-token", "{{csrf_token}}") in headers
+    assert not any(name == "authorization" for name, _ in headers)
+    assert "cookies" not in request
+    assert "cookies" not in document[0]["response"]
+    assert "set-cookie" not in {
+        str(header["name"]).casefold()
+        for header in document[0]["response"]["headers"]
+    }
+    encoded = published.read_text(encoding="utf-8")
+    assert "fixture-literal-cookie" not in encoded
+    assert "fixture-literal-secret" not in encoded
+    embedded = json.loads(
+        base64.b64decode(
+            json.loads((target / "tpls_history.json").read_text(encoding="utf-8"))[
+                "har"
+            ][0]["content"]
+        ).decode("utf-8")
+    )
+    assert embedded == document
+
+
+def test_internal_steps_drop_cookie_identity_and_credential_metadata(tmp_path):
+    root = build_upstream(tmp_path)
+    document = cookie_only_document("https://bbs.saraba1st.com/")
+    document.append(
+        {
+            "request": {
+                "method": "GET",
+                "url": "api://util/unicode",
+                "headers": [
+                    {"name": "Cookie", "value": "session=fixture-cookie"},
+                    {"name": "User-Agent", "value": "FixtureBrowser/1.0"},
+                    {"name": "Authorization", "value": "Bearer fixture-secret"},
+                ],
+                "cookies": [{"name": "session", "value": "fixture-cookie"}],
+            },
+            "response": {
+                "headers": [
+                    {"name": "Set-Cookie", "value": "session=fixture-cookie"}
+                ],
+                "cookies": [{"name": "session", "value": "fixture-cookie"}],
+            },
+        }
+    )
+    (root / "s1-forum.har").write_text(json.dumps(document), encoding="utf-8")
+    target = tmp_path / "out"
+
+    report = normalize.normalise(root, target, local_root=tmp_path / "local")
+
+    assert report["moved"] == 2
+    assert report["removed"] == {
+        "cookie_headers": 1,
+        "user_agent_headers": 1,
+        "sensitive_headers": 2,
+        "request_cookies": 1,
+        "response_cookies": 1,
+    }
+    published = json.loads(
+        (target / "templates" / "forum" / "s1-forum.har").read_text(
+            encoding="utf-8"
+        )
+    )
+    internal = published[1]
+    assert internal["request"]["headers"] == []
+    assert "cookies" not in internal["request"]
+    assert internal["response"]["headers"] == []
+    assert "cookies" not in internal["response"]
+    assert "fixture-cookie" not in json.dumps(published)
+    assert "fixture-secret" not in json.dumps(published)
+
+
+def test_upstream_steps_without_http_requests_are_skipped(tmp_path):
+    root = build_upstream(
+        tmp_path,
+        index={
+            "Synthetic": {
+                "name": "Synthetic",
+                "filename": "s1-forum.har",
+                "author": "fixture",
+                "url": "",
+            },
+        },
+    )
+    (root / "s1-forum.har").write_text(
+        json.dumps([{"request": {"method": "GET", "url": "api:timestamp"}}]),
+        encoding="utf-8",
+    )
+    target = tmp_path / "out"
+
+    report = normalize.normalise(root, target, local_root=tmp_path / "local")
+
+    assert report["moved"] == 0
+    assert any(
+        "s1-forum.har" in item and "no external HTTP(S) request" in item
+        for item in report["skipped"]
+    )
+
+
+def test_upstream_templates_with_literal_request_secrets_are_rejected(tmp_path):
+    root = build_upstream(tmp_path)
+    document = cookie_only_document("https://bbs.saraba1st.com/")
+    document.append(
+        {
+            "request": {
+                "method": "GET",
+                "url": "api://util/unicode",
+                "headers": [],
+                "data": (
+                    'api_key: "fixture-literal-api-key-0123456789"\n'
+                    'api_secret: "fixture-literal-api-secret-0123456789"'
+                ),
+            }
+        }
+    )
+    (root / "s1-forum.har").write_text(json.dumps(document), encoding="utf-8")
+    target = tmp_path / "out"
+
+    report = normalize.normalise(root, target, local_root=tmp_path / "local")
+
     assert report["moved"] == 1
     assert any(
-        "s1-forum.har" in item and "User-Agent" in item
+        "s1-forum.har" in item and "literal request credentials" in item
         for item in report["rejected_cookie_only"]
     )
     assert not (target / "templates" / "forum" / "s1-forum.har").exists()
@@ -176,7 +357,13 @@ def test_the_index_embeds_the_validated_har_bytes(tmp_path):
     record = index["har"]["S1 论坛"]
     embedded = base64.b64decode(record["content"]).decode("utf-8")
     assert "browser://" not in embedded
-    assert embedded == (root / "s1-forum.har").read_text(encoding="utf-8")
+    published = target / record["filename"]
+    assert embedded == published.read_text(encoding="utf-8")
+    document = json.loads(embedded)
+    assert any(
+        header["value"] == "{{cookie}}"
+        for header in document[0]["request"]["headers"]
+    )
 
 
 def test_the_index_embeds_canonical_lf_content_from_a_crlf_checkout(tmp_path):
@@ -202,7 +389,9 @@ def test_the_index_embeds_canonical_lf_content_from_a_crlf_checkout(tmp_path):
     index = json.loads((target / "tpls_history.json").read_text(encoding="utf-8"))
     embedded = base64.b64decode(index["har"]["S1 论坛"]["content"])
     assert b"\r\n" not in embedded
-    assert embedded == source.read_text(encoding="utf-8").encode("utf-8")
+    published = target / index["har"]["S1 论坛"]["filename"]
+    assert embedded == published.read_bytes()
+    assert b"\r\n" not in published.read_bytes()
 
 
 def test_the_mapping_index_shape_is_supported(tmp_path):
@@ -612,3 +801,34 @@ def test_the_written_index_holds_one_record_per_filename(tmp_path):
     assert written[0]["filename"].endswith("s1-forum.har")
     assert written[0]["version"] == "20260425"
     assert report["deduped"] == ["\u8fc5\u7ef4\u7f51"]
+
+
+def test_published_tree_validator_enforces_the_minimum_count(tmp_path):
+    root = build_upstream(tmp_path)
+    target = tmp_path / "out"
+    normalize.normalise(root, target, local_root=tmp_path / "local")
+
+    assert normalize.validate_published_tree(target, minimum_templates=2) == {
+        "templates": 2,
+        "files": 2,
+    }
+    with pytest.raises(ValueError, match="below the required minimum 400"):
+        normalize.validate_published_tree(target, minimum_templates=400)
+
+
+def test_published_tree_validator_requires_embedded_content_to_match_files(
+    tmp_path,
+):
+    root = build_upstream(tmp_path)
+    target = tmp_path / "out"
+    normalize.normalise(root, target, local_root=tmp_path / "local")
+    index_path = target / "tpls_history.json"
+    index = json.loads(index_path.read_text(encoding="utf-8"))
+    index["har"][0]["content"] = base64.b64encode(b"stale").decode("ascii")
+    index_path.write_text(
+        json.dumps(index, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
+
+    with pytest.raises(ValueError, match="does not match"):
+        normalize.validate_published_tree(target)
