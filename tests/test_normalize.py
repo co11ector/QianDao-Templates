@@ -179,6 +179,32 @@ def test_the_index_embeds_the_validated_har_bytes(tmp_path):
     assert embedded == (root / "s1-forum.har").read_text(encoding="utf-8")
 
 
+def test_the_index_embeds_canonical_lf_content_from_a_crlf_checkout(tmp_path):
+    root = build_upstream(
+        tmp_path,
+        index={
+            "S1 论坛": {
+                "name": "S1 论坛",
+                "filename": "s1-forum.har",
+                "author": "Antiky",
+                "url": "https://bbs.saraba1st.com/",
+            },
+        },
+    )
+    source = root / "s1-forum.har"
+    source.write_bytes(
+        source.read_text(encoding="utf-8").replace("\n", "\r\n").encode("utf-8")
+    )
+    target = tmp_path / "out"
+
+    normalize.normalise(root, target, local_root=tmp_path / "local")
+
+    index = json.loads((target / "tpls_history.json").read_text(encoding="utf-8"))
+    embedded = base64.b64decode(index["har"]["S1 论坛"]["content"])
+    assert b"\r\n" not in embedded
+    assert embedded == source.read_text(encoding="utf-8").encode("utf-8")
+
+
 def test_the_mapping_index_shape_is_supported(tmp_path):
     """Upstream maps templates by name: {"har": {"<name>": {...}}}.
 
@@ -323,16 +349,17 @@ def test_git_timestamp_lookup_uses_a_path_relative_to_its_working_directory(
 
     def fake_run(args, **kwargs):
         calls.append((args, kwargs))
-        return SimpleNamespace(returncode=0, stdout="20261019123456")
+        return SimpleNamespace(returncode=0, stdout="1792384496")
 
     monkeypatch.setattr(normalize.subprocess, "run", fake_run)
 
     metadata = normalize.local_record_metadata(path, normalize.LOCAL_COMMENT_URL)
 
-    assert calls[0][0][-1] == "sample.har"
+    assert calls[0][0] == ["git", "log", "-1", "--format=%ct", "--", "sample.har"]
     assert calls[0][1]["cwd"] == str(path.parent)
-    assert metadata["version"] == "202610191234"
-    assert metadata["date"] == "2026-10-19 12:34:56"
+    assert metadata["version"] == "202610190434"
+    assert metadata["date"] == "2026-10-19 04:34:56"
+    assert metadata["update"] == 1792384496
 
 
 def test_local_templates_are_merged_and_survive_the_sync(tmp_path):

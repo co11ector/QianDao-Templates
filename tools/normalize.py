@@ -136,24 +136,11 @@ def local_root_default() -> Path:
     return Path(__file__).resolve().parent.parent / "local"
 
 
-def local_record_metadata(path: Path, comment_url: str, meta_path: Path = None) -> dict:
-    """The version/date/update/commenturl fields the application expects on a record.
-
-    version must be an int-comparable date because the app decides whether to re-import
-    with `int(current["version"]) < int(template["version"])`, and a record without it
-    raises and aborts the whole refresh for every user. Git's last commit date for the
-    file keeps the value stable across checkouts - the file mtime does not, and the daily
-    workflow would then emit a new index every run - while still moving forward whenever
-    the template is actually edited. Outside a work tree it falls back to the mtime.
-
-    commenturl is where the app's 评论 button sends people. Every upstream record points
-    at the issue where that template was discussed, so ours points at this project's
-    request board; pointing it at the template file made the button dump raw JSON.
-    """
-    stamp = None
+def _git_commit_timestamp(path: Path):
+    """Return the file's last commit time as a timezone-independent UTC datetime."""
     try:
         completed = subprocess.run(
-            ["git", "log", "-1", "--format=%cd", "--date=format:%Y%m%d%H%M%S", "--", path.name],
+            ["git", "log", "-1", "--format=%ct", "--", path.name],
             cwd=str(path.parent),
             capture_output=True,
             text=True,
@@ -161,30 +148,51 @@ def local_record_metadata(path: Path, comment_url: str, meta_path: Path = None) 
         )
         raw = completed.stdout.strip()
         if completed.returncode == 0 and raw:
-            stamp = datetime.datetime.strptime(raw, "%Y%m%d%H%M%S")
-    except (OSError, ValueError):
-        stamp = None
+            return datetime.datetime.fromtimestamp(
+                int(raw), tz=datetime.timezone.utc
+            )
+    except (OSError, OverflowError, ValueError):
+        pass
+    return None
+
+
+def _file_mtime_timestamp(path: Path) -> datetime.datetime:
+    return datetime.datetime.fromtimestamp(
+        path.stat().st_mtime, tz=datetime.timezone.utc
+    )
+
+
+def _canonical_har_bytes(path: Path) -> bytes:
+    """Read a validated HAR with universal newlines and encode deterministic UTF-8."""
+    return path.read_text(encoding="utf-8").encode("utf-8")
+
+
+def local_record_metadata(path: Path, comment_url: str, meta_path: Path = None) -> dict:
+    """The version/date/update/commenturl fields the application expects on a record.
+
+    version must be an int-comparable date because the app decides whether to re-import
+    with `int(current["version"]) < int(template["version"])`, and a record without it
+    raises and aborts the whole refresh for every user. Git's last commit epoch for the
+    file keeps the value stable across checkouts and time zones - the file mtime does not,
+    and the daily workflow would then emit a new index every run - while still moving
+    forward whenever the template is actually edited. Outside a work tree it falls back
+    to the mtime, interpreted as UTC.
+
+    commenturl is where the app's 评论 button sends people. Every upstream record points
+    at the issue where that template was discussed, so ours points at this project's
+    request board; pointing it at the template file made the button dump raw JSON.
+    """
+    stamp = _git_commit_timestamp(path)
     if stamp is None:
-        stamp = datetime.datetime.fromtimestamp(path.stat().st_mtime)
+        stamp = _file_mtime_timestamp(path)
     # A metadata-only change (display name, discussion link) has to move the version too,
     # or the app compares equal to what it already stored and skips the row until someone
     # presses 重建缓存 - which is exactly the trap the day-granularity version set.
     if meta_path is not None and Path(meta_path).is_file():
-        meta_stamp = datetime.datetime.fromtimestamp(Path(meta_path).stat().st_mtime)
-        try:
-            completed = subprocess.run(
-                ["git", "log", "-1", "--format=%cd",
-                 "--date=format:%Y%m%d%H%M%S", "--", Path(meta_path).name],
-                cwd=str(Path(meta_path).parent),
-                capture_output=True,
-                text=True,
-                check=False,
-            )
-            raw_meta = completed.stdout.strip()
-            if completed.returncode == 0 and raw_meta:
-                meta_stamp = datetime.datetime.strptime(raw_meta, "%Y%m%d%H%M%S")
-        except (OSError, ValueError):
-            pass
+        meta_stamp = _file_mtime_timestamp(Path(meta_path))
+        committed_meta_stamp = _git_commit_timestamp(Path(meta_path))
+        if committed_meta_stamp is not None:
+            meta_stamp = committed_meta_stamp
         stamp = max(stamp, meta_stamp)
     return {
         "version": stamp.strftime("%Y%m%d%H%M"),
@@ -381,10 +389,13 @@ def normalise(source: Path, target: Path, local_root=None) -> dict:
         # Ours lives under the category, and non-ASCII names have to be quoted, so the
         # stored url is rebuilt from the published path rather than the bare filename.
         stored["url"] = "%s/%s" % (PUBLISHED_REPOSITORY, quote(relative))
-        # The app prefers embedded content when present. Re-embed the exact HAR we
-        # validated so a stale browser or legacy body in upstream metadata cannot bypass
-        # the published file's Cookie-only gate.
-        stored["content"] = base64.b64encode(source_file.read_bytes()).decode("ascii")
+        # The app prefers embedded content when present. Re-embed the HAR we validated so
+        # a stale browser or legacy body in upstream metadata cannot bypass the published
+        # file's Cookie-only gate. Universal-newline reading plus UTF-8 encoding prevents
+        # Windows CRLF checkout bytes from changing the generated index on GitHub Actions.
+        stored["content"] = base64.b64encode(
+            _canonical_har_bytes(source_file)
+        ).decode("ascii")
         stored_by_name[record.get("name") or source_file.name] = stored
         report["moved"] += 1
         report["categories"].setdefault(category, 0)
@@ -439,7 +450,7 @@ def normalise(source: Path, target: Path, local_root=None) -> dict:
             # Embedding ours too means importing one of our templates does not depend on
             # a second fetch of the published file, which is the step that already proved
             # unreliable from the NAS.
-            "content": base64.b64encode(path.read_bytes()).decode("ascii"),
+            "content": base64.b64encode(_canonical_har_bytes(path)).decode("ascii"),
             **local_record_metadata(
                 path, comment_url, resolved_local_root / "meta.json"
             ),

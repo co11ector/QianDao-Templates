@@ -1,0 +1,2 @@
+# Keep generated indexes reproducible across Windows checkouts and Linux CI.
+* text=auto eol=lf

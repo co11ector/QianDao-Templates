@@ -58,7 +58,9 @@ docs/TEMPLATE-REPO.md  本文档
    `browser://`、`browser_worker`、`browser-worker`，并要求每个外部 HTTP(S) 请求恰好携带
    一份 `Cookie: {{cookie}}` 与一份 `User-Agent: {{user_agent}}`；不合规的上游条目跳过并
    上报，项目自有的 `local/` 模板不合规则直接中止同步。通过后按关键词分类、重写索引里的
-   路径与 `url`、生成 README/CATEGORIES；
+   路径与 `url`、生成 README/CATEGORIES。索引内嵌的 HAR 统一规范化为 UTF-8 + LF，
+   `local/` 模板时间取 Git commit epoch 并按 UTC 输出，避免 Windows 与 Ubuntu runner
+   因 CRLF 或本地时区生成不同索引；
 4. 把整理结果覆盖到本仓库，再跑一次发布树 Cookie-only 校验；
 5. 校验通过后才提交推送（用内置 `GITHUB_TOKEN`，不需要 PAT）。
 
@@ -87,7 +89,8 @@ Cookie-only 规则属于回归，因此直接中止整次同步。索引的两�
 
 `tests/test_normalize.py` 覆盖：分类落位、索引路径与真实文件一致、损坏/缺失上报、
 Cookie-only 上游拒绝、项目自有模板回归中止、索引内嵌内容与发布文件一致、README 生成
-（含横幅引用）、以及**映射形态索引**的回归（该形态曾在真实上游上暴露过 bug）。
+（含横幅引用）、CRLF checkout 的索引规范化、UTC 时间戳，以及**映射形态索引**的回归
+（该形态曾在真实上游上暴露过 bug）。
 `tests/test_official_templates.py` 还会校验已发布树只包含 `local/` 中成对携带 Cookie 与
 User-Agent 的模板。
 主仓侧另有 `tests/test_template_repo_material.py`，断言主仓**不再**嵌套这些材料，
