@@ -1,4 +1,5 @@
 import json
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -59,25 +60,44 @@ def test_local_templates_never_reintroduce_browser_execution():
         assert "browser-worker" not in encoded, path
 
 
-def test_cookie_builtin_requests_pair_cookie_and_user_agent():
+def test_local_http_requests_pair_cookie_and_user_agent():
     for slug, (path, document) in local_templates().items():
-        if slug not in OFFICIAL_BUILTIN_SLUGS:
-            continue
-        encoded = json.dumps(document, ensure_ascii=False).lower()
-        if "{{cookie" not in encoded:
-            continue
-
         for step in document:
             request = step.get("request") or {}
             if not str(request.get("url") or "").startswith(("http://", "https://")):
                 continue
-            headers = {
-                str(header.get("name") or "").casefold(): str(header.get("value") or "")
+            headers = [
+                (
+                    str(header.get("name") or "").casefold(),
+                    str(header.get("value") or ""),
+                )
                 for header in request.get("headers") or []
                 if isinstance(header, dict)
-            }
-            assert headers.get("cookie") == "{{cookie}}", (slug, path)
-            assert headers.get("user-agent") == "{{user_agent}}", (slug, path)
+            ]
+            cookie_headers = [value for name, value in headers if name == "cookie"]
+            user_agent_headers = [
+                value for name, value in headers if name == "user-agent"
+            ]
+            assert cookie_headers == ["{{cookie}}"], (slug, path)
+            assert user_agent_headers == ["{{user_agent}}"], (slug, path)
+
+
+def test_discuz_sign_link_extraction_accepts_html_escaped_ampersand():
+    for slug in ("fnnas-forum-daily-signin", "gangzhitang-daily-signin"):
+        path, document = local_templates()[slug]
+        extraction = next(
+            item
+            for step in document
+            for item in step["rule"]["extract_variables"]
+            if item["name"] == "sign"
+        )
+        html = (
+            '<a href="https://example.test/plugin.php?'
+            'id=zqlj_sign&amp;sign=fixture-token">点击打卡</a>'
+        )
+        match = re.search(extraction["re"], html)
+        assert match is not None, (slug, path)
+        assert match.group(1) == "fixture-token"
 
 
 def test_local_metadata_names_every_official_template():
