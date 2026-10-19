@@ -97,7 +97,7 @@ def local_record_metadata(path: Path, comment_url: str, meta_path: Path = None) 
     stamp = None
     try:
         completed = subprocess.run(
-            ["git", "log", "-1", "--format=%cd", "--date=format:%Y%m%d%H%M%S", "--", str(path)],
+            ["git", "log", "-1", "--format=%cd", "--date=format:%Y%m%d%H%M%S", "--", path.name],
             cwd=str(path.parent),
             capture_output=True,
             text=True,
@@ -118,7 +118,7 @@ def local_record_metadata(path: Path, comment_url: str, meta_path: Path = None) 
         try:
             completed = subprocess.run(
                 ["git", "log", "-1", "--format=%cd",
-                 "--date=format:%Y%m%d%H%M%S", "--", str(meta_path)],
+                 "--date=format:%Y%m%d%H%M%S", "--", Path(meta_path).name],
                 cwd=str(Path(meta_path).parent),
                 capture_output=True,
                 text=True,

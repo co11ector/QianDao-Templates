@@ -11,6 +11,7 @@ import json
 import re
 import sys
 from pathlib import Path
+from types import SimpleNamespace
 from urllib.parse import quote
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tools"))
@@ -213,6 +214,28 @@ def test_the_default_local_root_is_the_repository_local_directory():
     assert normalize.local_root_default() == (
         Path(normalize.__file__).resolve().parents[1] / "local"
     )
+
+
+def test_git_timestamp_lookup_uses_a_path_relative_to_its_working_directory(
+    tmp_path, monkeypatch
+):
+    path = tmp_path / "local" / "signin" / "sample.har"
+    path.parent.mkdir(parents=True)
+    path.write_text("[]", encoding="utf-8")
+    calls = []
+
+    def fake_run(args, **kwargs):
+        calls.append((args, kwargs))
+        return SimpleNamespace(returncode=0, stdout="20261019123456")
+
+    monkeypatch.setattr(normalize.subprocess, "run", fake_run)
+
+    metadata = normalize.local_record_metadata(path, normalize.LOCAL_COMMENT_URL)
+
+    assert calls[0][0][-1] == "sample.har"
+    assert calls[0][1]["cwd"] == str(path.parent)
+    assert metadata["version"] == "202610191234"
+    assert metadata["date"] == "2026-10-19 12:34:56"
 
 
 def test_local_templates_are_merged_and_survive_the_sync(tmp_path):
