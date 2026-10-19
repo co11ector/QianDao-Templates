@@ -71,7 +71,7 @@
 
 1. 先跑整理脚本的测试 —— **不通过就中止**，不会发布被改坏的索引；
 2. 浅克隆上游仓库；
-3. 校验每个 HAR 能否解析，按关键词分类，重写索引里的路径与直链；
+3. 只接收 Cookie-only HAR：拒绝 `browser://`，并要求每个外部 HTTP(S) 请求恰好携带一份 `Cookie: {{cookie}}` 与一份 `User-Agent: {{user_agent}}`；
 4. 重新生成 README 与 CATEGORIES，有变化才提交推送。
 
 全程使用仓库内置的 `GITHUB_TOKEN`，**不需要个人访问令牌**。

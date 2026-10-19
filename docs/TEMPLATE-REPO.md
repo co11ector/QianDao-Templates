@@ -54,19 +54,25 @@ docs/TEMPLATE-REPO.md  本文档
 1. 先 `pip install pytest` 并跑 `python -m pytest tests -q` —— **整理器自检不过就中止**，
    不会发布被改坏的索引；
 2. 每天 03:17 UTC（可手动触发）浅克隆上游；
-3. 运行 `tools/normalize.py upstream curated` —— 校验 HAR 可读性、按关键词分类、重写索引里的
+3. 运行 `tools/normalize.py upstream curated` —— 只接收 Cookie-only HAR：拒绝
+   `browser://`、`browser_worker`、`browser-worker`，并要求每个外部 HTTP(S) 请求恰好携带
+   一份 `Cookie: {{cookie}}` 与一份 `User-Agent: {{user_agent}}`；不合规的上游条目跳过并
+   上报，项目自有的 `local/` 模板不合规则直接中止同步。通过后按关键词分类、重写索引里的
    路径与 `url`、生成 README/CATEGORIES；
-4. 把整理结果覆盖到本仓库并提交推送（用内置 `GITHUB_TOKEN`，不需要 PAT）。
+4. 把整理结果覆盖到本仓库，再跑一次发布树 Cookie-only 校验；
+5. 校验通过后才提交推送（用内置 `GITHUB_TOKEN`，不需要 PAT）。
 
 **只替换** `templates/`、`tpls_history.json`、`README.md`、`CATEGORIES.md` 四处；
 `brand/`、`tools/`、`tests/`、`docs/` 不受影响。
 
 现状核对：该仓库**不是 Fork**（因此定时任务默认可用）、**公开**、默认分支 `master`、
-工作流状态 active、已实测跑通（402 个模板、自动提交、success）。若是将来重建为 Fork，
+工作流状态 active、已实测跑通。当前发布集只保留 `local/` 中通过 Cookie-only 校验的 21 个
+官方模板；不合规入口会在每次同步时被剔除并写入日志。若是将来重建为 Fork，
 需到 Actions 页**启用 schedule**（GitHub 默认禁用 fork 的定时任务）。
 
-整理器是保守的 ✓：只**移动**不改名（上游文件名已被应用记录和用户引用），损坏或缺失的
-文件**跳过并上报**，不会中断同步。索引的两种历史形态都支持：上游实际用的是
+整理器是保守的 ✓：只**移动**不改名（上游文件名已被应用记录和用户引用）；损坏或缺失的
+文件**跳过并上报**，不合规的上游模板同样跳过并上报。项目自有的 `local/` 模板违反
+Cookie-only 规则属于回归，因此直接中止整次同步。索引的两种历史形态都支持：上游实际用的是
 `{"har": {"<名称>": {...}}}` 映射，旧的列表形态也接受，输出保持输入形态。
 
 ## 应用侧（契约留在私有主仓）
@@ -80,6 +86,9 @@ docs/TEMPLATE-REPO.md  本文档
 ## 校验
 
 `tests/test_normalize.py` 覆盖：分类落位、索引路径与真实文件一致、损坏/缺失上报、
-README 生成（含横幅引用）、以及**映射形态索引**的回归（该形态曾在真实上游上暴露过 bug）。
+Cookie-only 上游拒绝、项目自有模板回归中止、索引内嵌内容与发布文件一致、README 生成
+（含横幅引用）、以及**映射形态索引**的回归（该形态曾在真实上游上暴露过 bug）。
+`tests/test_official_templates.py` 还会校验已发布树只包含 `local/` 中成对携带 Cookie 与
+User-Agent 的模板。
 主仓侧另有 `tests/test_template_repo_material.py`，断言主仓**不再**嵌套这些材料，
 并断言默认仓库地址的契约仍然指向 `co11ector/QianDao-Templates`。

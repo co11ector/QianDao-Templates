@@ -14,16 +14,39 @@ from pathlib import Path
 from types import SimpleNamespace
 from urllib.parse import quote
 
+import pytest
+
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tools"))
 
 import normalize  # noqa: E402
 
 
+def cookie_only_document(url="https://example.test/"):
+    return [
+        {
+            "request": {
+                "method": "GET",
+                "url": url,
+                "headers": [
+                    {"name": "Cookie", "value": "{{cookie}}"},
+                    {"name": "User-Agent", "value": "{{user_agent}}"},
+                ],
+            }
+        }
+    ]
+
+
 def build_upstream(tmp_path, index=None):
     root = tmp_path / "upstream"
     root.mkdir()
-    (root / "s1-forum.har").write_text('[{"request": {}}]', encoding="utf-8")
-    (root / "leaguehd-pt.har").write_text('[{"request": {}}]', encoding="utf-8")
+    (root / "s1-forum.har").write_text(
+        json.dumps(cookie_only_document("https://bbs.saraba1st.com/")),
+        encoding="utf-8",
+    )
+    (root / "leaguehd-pt.har").write_text(
+        json.dumps(cookie_only_document("https://leaguehd.com/attendance.php")),
+        encoding="utf-8",
+    )
     (root / "broken.har").write_text("not json", encoding="utf-8")
     records = index if index is not None else [
         {"name": "S1 论坛", "filename": "s1-forum.har", "author": "Antiky",
@@ -55,6 +78,61 @@ def test_templates_are_sorted_into_categories(tmp_path):
     assert any("ghost.har" in item for item in report["skipped"])
 
 
+def test_upstream_templates_without_paired_identity_are_rejected(tmp_path):
+    root = build_upstream(tmp_path)
+    (root / "s1-forum.har").write_text(
+        json.dumps(
+            [
+                {
+                    "request": {
+                        "method": "GET",
+                        "url": "https://bbs.saraba1st.com/",
+                        "headers": [{"name": "Cookie", "value": "{{cookie}}"}],
+                    }
+                }
+            ]
+        ),
+        encoding="utf-8",
+    )
+    target = tmp_path / "out"
+
+    report = normalize.normalise(root, target, local_root=tmp_path / "local")
+
+    assert report["moved"] == 1
+    assert any(
+        "s1-forum.har" in item and "User-Agent" in item
+        for item in report["rejected_cookie_only"]
+    )
+    assert not (target / "templates" / "forum" / "s1-forum.har").exists()
+
+
+def test_upstream_browser_templates_are_rejected(tmp_path):
+    root = build_upstream(tmp_path)
+    (root / "s1-forum.har").write_text(
+        json.dumps(
+            [
+                {
+                    "request": {
+                        "method": "GET",
+                        "url": "browser://browser-worker/daily-login",
+                    }
+                }
+            ]
+        ),
+        encoding="utf-8",
+    )
+    target = tmp_path / "out"
+
+    report = normalize.normalise(root, target, local_root=tmp_path / "local")
+
+    assert report["moved"] == 1
+    assert any(
+        "s1-forum.har" in item and "browser execution is retired" in item
+        for item in report["rejected_cookie_only"]
+    )
+    assert not (target / "templates" / "forum" / "s1-forum.har").exists()
+
+
 def test_the_index_carries_the_new_paths(tmp_path):
     root = build_upstream(tmp_path)
     target = tmp_path / "out"
@@ -73,6 +151,32 @@ def test_the_index_carries_the_new_paths(tmp_path):
     # path must resolve to a file that really exists.
     for filename in filenames:
         assert (target / filename).is_file()
+
+
+def test_the_index_embeds_the_validated_har_bytes(tmp_path):
+    root = build_upstream(
+        tmp_path,
+        index={
+            "S1 论坛": {
+                "name": "S1 论坛",
+                "filename": "s1-forum.har",
+                "author": "Antiky",
+                "url": "https://bbs.saraba1st.com/",
+                "content": base64.b64encode(
+                    b'[{"request":{"url":"browser://browser-worker"}}]'
+                ).decode("ascii"),
+            },
+        },
+    )
+    target = tmp_path / "out"
+
+    normalize.normalise(root, target, local_root=tmp_path / "local")
+
+    index = json.loads((target / "tpls_history.json").read_text(encoding="utf-8"))
+    record = index["har"]["S1 论坛"]
+    embedded = base64.b64decode(record["content"]).decode("utf-8")
+    assert "browser://" not in embedded
+    assert embedded == (root / "s1-forum.har").read_text(encoding="utf-8")
 
 
 def test_the_mapping_index_shape_is_supported(tmp_path):
@@ -187,23 +291,16 @@ def build_local(tmp_path, category="signin", name="ithome",
     root = tmp_path / "local"
     directory = root / category
     directory.mkdir(parents=True, exist_ok=True)
+    document = cookie_only_document(
+        "https://napi.ithome.com/api/usersign/sign?userHash={{userHash}}"
+    )
+    document[0]["comment"] = comment
+    document[0]["rule"] = {
+        "success_asserts": [{"re": '"ok":(0|1)', "from": "content"}],
+        "failed_asserts": [{"re": "^(4|5)\\d\\d$", "from": "status"}],
+    }
     (directory / ("%s.har" % name)).write_text(
-        json.dumps(
-            [
-                {
-                    "comment": comment,
-                    "request": {
-                        "method": "GET",
-                        "url": "https://napi.ithome.com/api/usersign/sign?userHash={{userHash}}",
-                    },
-                    "rule": {
-                        "success_asserts": [{"re": '"ok":(0|1)', "from": "content"}],
-                        "failed_asserts": [{"re": "^(4|5)\\d\\d$", "from": "status"}],
-                    },
-                }
-            ],
-            ensure_ascii=False,
-        ),
+        json.dumps(document, ensure_ascii=False),
         encoding="utf-8",
     )
     return root
@@ -360,7 +457,6 @@ def test_an_unreadable_local_template_is_reported_not_published(tmp_path):
     local = tmp_path / "local"
     (local / "signin").mkdir(parents=True)
     (local / "signin" / "broken.har").write_text("not json", encoding="utf-8")
-    (local / "signin" / "empty.har").write_text("[]", encoding="utf-8")
     target = tmp_path / "out"
 
     report = normalize.normalise(upstream, target, local_root=local)
@@ -368,7 +464,22 @@ def test_an_unreadable_local_template_is_reported_not_published(tmp_path):
     assert report["local"] == 0
     assert not (target / "templates" / "signin" / "broken.har").exists()
     assert any("local/signin/broken.har" in item for item in report["skipped"])
-    assert any("local/signin/empty.har" in item for item in report["skipped"])
+
+
+def test_a_local_cookie_only_violation_aborts_the_sync(tmp_path):
+    upstream = build_upstream(tmp_path)
+    local = build_local(tmp_path)
+    path = local / "signin" / "ithome.har"
+    document = json.loads(path.read_text(encoding="utf-8"))
+    document[0]["request"]["headers"] = [
+        header
+        for header in document[0]["request"]["headers"]
+        if header["name"] != "User-Agent"
+    ]
+    path.write_text(json.dumps(document, ensure_ascii=False), encoding="utf-8")
+
+    with pytest.raises(ValueError, match="Cookie-only policy.*User-Agent"):
+        normalize.normalise(upstream, tmp_path / "out", local_root=local)
 
 
 def test_retired_local_entries_are_removed_from_upstream_and_local(tmp_path):

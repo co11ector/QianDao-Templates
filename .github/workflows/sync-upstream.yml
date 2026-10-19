@@ -10,7 +10,8 @@ name: Sync and curate upstream templates
 # to itself with the built-in GITHUB_TOKEN, so no personal access token is involved.
 #
 # The normaliser's test suite runs before anything is fetched, so a broken script stops
-# the sync instead of publishing a mangled index.
+# the sync instead of publishing a mangled index. The published tree is tested again after
+# curation, so a non Cookie-only template can never be committed to the public library.
 #
 # Only templates/, tpls_history.json, README.md and CATEGORIES.md are replaced; brand/
 # and tools/ are left alone.
@@ -60,6 +61,9 @@ jobs:
           cp curated/README.md README.md
           cp curated/CATEGORIES.md CATEGORIES.md
           rm -rf curated upstream
+
+      - name: Verify the published tree is Cookie-only
+        run: python -B -m pytest tests/test_official_templates.py -q
 
       - name: Commit if anything changed
         run: |

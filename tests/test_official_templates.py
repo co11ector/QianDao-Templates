@@ -1,9 +1,13 @@
 import json
 import re
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 LOCAL = ROOT / "local"
+sys.path.insert(0, str(ROOT / "tools"))
+
+import normalize  # noqa: E402
 
 OFFICIAL_BUILTIN_SLUGS = {
     "hdsky-daily-signin",
@@ -36,6 +40,13 @@ def local_templates():
     }
 
 
+def published_templates():
+    return {
+        path.stem: (path, json.loads(path.read_text(encoding="utf-8")))
+        for path in sorted((ROOT / "templates").rglob("*.har"))
+    }
+
+
 def test_official_builtin_templates_are_published_from_local():
     templates = local_templates()
     retired = json.loads((LOCAL / "retired.json").read_text(encoding="utf-8"))
@@ -49,6 +60,14 @@ def test_official_builtin_templates_are_published_from_local():
         "52pojie-daily-signin",
         "itsk-daily-signin",
     } & set(templates)
+
+
+def test_the_published_tree_contains_only_official_cookie_only_templates():
+    published = published_templates()
+
+    assert set(published) == set(local_templates())
+    for slug, (path, document) in published.items():
+        assert normalize.cookie_only_violation(document) is None, (slug, path)
 
 
 def test_local_templates_never_reintroduce_browser_execution():

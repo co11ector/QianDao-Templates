@@ -18,6 +18,12 @@ This script produces the layout we publish:
     tpls_history.json   (same records; filename carries the category path, url points
                          at our repository rather than upstream)
 
+The published library is Cookie-only. Every external HTTP(S) request must carry exactly
+one ``Cookie: {{cookie}}`` header and one ``User-Agent: {{user_agent}}`` header.
+Upstream templates using ``browser://`` or any other credential transport are rejected
+instead of being rewritten into a flow we cannot verify. Local templates are held to the
+same rule and fail the whole sync when they regress.
+
 It is deliberately conservative about names: upstream filenames are referenced by the
 app's records and by operators, so files are moved, never renamed. Files that are not
 readable JSON, and files the index points at but that are absent, are skipped and
@@ -49,6 +55,9 @@ CATEGORY_KEYWORDS = (
 )
 DEFAULT_CATEGORY = "signin"
 CATEGORY_ORDER = ("pt", "forum", "video", "shop", "signin")
+COOKIE_PLACEHOLDER = "{{cookie}}"
+USER_AGENT_PLACEHOLDER = "{{user_agent}}"
+RETIRED_BROWSER_MARKERS = ("browser://", "browser_worker", "browser-worker")
 CATEGORY_LABELS = {
     "pt": "PT 站",
     "forum": "论坛社区",
@@ -65,6 +74,53 @@ CATEGORY_NOTES = {
     "shop": "电商与购物类站点的签到、领券与日常任务",
     "signin": "其余站点；未命中上面关键词的都归到这里",
 }
+
+
+def cookie_only_violation(document) -> str | None:
+    """Return why a HAR document is not safe for the Cookie-only library."""
+    if not isinstance(document, list) or not document:
+        return "not a non-empty JSON array"
+
+    encoded = json.dumps(document, ensure_ascii=False).casefold()
+    if any(marker in encoded for marker in RETIRED_BROWSER_MARKERS):
+        return "browser execution is retired"
+
+    external_requests = 0
+    for step in document:
+        if not isinstance(step, dict):
+            continue
+        request = step.get("request")
+        if not isinstance(request, dict):
+            continue
+        url = str(request.get("url") or "")
+        if not url.startswith(("http://", "https://")):
+            continue
+        external_requests += 1
+        headers = request.get("headers")
+        if not isinstance(headers, list):
+            headers = []
+        cookie_values = []
+        user_agent_values = []
+        for header in headers:
+            if not isinstance(header, dict):
+                continue
+            name = str(header.get("name") or "").strip().casefold()
+            value = str(header.get("value") or "")
+            if name == "cookie":
+                cookie_values.append(value)
+            elif name == "user-agent":
+                user_agent_values.append(value)
+        if cookie_values != [COOKIE_PLACEHOLDER]:
+            return "every external request must use exactly one Cookie: {{cookie}}"
+        if user_agent_values != [USER_AGENT_PLACEHOLDER]:
+            return (
+                "every external request must use exactly one "
+                "User-Agent: {{user_agent}}"
+            )
+
+    if not external_requests:
+        return "no external HTTP(S) request"
+    return None
 
 
 def categorise(name: str, url: str, author: str) -> str:
@@ -272,6 +328,7 @@ def normalise(source: Path, target: Path, local_root=None) -> dict:
         "overridden": [],
         "retired": [],
         "pruned": [],
+        "rejected_cookie_only": [],
         "categories": {},
         "local_templates": [],
     }
@@ -300,10 +357,16 @@ def normalise(source: Path, target: Path, local_root=None) -> dict:
             report["skipped"].append("%s: missing" % filename)
             continue
         try:
-            json.loads(source_file.read_text(encoding="utf-8"))
+            document = json.loads(source_file.read_text(encoding="utf-8"))
         except (json.JSONDecodeError, UnicodeDecodeError) as error:
             report["skipped"].append(
                 "%s: unreadable (%s)" % (filename, error.__class__.__name__)
+            )
+            continue
+        violation = cookie_only_violation(document)
+        if violation is not None:
+            report["rejected_cookie_only"].append(
+                "%s: %s" % (filename, violation)
             )
             continue
 
@@ -318,6 +381,10 @@ def normalise(source: Path, target: Path, local_root=None) -> dict:
         # Ours lives under the category, and non-ASCII names have to be quoted, so the
         # stored url is rebuilt from the published path rather than the bare filename.
         stored["url"] = "%s/%s" % (PUBLISHED_REPOSITORY, quote(relative))
+        # The app prefers embedded content when present. Re-embed the exact HAR we
+        # validated so a stale browser or legacy body in upstream metadata cannot bypass
+        # the published file's Cookie-only gate.
+        stored["content"] = base64.b64encode(source_file.read_bytes()).decode("ascii")
         stored_by_name[record.get("name") or source_file.name] = stored
         report["moved"] += 1
         report["categories"].setdefault(category, 0)
@@ -339,12 +406,12 @@ def normalise(source: Path, target: Path, local_root=None) -> dict:
                 % (category, path.name, error.__class__.__name__)
             )
             continue
-        if not isinstance(document, list) or not document:
-            report["skipped"].append(
-                "local/%s/%s: not a non-empty JSON array"
-                % (category, path.name)
+        violation = cookie_only_violation(document)
+        if violation is not None:
+            raise ValueError(
+                "local/%s/%s violates the Cookie-only policy: %s"
+                % (category, path.name, violation)
             )
-            continue
 
         comment = ""
         first = document[0]
@@ -476,7 +543,8 @@ def normalise(source: Path, target: Path, local_root=None) -> dict:
         "",
         "1. 先跑整理脚本的测试 —— **不通过就中止**，不会发布被改坏的索引；",
         "2. 浅克隆上游仓库；",
-        "3. 校验每个 HAR 能否解析，按关键词分类，重写索引里的路径与直链；",
+        "3. 只接收 Cookie-only HAR：拒绝 `browser://`，并要求每个外部 HTTP(S) 请求"
+        "恰好携带一份 `Cookie: {{cookie}}` 与一份 `User-Agent: {{user_agent}}`；",
         "4. 重新生成 README 与 CATEGORIES，有变化才提交推送。",
         "",
         "全程使用仓库内置的 `GITHUB_TOKEN`，**不需要个人访问令牌**。",
@@ -565,6 +633,8 @@ def main(argv):
         print("  retired %s" % name)
     for name in report["pruned"]:
         print("  pruned %s" % name)
+    for rejected in report["rejected_cookie_only"]:
+        print("  rejected Cookie-only %s" % rejected)
     for category in CATEGORY_ORDER:
         if report["categories"].get(category):
             print("  %-8s %d" % (category, report["categories"][category]))
