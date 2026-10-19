@@ -2,6 +2,7 @@ import json
 import re
 import sys
 from pathlib import Path
+from urllib.parse import urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 LOCAL = ROOT / "local"
@@ -31,6 +32,8 @@ OFFICIAL_PUBLIC_SLUGS = {
     "ssdforum-daily-signin",
     "ptshare-daily-signin",
     "gangzhitang-daily-signin",
+    "52pojie-daily-signin",
+    "itsk-daily-signin",
 }
 
 
@@ -56,12 +59,8 @@ def test_official_public_templates_are_published_from_local():
     assert "lwgod" in templates
     assert {"Linux_SB", "吾爱破解", "IT天空"} <= set(retired)
     assert "lwgod" not in retired
-    assert not {
-        "linux-sb-daily-signin",
-        "lwgod-daily-login",
-        "52pojie-daily-signin",
-        "itsk-daily-signin",
-    } & set(templates)
+    assert {"52pojie-daily-signin", "itsk-daily-signin"} <= set(templates)
+    assert not {"linux-sb-daily-signin", "lwgod-daily-login"} & set(templates)
 
 
 def test_the_published_tree_contains_only_official_cookie_only_templates():
@@ -101,6 +100,54 @@ def test_local_http_requests_pair_cookie_and_user_agent():
             ]
             assert cookie_headers == ["{{cookie}}"], (slug, path)
             assert user_agent_headers == ["{{user_agent}}"], (slug, path)
+
+
+def test_retired_browser_sites_have_fixed_host_cookie_replacements():
+    for slug in ("52pojie-daily-signin", "itsk-daily-signin"):
+        path, document = local_templates()[slug]
+        external_urls = [
+            str(step["request"].get("url") or "")
+            for step in document
+            if str(step.get("request", {}).get("url") or "").startswith(
+                ("http://", "https://")
+            )
+        ]
+        assert external_urls, (slug, path)
+        for url in external_urls:
+            netloc = urlsplit(url).netloc
+            assert "{{" not in netloc and "{%" not in netloc, (slug, path, url)
+        failed_patterns = " ".join(
+            str(assertion.get("re") or "")
+            for step in document
+            for assertion in step.get("rule", {}).get("failed_asserts", [])
+        )
+        assert "challenge" in failed_patterns.casefold(), (slug, path)
+
+
+def test_retired_browser_site_replacements_extract_one_stable_result():
+    fixtures = {
+        "52pojie-daily-signin": (
+            '<span id="hcredit_2">42</span>',
+            "42",
+        ),
+        "itsk-daily-signin": (
+            '<font color="#ff00cc"><b>活跃 18</b></font>',
+            "活跃 18",
+        ),
+    }
+    for slug, (html, expected) in fixtures.items():
+        path, document = local_templates()[slug]
+        extraction = next(
+            item
+            for step in document
+            for item in step.get("rule", {}).get("extract_variables", [])
+            if item.get("name") == "log_value"
+        )
+        pattern = re.compile(extraction["re"])
+        match = pattern.search(html)
+        assert pattern.groups == 1, (slug, path, extraction["re"])
+        assert match is not None, (slug, path)
+        assert match.group(1) == expected, (slug, path)
 
 
 def test_discuz_sign_link_extraction_accepts_html_escaped_ampersand():
