@@ -9,8 +9,9 @@ sys.path.insert(0, str(ROOT / "tools"))
 
 import normalize  # noqa: E402
 
-OFFICIAL_BUILTIN_SLUGS = {
+OFFICIAL_PUBLIC_SLUGS = {
     "hdsky-daily-signin",
+    "lwgod",
     "3dm-daily-login-reward",
     "fnnas-forum-daily-signin",
     "ymlyhd-daily-signin",
@@ -47,13 +48,14 @@ def published_templates():
     }
 
 
-def test_official_builtin_templates_are_published_from_local():
+def test_official_public_templates_are_published_from_local():
     templates = local_templates()
     retired = json.loads((LOCAL / "retired.json").read_text(encoding="utf-8"))
 
-    assert OFFICIAL_BUILTIN_SLUGS <= set(templates)
-    assert "lwgod" not in templates
-    assert {"lwgod", "Linux_SB", "吾爱破解", "IT天空"} <= set(retired)
+    assert OFFICIAL_PUBLIC_SLUGS <= set(templates)
+    assert "lwgod" in templates
+    assert {"Linux_SB", "吾爱破解", "IT天空"} <= set(retired)
+    assert "lwgod" not in retired
     assert not {
         "linux-sb-daily-signin",
         "lwgod-daily-login",
@@ -122,6 +124,6 @@ def test_discuz_sign_link_extraction_accepts_html_escaped_ampersand():
 def test_local_metadata_names_every_official_template():
     metadata = json.loads((LOCAL / "meta.json").read_text(encoding="utf-8"))
 
-    assert OFFICIAL_BUILTIN_SLUGS <= set(metadata)
-    assert "lwgod" not in metadata
-    assert all(metadata[slug].get("name") for slug in OFFICIAL_BUILTIN_SLUGS)
+    assert OFFICIAL_PUBLIC_SLUGS <= set(metadata)
+    assert "lwgod" in metadata
+    assert all(metadata[slug].get("name") for slug in OFFICIAL_PUBLIC_SLUGS)

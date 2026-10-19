@@ -39,7 +39,7 @@
 
 完整列表见 [`tpls_history.json`](tpls_history.json)：索引里 `filename` 为相对路径，`url` 指向本仓库，应用按 `<仓库地址>/<filename>` 抓取。
 
-其中 **21 个是本项目自有的模板**（放在 `local/` 下，每日同步不会覆盖）：
+其中 **22 个是本项目自有的模板**（放在 `local/` 下，每日同步不会覆盖）：
 
 | 模板 | 位置 |
 | --- | --- |
@@ -51,6 +51,7 @@
 | Chiphell每日登录访问 | [`templates/forum/chiphell-daily-login.har`](templates/forum/chiphell-daily-login.har) |
 | 飞牛私有云论坛 | [`templates/forum/fnnas-forum-daily-signin.har`](templates/forum/fnnas-forum-daily-signin.har) |
 | 火绒安全论坛 | [`templates/forum/huorong-forum-daily-login.har`](templates/forum/huorong-forum-daily-login.har) |
+| 梦幻天堂·龙网每日登录奖励 | [`templates/forum/lwgod.har`](templates/forum/lwgod.har) |
 | 远景论坛 | [`templates/forum/pcbeta-daily-login.har`](templates/forum/pcbeta-daily-login.har) |
 | 恩山无线论坛 | [`templates/forum/right-forum-daily-signin.har`](templates/forum/right-forum-daily-signin.har) |
 | SSDForum每日签到 | [`templates/forum/ssdforum-daily-signin.har`](templates/forum/ssdforum-daily-signin.har) |
