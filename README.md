@@ -39,18 +39,20 @@
 
 完整列表见 [`tpls_history.json`](tpls_history.json)：索引里 `filename` 为相对路径，`url` 指向本仓库，应用按 `<仓库地址>/<filename>` 抓取。
 
-其中 **22 个是本项目自有的模板**（放在 `local/` 下，每日同步不会覆盖）：
+其中 **24 个是本项目自有的模板**（放在 `local/` 下，每日同步不会覆盖）：
 
 | 模板 | 位置 |
 | --- | --- |
 | HDSky天空论坛每日签到 | [`templates/pt/hdsky-daily-signin.har`](templates/pt/hdsky-daily-signin.har) |
 | PTShare每日签到 | [`templates/pt/ptshare-daily-signin.har`](templates/pt/ptshare-daily-signin.har) |
 | 3DM论坛每日登录奖励 | [`templates/forum/3dm-daily-login-reward.har`](templates/forum/3dm-daily-login-reward.har) |
+| 吾爱破解每日签到奖励 | [`templates/forum/52pojie-daily-signin.har`](templates/forum/52pojie-daily-signin.har) |
 | Anime字幕论坛每日签到 | [`templates/forum/acgrip-daily-signin.har`](templates/forum/acgrip-daily-signin.har) |
 | 游侠论坛每日签到 | [`templates/forum/ali213-daily-signin.har`](templates/forum/ali213-daily-signin.har) |
 | Chiphell每日登录访问 | [`templates/forum/chiphell-daily-login.har`](templates/forum/chiphell-daily-login.har) |
 | 飞牛私有云论坛 | [`templates/forum/fnnas-forum-daily-signin.har`](templates/forum/fnnas-forum-daily-signin.har) |
 | 火绒安全论坛 | [`templates/forum/huorong-forum-daily-login.har`](templates/forum/huorong-forum-daily-login.har) |
+| IT天空每日签到 | [`templates/forum/itsk-daily-signin.har`](templates/forum/itsk-daily-signin.har) |
 | 梦幻天堂·龙网每日登录奖励 | [`templates/forum/lwgod.har`](templates/forum/lwgod.har) |
 | 远景论坛 | [`templates/forum/pcbeta-daily-login.har`](templates/forum/pcbeta-daily-login.har) |
 | 恩山无线论坛 | [`templates/forum/right-forum-daily-signin.har`](templates/forum/right-forum-daily-signin.har) |
