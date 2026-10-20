@@ -131,8 +131,8 @@ def test_retired_browser_site_replacements_extract_one_stable_result():
             "42",
         ),
         "itsk-daily-signin": (
-            '<font color="#ff00cc"><b>活跃 18</b></font>',
-            "活跃 18",
+            '{"code":200,"message":"签到成功","data":{}}',
+            "签到成功",
         ),
     }
     for slug, (html, expected) in fixtures.items():
@@ -148,6 +148,27 @@ def test_retired_browser_site_replacements_extract_one_stable_result():
         assert pattern.groups == 1, (slug, path, extraction["re"])
         assert match is not None, (slug, path)
         assert match.group(1) == expected, (slug, path)
+
+
+def test_itsk_webapi_probe_uses_one_signature_clock():
+    path, document = local_templates()["itsk-daily-signin"]
+    assert document[0]["request"]["url"] == "api://util/timestamp"
+    extraction = document[0]["rule"]["extract_variables"]
+    assert any(item.get("name") == "itsk_micro_ts" for item in extraction)
+
+    action = document[1]["request"]
+    assert action["url"] == "https://api.itsk.com/webapi/sign_activity"
+    headers = {
+        item["name"]: item["value"]
+        for item in action["headers"]
+        if isinstance(item, dict)
+    }
+    assert "itsk_micro_ts" in headers["X-Request-Timestamp"]
+    assert "to_uuid(itsk_micro_ts)" in headers["X-Request-Nonce"]
+    assert "itsk_micro_ts[0:10]" in headers["X-Request-Signature"]
+    assert "|sha1" in headers["X-Request-Signature"]
+    assert "itsk_access_token" in headers["Authorization"]
+    assert path.name == "itsk-daily-signin.har"
 
 
 def test_discuz_sign_link_extraction_accepts_html_escaped_ampersand():
