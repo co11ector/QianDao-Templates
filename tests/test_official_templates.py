@@ -189,6 +189,24 @@ def test_discuz_sign_link_extraction_accepts_html_escaped_ampersand():
         assert match.group(1) == "fixture-token"
 
 
+def test_fnnas_authenticated_footer_login_link_is_not_a_login_failure():
+    path, document = local_templates()["fnnas-forum-daily-signin"]
+    first_step = document[0]
+    html = (
+        '<a href="member.php?mod=logging&amp;action=logout">退出</a>'
+        '<a href="member.php?mod=logging&amp;action=login">登录</a>'
+        '<a href="plugin.php?id=zqlj_sign&amp;sign=fixture-token">'
+        "点击打卡</a>"
+    )
+
+    success = first_step["rule"]["success_asserts"][0]["re"]
+    slash_form = re.fullmatch(r"/(.*)/([imsu]*)", success, re.S)
+    assert slash_form is not None, path
+    assert re.search(slash_form.group(1), html, re.S | re.I), path
+    for assertion in first_step["rule"]["failed_asserts"]:
+        assert re.search(assertion["re"], html) is None, (path, assertion)
+
+
 def test_local_metadata_names_every_official_template():
     metadata = json.loads((LOCAL / "meta.json").read_text(encoding="utf-8"))
 
