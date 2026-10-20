@@ -80,6 +80,16 @@ def test_local_templates_never_reintroduce_browser_execution():
         assert "browser-worker" not in encoded, path
 
 
+def test_every_local_template_has_an_operator_guidance_header():
+    for slug, (path, document) in local_templates().items():
+        comments = [
+            str(step.get("comment") or "").strip()
+            for step in document
+            if isinstance(step, dict)
+        ]
+        assert any(comments), (slug, path)
+
+
 def test_local_http_requests_pair_cookie_and_user_agent():
     for slug, (path, document) in local_templates().items():
         for step in document:
@@ -100,6 +110,28 @@ def test_local_http_requests_pair_cookie_and_user_agent():
             ]
             assert cookie_headers == ["{{cookie}}"], (slug, path)
             assert user_agent_headers == ["{{user_agent}}"], (slug, path)
+
+
+def test_fnnas_uses_the_edge_tls_profile_that_owns_its_cookie_pair():
+    path = LOCAL / "forum" / "fnnas-forum-daily-signin.har"
+    document = json.loads(path.read_text(encoding="utf-8"))
+    external = [
+        step["request"]
+        for step in document
+        if str(step.get("request", {}).get("url") or "").startswith(
+            ("http://", "https://")
+        )
+    ]
+
+    assert external
+    for request in external:
+        headers = {
+            str(header.get("name") or "").casefold(): str(
+                header.get("value") or ""
+            )
+            for header in request.get("headers") or []
+        }
+        assert headers.get("x-qiandao-impersonate") == "edge", path
 
 
 def test_retired_browser_sites_have_fixed_host_cookie_replacements():

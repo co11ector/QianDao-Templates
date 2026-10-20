@@ -60,6 +60,11 @@ DEFAULT_CATEGORY = "signin"
 CATEGORY_ORDER = ("pt", "forum", "video", "shop", "signin")
 COOKIE_PLACEHOLDER = "{{cookie}}"
 USER_AGENT_PLACEHOLDER = "{{user_agent}}"
+DEFAULT_GUIDANCE_COMMENT = (
+    "使用登录后的完整 Cookie 与同一浏览器的 User-Agent 运行本模板。"
+    "若站点要求验证码、滑块或其他人工验证，请先在浏览器完成并重新获取凭据；"
+    "模板不会自动绕过验证。"
+)
 RETIRED_BROWSER_MARKERS = ("browser://", "browser_worker", "browser-worker")
 SENSITIVE_HEADER_NAMES = frozenset(
     (
@@ -157,6 +162,36 @@ def _requests(document):
 
 def _is_external_request(request: dict) -> bool:
     return str(request.get("url") or "").startswith(("http://", "https://"))
+
+
+def apply_template_guidance(
+    document, record_comment="", *, require_record_comment=True
+):
+    """Ensure the editor and template list both carry operator guidance."""
+    record_comment = str(record_comment or "").strip()
+    first_step = None
+    document_comment = ""
+    for step in document:
+        if not isinstance(step, dict):
+            continue
+        request = step.get("request")
+        if not isinstance(request, dict):
+            continue
+        if first_step is None:
+            first_step = step
+        comment = str(step.get("comment") or "").strip()
+        if comment:
+            document_comment = comment
+            break
+
+    guidance = record_comment or document_comment or DEFAULT_GUIDANCE_COMMENT
+    changed = not document_comment
+    if require_record_comment and not record_comment:
+        changed = True
+    if first_step is not None and not str(first_step.get("comment") or "").strip():
+        first_step["comment"] = guidance
+        changed = True
+    return guidance, changed
 
 
 def normalise_upstream_document(document):
@@ -569,6 +604,18 @@ def validate_published_tree(root: Path, minimum_templates: int = 0) -> dict:
         violation = cookie_only_violation(document)
         if violation is not None:
             raise ValueError("%s violates the Cookie-only policy: %s" % (filename, violation))
+        record_comment = str(record.get("comments") or "").strip()
+        document_comment = ""
+        for step in document:
+            if not isinstance(step, dict):
+                continue
+            document_comment = str(step.get("comment") or "").strip()
+            if document_comment:
+                break
+        if not record_comment or not document_comment:
+            raise ValueError(
+                "%s is missing a public instruction header" % filename
+            )
         try:
             embedded = base64.b64decode(str(record.get("content") or ""), validate=True)
         except (ValueError, TypeError) as error:
@@ -599,6 +646,7 @@ def normalise(source: Path, target: Path, local_root=None) -> dict:
         "retired": [],
         "pruned": [],
         "rejected_cookie_only": [],
+        "guidance_added": 0,
         "transformed": 0,
         "removed": {
             "cookie_headers": 0,
@@ -654,6 +702,11 @@ def normalise(source: Path, target: Path, local_root=None) -> dict:
             report["transformed"] += 1
         for key, count in changes.items():
             report["removed"][key] += count
+        guidance, guidance_changed = apply_template_guidance(
+            document, record.get("comments")
+        )
+        if guidance_changed:
+            report["guidance_added"] += 1
 
         relative = "templates/%s/%s" % (category, source_file.name)
         destination = target / relative
@@ -663,6 +716,7 @@ def normalise(source: Path, target: Path, local_root=None) -> dict:
 
         stored = dict(record)
         stored["filename"] = relative
+        stored["comments"] = guidance
         # The record kept the upstream raw URL, which pointed at the repository root.
         # Ours lives under the category, and non-ASCII names have to be quoted, so the
         # stored url is rebuilt from the published path rather than the bare filename.
@@ -700,10 +754,11 @@ def normalise(source: Path, target: Path, local_root=None) -> dict:
                 % (category, path.name, violation)
             )
 
-        comment = ""
-        first = document[0]
-        if isinstance(first, dict):
-            comment = str(first.get("comment") or "")
+        comment, guidance_changed = apply_template_guidance(
+            document, require_record_comment=False
+        )
+        if guidance_changed:
+            report["guidance_added"] += 1
 
         entry = local_metadata.get(path.stem) or {}
         name = entry.get("name") or path.stem
@@ -711,7 +766,11 @@ def normalise(source: Path, target: Path, local_root=None) -> dict:
         relative = "templates/%s/%s" % (category, path.name)
         destination = target / relative
         destination.parent.mkdir(parents=True, exist_ok=True)
-        local_bytes = _canonical_har_bytes(path)
+        local_bytes = (
+            _canonical_document_bytes(document)
+            if guidance_changed
+            else _canonical_har_bytes(path)
+        )
         destination.write_bytes(local_bytes)
 
         if name in stored_by_name:

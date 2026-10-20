@@ -78,6 +78,74 @@ def test_templates_are_sorted_into_categories(tmp_path):
     assert any("ghost.har" in item for item in report["skipped"])
 
 
+def test_missing_guidance_header_uses_the_public_record_note(tmp_path):
+    root = build_upstream(
+        tmp_path,
+        index={
+            "S1 论坛": {
+                "name": "S1 论坛",
+                "filename": "s1-forum.har",
+                "author": "Antiky",
+                "url": "https://bbs.saraba1st.com/",
+                "comments": "使用登录后的 Cookie 与同一浏览器 User-Agent。",
+            },
+        },
+    )
+    target = tmp_path / "out"
+
+    report = normalize.normalise(root, target)
+
+    published = json.loads(
+        (target / "templates" / "forum" / "s1-forum.har").read_text(
+            encoding="utf-8"
+        )
+    )
+    index = json.loads(
+        (target / "tpls_history.json").read_text(encoding="utf-8")
+    )
+    assert published[0]["comment"] == "使用登录后的 Cookie 与同一浏览器 User-Agent。"
+    assert index["har"]["S1 论坛"]["comments"] == published[0]["comment"]
+    assert report["guidance_added"] == 1
+
+
+def test_missing_guidance_everywhere_uses_a_safe_operator_header(tmp_path):
+    root = build_upstream(tmp_path)
+    target = tmp_path / "out"
+
+    report = normalize.normalise(root, target)
+
+    index = json.loads(
+        (target / "tpls_history.json").read_text(encoding="utf-8")
+    )
+    records = index["har"]
+    s1 = (
+        records["S1 论坛"]
+        if isinstance(records, dict)
+        else next(record for record in records if record["name"] == "S1 论坛")
+    )
+    guidance = s1["comments"]
+    assert guidance == normalize.DEFAULT_GUIDANCE_COMMENT
+    assert "Cookie" in guidance and "User-Agent" in guidance
+    assert "不会自动绕过验证" in guidance
+    assert report["guidance_added"] == 2
+
+
+def test_published_tree_validator_rejects_a_missing_instruction_header(tmp_path):
+    root = build_upstream(tmp_path)
+    target = tmp_path / "out"
+    normalize.normalise(root, target)
+    path = target / "templates" / "forum" / "s1-forum.har"
+    document = json.loads(path.read_text(encoding="utf-8"))
+    document[0].pop("comment")
+    path.write_text(
+        json.dumps(document, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
+
+    with pytest.raises(ValueError, match="instruction header"):
+        normalize.validate_published_tree(target)
+
+
 def test_upstream_templates_are_normalized_to_paired_cookie_identity(tmp_path):
     root = build_upstream(tmp_path)
     (root / "s1-forum.har").write_text(
