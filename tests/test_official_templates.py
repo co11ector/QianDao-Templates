@@ -125,6 +125,28 @@ def test_every_local_template_has_an_operator_guidance_header():
         assert any(comments), (slug, path)
 
 
+def test_every_local_template_has_detailed_operator_guidance():
+    required_sections = (
+        "【认证方式】",
+        "【本模板做什么】",
+        "【成功判定】",
+        "【失效处理】",
+    )
+
+    for slug, (path, document) in local_templates().items():
+        first_comment = str(document[0].get("comment") or "").strip()
+
+        assert len(first_comment) >= 240, (slug, len(first_comment), path)
+        assert all(section in first_comment for section in required_sections), (
+            slug,
+            path,
+        )
+        assert "Cookie" in first_comment and "User-Agent" in first_comment, (
+            slug,
+            path,
+        )
+
+
 def test_local_http_requests_pair_cookie_and_user_agent():
     for slug, (path, document) in local_templates().items():
         for step in document:
