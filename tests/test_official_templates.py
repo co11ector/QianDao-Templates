@@ -217,6 +217,73 @@ def test_transport_fingerprint_sensitive_templates_use_the_edge_tls_profile():
             assert headers.get("x-qiandao-impersonate") == "edge", path
 
 
+def test_52pojie_checks_the_task_center_before_apply_or_draw():
+    path, document = local_templates()["52pojie-daily-signin"]
+    first = document[0]
+    logged_in = (
+        '<a href="space-uid-42.html" id="m">fixture-user</a>'
+        '<a href="member.php?mod=logging&amp;action=logout">退出</a>'
+    )
+    available = (
+        logged_in
+        + '<a href="home.php?mod=task&amp;do=apply&amp;id=2&amp;formhash=fixture">'
+        "申请任务</a>"
+    )
+    idle = logged_in + "<div>暂无新任务，周期性任务完成后可以再次申请</div>"
+
+    assert first["request"]["url"] == "https://www.52pojie.cn/home.php?mod=task&item=new", path
+
+    success = first["rule"]["success_asserts"][0]["re"]
+    assert re.search(success, available, re.S), path
+    assert re.search(success, idle, re.S), path
+    assert re.search(success, logged_in, re.S) is None, path
+
+    extraction = next(
+        item
+        for item in first["rule"]["extract_variables"]
+        if item["name"] == "needs_apply"
+    )
+    available_match = re.search(extraction["re"], available)
+    assert available_match is not None, path
+    assert available_match.group(1) == "apply", path
+    assert re.search(extraction["re"], idle) is None, path
+
+    urls = [step.get("request", {}).get("url") for step in document]
+    assert urls[1] == "{% if needs_apply %}", path
+    assert urls[2].startswith("https://www.52pojie.cn/home.php?mod=task&do=apply&id=2"), path
+    assert urls[3].startswith("https://www.52pojie.cn/home.php?mod=task&do=draw&id=2"), path
+    assert urls[4] == "https://www.52pojie.cn/home.php?mod=task&item=new", path
+    assert urls[5] == "{% endif %}", path
+
+
+def test_52pojie_completed_state_does_not_repeat_apply_and_post_check_fails_closed():
+    path, document = local_templates()["52pojie-daily-signin"]
+    logged_in_idle = (
+        '<a href="space-uid-42.html" id="m">fixture-user</a>'
+        '<a href="member.php?mod=logging&amp;action=logout">退出</a>'
+        "<div>暂无新任务，周期性任务完成后可以再次申请</div>"
+    )
+    still_available = logged_in_idle.replace(
+        "暂无新任务，周期性任务完成后可以再次申请",
+        '<a href="home.php?mod=task&amp;do=apply&amp;id=2">申请任务</a>',
+    )
+
+    post_apply = document[4]["rule"]
+    success = post_apply["success_asserts"][0]["re"]
+    assert re.search(success, logged_in_idle, re.S), path
+    assert re.search(success, still_available, re.S) is None, path
+
+    failed = " ".join(item["re"] for item in post_apply["failed_asserts"])
+    assert re.search(failed, "<html>WZWS-RAY challenge</html>", re.S), path
+
+    for index in (2, 3):
+        status = document[index]["rule"]["success_asserts"][0]
+        assert status["from"] == "status", path
+        assert re.search(status["re"], "200"), path
+        assert re.search(status["re"], "302"), path
+        assert re.search(status["re"], "500") is None, path
+
+
 def test_retired_browser_sites_have_fixed_host_cookie_replacements():
     for slug in ("52pojie-daily-signin", "itsk-daily-signin"):
         path, document = local_templates()[slug]
