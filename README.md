@@ -75,9 +75,10 @@
 1. 先跑整理脚本的测试 —— **不通过就中止**，不会发布被改坏的索引；
 2. 浅克隆上游仓库；
 3. 自动清理抓包里的 Cookie、硬编码 UA、静态凭据 Header 与 Cookie 元数据，并拒绝请求 URL/请求体中的字面凭据；
-4. 为每个外部 HTTP(S) 请求补齐一份 `Cookie: {{cookie}}` 与一份 `User-Agent: {{user_agent}}`，拒绝 `browser://`；
-5. 发布前硬门禁要求至少 400 个模板，且索引内容必须与 HAR 文件逐字一致；
-6. 重新生成 README 与 CATEGORIES，有变化才提交推送。
+4. 为每个外部 HTTP(S) 请求补齐一份 `User-Agent: {{user_agent}}`；`Cookie: {{cookie}}` 只注入同一站点范围，第三方辅助请求不带站点 Cookie；
+5. 拒绝 `browser://`、第三方打码服务和内置 OCR 验证码绕过；
+6. 发布前硬门禁要求至少 375 个模板，且索引内容必须与 HAR 文件逐字一致；
+7. 重新生成 README 与 CATEGORIES，有变化才提交推送。
 
 全程使用仓库内置的 `GITHUB_TOKEN`，**不需要个人访问令牌**。
 

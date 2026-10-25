@@ -249,6 +249,126 @@ def test_upstream_templates_are_normalized_to_paired_cookie_identity(tmp_path):
     assert embedded == document
 
 
+def test_third_party_requests_keep_user_agent_without_the_site_cookie(tmp_path):
+    root = build_upstream(tmp_path)
+    document = cookie_only_document("https://bbs.example.com/")
+    document.append(
+        {
+            "request": {
+                "method": "GET",
+                "url": "https://helper.example.net/status",
+                "headers": [
+                    {"name": "Cookie", "value": "{{cookie}}"},
+                    {"name": "User-Agent", "value": "{{user_agent}}"},
+                ],
+            }
+        }
+    )
+    (root / "s1-forum.har").write_text(
+        json.dumps(document), encoding="utf-8"
+    )
+    target = tmp_path / "out"
+
+    normalize.normalise(root, target, local_root=tmp_path / "local")
+
+    published = json.loads(
+        (target / "templates" / "forum" / "s1-forum.har").read_text(
+            encoding="utf-8"
+        )
+    )
+    site_headers = {
+        header["name"].casefold(): header["value"]
+        for header in published[0]["request"]["headers"]
+    }
+    helper_headers = {
+        header["name"].casefold(): header["value"]
+        for header in published[1]["request"]["headers"]
+    }
+    assert site_headers["cookie"] == "{{cookie}}"
+    assert site_headers["user-agent"] == "{{user_agent}}"
+    assert "cookie" not in helper_headers
+    assert helper_headers["user-agent"] == "{{user_agent}}"
+
+
+def test_primary_site_cookie_scope_wins_when_a_helper_request_comes_first(tmp_path):
+    root = build_upstream(tmp_path)
+    document = [
+        {
+            "request": {
+                "method": "GET",
+                "url": "https://short.example.net/go",
+                "headers": [
+                    {"name": "User-Agent", "value": "{{user_agent}}"},
+                ],
+            }
+        },
+        *cookie_only_document("https://bbs.example.com/"),
+        *cookie_only_document("https://bbs.example.com/checkin"),
+    ]
+    (root / "s1-forum.har").write_text(
+        json.dumps(document), encoding="utf-8"
+    )
+    target = tmp_path / "out"
+
+    normalize.normalise(root, target, local_root=tmp_path / "local")
+
+    published = json.loads(
+        (target / "templates" / "forum" / "s1-forum.har").read_text(
+            encoding="utf-8"
+        )
+    )
+    helper_headers = {
+        header["name"].casefold(): header["value"]
+        for header in published[0]["request"]["headers"]
+    }
+    site_headers = [
+        {
+            header["name"].casefold(): header["value"]
+            for header in step["request"]["headers"]
+        }
+        for step in published[1:]
+    ]
+    assert "cookie" not in helper_headers
+    assert all(headers["cookie"] == "{{cookie}}" for headers in site_headers)
+
+
+@pytest.mark.parametrize(
+    "url",
+    (
+        "api://util/dddd/ocr",
+        "https://api.yescaptcha.com/createTask",
+        "https://worker.captcha.api.yescaptcha.com/createTask",
+    ),
+)
+def test_templates_that_solve_human_challenges_are_rejected(tmp_path, url):
+    root = build_upstream(tmp_path)
+    document = cookie_only_document("https://bbs.example.com/")
+    document.append(
+        {
+            "request": {
+                "method": "POST",
+                "url": url,
+                "headers": [],
+            }
+        }
+    )
+    (root / "s1-forum.har").write_text(
+        json.dumps(document), encoding="utf-8"
+    )
+
+    report = normalize.normalise(
+        root, tmp_path / "out", local_root=tmp_path / "local"
+    )
+
+    assert any(
+        "s1-forum.har" in item and "CAPTCHA solving" in item
+        for item in report["rejected_cookie_only"]
+    )
+    assert not (
+        tmp_path / "out" / "templates" / "forum" / "s1-forum.har"
+    ).exists()
+
+
 def test_internal_steps_drop_cookie_identity_and_credential_metadata(tmp_path):
     root = build_upstream(tmp_path)
     document = cookie_only_document("https://bbs.saraba1st.com/")
@@ -900,3 +1020,14 @@ def test_published_tree_validator_requires_embedded_content_to_match_files(
 
     with pytest.raises(ValueError, match="does not match"):
         normalize.validate_published_tree(target)
+
+
+def test_sync_workflow_installs_every_imported_test_dependency():
+    workflow = (
+        Path(__file__).resolve().parents[1]
+        / ".github"
+        / "workflows"
+        / "sync-upstream.yml"
+    ).read_text(encoding="utf-8")
+
+    assert "python -m pip install --quiet pytest jinja2" in workflow

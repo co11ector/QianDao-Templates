@@ -56,14 +56,15 @@ docs/TEMPLATE-REPO.md  本文档
 2. 每天 03:17 UTC（可手动触发）浅克隆上游；
 3. 运行 `tools/normalize.py upstream curated` —— 自动清理抓包中的真实 Cookie、硬编码
    User-Agent、静态凭据 Header，以及请求/响应 Cookie 元数据；为每个外部 HTTP(S) 请求
-   补齐且只保留一份 `Cookie: {{cookie}}` 与一份 `User-Agent: {{user_agent}}`。拒绝
-   `browser://`、`browser_worker`、`browser-worker`；没有外部 HTTP(S) 请求的模板跳过并
-   上报，其他无法规范化的上游条目同样跳过并上报，项目自有的 `local/` 模板不合规则直接
-   中止同步。通过后按关键词分类、重写索引里的路径与 `url`、生成
+   补齐且只保留一份 `User-Agent: {{user_agent}}`，并按出现频次识别主站范围，只向主站
+   请求注入一份 `Cookie: {{cookie}}`，第三方辅助请求不携带站点 Cookie。拒绝
+   `browser://`、`browser_worker`、`browser-worker`、自动打码服务与内置 OCR 绕过；
+   没有外部 HTTP(S) 请求的模板跳过并上报，其他无法规范化的上游条目同样跳过并上报，
+   项目自有的 `local/` 模板不合规则直接中止同步。通过后按关键词分类、重写索引里的路径与 `url`、生成
    README/CATEGORIES。索引内嵌的 HAR 统一规范化为 UTF-8 + LF，`local/` 模板时间取 Git
    commit epoch 并按 UTC 输出，避免 Windows 与 Ubuntu runner 因 CRLF 或本地时区生成
    不同索引；
-4. 把整理结果覆盖到本仓库，再跑发布树硬门禁：至少 400 个模板、索引与 HAR 一一对应、
+4. 把整理结果覆盖到本仓库，再跑发布树硬门禁：至少 375 个模板、索引与 HAR 一一对应、
    内嵌内容与文件逐字一致、全部通过 Cookie-only 校验；
 5. 校验通过后才提交推送（用内置 `GITHUB_TOKEN`，不需要 PAT）。
 
@@ -71,9 +72,9 @@ docs/TEMPLATE-REPO.md  本文档
 `brand/`、`tools/`、`tests/`、`docs/` 不受影响。
 
 现状核对：该仓库**不是 Fork**（因此定时任务默认可用）、**公开**、默认分支 `master`、
-工作流状态 active、已实测跑通。当前同步 407 条上游索引，其中 388 条可规范化为
-Cookie-only HTTP 模板、14 条因没有外部 HTTP(S) 请求跳过、2 条因请求体含不可公开的字面
-凭据被拒绝、3 条按退役清单跳过；再合并 `local/` 下 24 个项目自有模板，最终发布 406 个
+工作流状态 active、已实测跑通。当前同步 405 条上游索引，其中 358 条可规范化为
+Cookie-only HTTP 模板、24 条因没有外部 HTTP(S) 请求跳过、23 条因自动打码被拒绝；
+再合并 `local/` 下 24 个项目自有模板，最终发布 382 个
 唯一模板。发布集包含 PT 17、论坛 73、影音 9、通用签到 307。
 若是将来重建为 Fork，需到 Actions 页**启用 schedule**（GitHub 默认禁用 fork 的定时任务）。
 
@@ -94,7 +95,7 @@ Cookie-only HTTP 模板、14 条因没有外部 HTTP(S) 请求跳过、2 条因�
 ## 校验
 
 `tests/test_normalize.py` 覆盖：分类落位、抓包敏感字段清理、Cookie/UA 补齐、无外网请求
-跳过、浏览器模板拒绝、400 条发布下限、索引路径与真实文件一致、索引内嵌内容与发布文件
+跳过、浏览器模板拒绝、375 条发布下限、索引路径与真实文件一致、索引内嵌内容与发布文件
 逐字一致、损坏/缺失上报、项目自有模板回归中止、README 生成（含横幅引用）、CRLF checkout
 的索引规范化、UTC 时间戳，以及**映射形态索引**的回归（该形态曾在真实上游上暴露过 bug）。
 `tests/test_official_templates.py` 还会校验发布树包含全部 `local/` 模板，且每个已发布模板

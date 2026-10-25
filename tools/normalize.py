@@ -21,9 +21,10 @@ This script produces the layout we publish:
 The published library is Cookie-backed HTTP only. Upstream captures are normalized before
 publication: captured Cookie values, hard-coded User-Agent strings, literal credential
 headers, request cookie arrays, and response cookie metadata are removed. Every external
-HTTP(S) request then receives exactly one ``Cookie: {{cookie}}`` and one
-``User-Agent: {{user_agent}}`` header. Templates using ``browser://`` are rejected. Local
-templates are held to the same final identity rule and fail the whole sync when they
+HTTP(S) request then receives exactly one ``User-Agent: {{user_agent}}`` header. A captured
+site Cookie is scoped to the primary request domain rather than leaked to unrelated helper
+hosts. Templates using ``browser://`` or automated challenge-solving services are rejected.
+Local templates are held to the same final identity rule and fail the whole sync when they
 regress.
 
 It is deliberately conservative about names: upstream filenames are referenced by the
@@ -41,8 +42,9 @@ import re
 import shutil
 import subprocess
 import sys
+from collections import Counter
 from pathlib import Path
-from urllib.parse import quote
+from urllib.parse import quote, urlsplit
 
 PUBLISHED_REPOSITORY = "https://raw.githubusercontent.com/co11ector/QianDao-Templates/master"
 # Shown as the author of the templates this project writes itself, under local/.
@@ -60,6 +62,46 @@ DEFAULT_CATEGORY = "signin"
 CATEGORY_ORDER = ("pt", "forum", "video", "shop", "signin")
 COOKIE_PLACEHOLDER = "{{cookie}}"
 USER_AGENT_PLACEHOLDER = "{{user_agent}}"
+AUTOMATED_CHALLENGE_URL_MARKERS = ("api://util/dddd/ocr",)
+AUTOMATED_CHALLENGE_HOSTS = frozenset(
+    (
+        "2captcha.com",
+        "anti-captcha.com",
+        "capmonster.cloud",
+        "chaojiying.com",
+        "jfbym.com",
+        "ttshitu.com",
+        "truecaptcha.ai",
+        "yescaptcha.com",
+    )
+)
+# A deliberately small public-suffix allow-list covers the country suffixes used by
+# the public templates. This keeps credential scope inside one registrable site
+# without pulling a network-updated suffix database into the publication workflow.
+MULTI_LABEL_PUBLIC_SUFFIXES = frozenset(
+    (
+        "ac.uk",
+        "co.jp",
+        "co.kr",
+        "co.uk",
+        "com.au",
+        "com.br",
+        "com.cn",
+        "com.hk",
+        "com.mx",
+        "com.sg",
+        "com.tw",
+        "edu.cn",
+        "gov.cn",
+        "net.au",
+        "net.cn",
+        "net.hk",
+        "org.au",
+        "org.cn",
+        "org.hk",
+        "org.uk",
+    )
+)
 DEFAULT_GUIDANCE_COMMENT = (
     "使用登录后的完整 Cookie 与同一浏览器的 User-Agent 运行本模板。"
     "若站点要求验证码、滑块或其他人工验证，请先在浏览器完成并重新获取凭据；"
@@ -164,6 +206,80 @@ def _is_external_request(request: dict) -> bool:
     return str(request.get("url") or "").startswith(("http://", "https://"))
 
 
+def _request_host(url: str) -> str | None:
+    try:
+        host = urlsplit(str(url or "")).hostname
+    except ValueError:
+        return None
+    return host.rstrip(".").casefold() if host else None
+
+
+def _credential_scope(host: str | None) -> str | None:
+    """Return the narrowest stable site scope used for the Cookie placeholder."""
+
+    if not host:
+        return None
+    host = host.rstrip(".").casefold()
+    if "{{" in host or "{%" in host or host == "localhost":
+        return host
+    try:
+        import ipaddress
+
+        ipaddress.ip_address(host)
+        return host
+    except ValueError:
+        pass
+    labels = host.split(".")
+    if len(labels) <= 2:
+        return host
+    suffix = ".".join(labels[-2:])
+    if suffix in MULTI_LABEL_PUBLIC_SUFFIXES:
+        return ".".join(labels[-3:])
+    return suffix
+
+
+def _document_cookie_scope(document) -> str | None:
+    scopes = []
+    for _step, request in _requests(document):
+        if not _is_external_request(request):
+            continue
+        scope = _credential_scope(
+            _request_host(str(request.get("url") or ""))
+        )
+        if scope:
+            scopes.append(scope)
+    if not scopes:
+        return None
+    counts = Counter(scopes)
+    return max(counts, key=lambda scope: (counts[scope], -scopes.index(scope)))
+
+
+def _request_uses_site_cookie(request: dict, cookie_scope: str | None) -> bool:
+    if not _is_external_request(request):
+        return False
+    request_scope = _credential_scope(
+        _request_host(str(request.get("url") or ""))
+    )
+    return request_scope is not None and request_scope == cookie_scope
+
+
+def automated_challenge_violation(document) -> str | None:
+    """Reject templates that actively solve or bypass a human challenge."""
+
+    for _step, request in _requests(document):
+        url = str(request.get("url") or "").strip()
+        lowered_url = url.casefold()
+        if any(marker in lowered_url for marker in AUTOMATED_CHALLENGE_URL_MARKERS):
+            return "automated CAPTCHA solving is not permitted"
+        host = _request_host(url)
+        if host and any(
+            host == blocked or host.endswith(f".{blocked}")
+            for blocked in AUTOMATED_CHALLENGE_HOSTS
+        ):
+            return "third-party CAPTCHA solving services are not permitted"
+    return None
+
+
 def apply_template_guidance(
     document, record_comment="", *, require_record_comment=True
 ):
@@ -209,10 +325,15 @@ def normalise_upstream_document(document):
     encoded = json.dumps(document, ensure_ascii=False).casefold()
     if any(marker in encoded for marker in RETIRED_BROWSER_MARKERS):
         return None, "browser execution is retired", changes
+    violation = automated_challenge_violation(document)
+    if violation is not None:
+        return None, violation, changes
 
     external_requests = 0
+    cookie_scope = _document_cookie_scope(document)
     for step, request in _requests(document):
         is_external = _is_external_request(request)
+        sends_site_cookie = _request_uses_site_cookie(request, cookie_scope)
         if is_external:
             external_requests += 1
         headers = request.get("headers")
@@ -240,7 +361,11 @@ def normalise_upstream_document(document):
             sanitized_headers.append(header)
         request["headers"] = (
             [
-                {"name": "Cookie", "value": COOKIE_PLACEHOLDER},
+                *(
+                    [{"name": "Cookie", "value": COOKIE_PLACEHOLDER}]
+                    if sends_site_cookie
+                    else []
+                ),
                 {"name": "User-Agent", "value": USER_AGENT_PLACEHOLDER},
                 *sanitized_headers,
             ]
@@ -287,8 +412,12 @@ def cookie_only_violation(document) -> str | None:
     encoded = json.dumps(document, ensure_ascii=False).casefold()
     if any(marker in encoded for marker in RETIRED_BROWSER_MARKERS):
         return "browser execution is retired"
+    challenge_violation = automated_challenge_violation(document)
+    if challenge_violation is not None:
+        return challenge_violation
 
     external_requests = 0
+    cookie_scope = _document_cookie_scope(document)
     for step in document:
         if not isinstance(step, dict):
             continue
@@ -318,13 +447,19 @@ def cookie_only_violation(document) -> str | None:
             ):
                 return "request credential header values must be templated"
         if is_external:
-            if cookie_values != [COOKIE_PLACEHOLDER]:
-                return "every external request must use exactly one Cookie: {{cookie}}"
             if user_agent_values != [USER_AGENT_PLACEHOLDER]:
                 return (
                     "every external request must use exactly one "
                     "User-Agent: {{user_agent}}"
                 )
+            if _request_uses_site_cookie(request, cookie_scope):
+                if cookie_values != [COOKIE_PLACEHOLDER]:
+                    return (
+                        "same-site requests must use exactly one "
+                        "Cookie: {{cookie}}"
+                    )
+            elif cookie_values:
+                return "third-party requests must not carry the site Cookie"
         elif any(value != COOKIE_PLACEHOLDER for value in cookie_values):
             return "internal request Cookie values must not be published"
         elif any(value != USER_AGENT_PLACEHOLDER for value in user_agent_values):
@@ -892,10 +1027,11 @@ def normalise(source: Path, target: Path, local_root=None) -> dict:
         "2. 浅克隆上游仓库；",
         "3. 自动清理抓包里的 Cookie、硬编码 UA、静态凭据 Header 与 Cookie 元数据，"
         "并拒绝请求 URL/请求体中的字面凭据；",
-        "4. 为每个外部 HTTP(S) 请求补齐一份 `Cookie: {{cookie}}` 与一份 "
-        "`User-Agent: {{user_agent}}`，拒绝 `browser://`；",
-        "5. 发布前硬门禁要求至少 400 个模板，且索引内容必须与 HAR 文件逐字一致；",
-        "6. 重新生成 README 与 CATEGORIES，有变化才提交推送。",
+        "4. 为每个外部 HTTP(S) 请求补齐一份 `User-Agent: {{user_agent}}`；"
+        "`Cookie: {{cookie}}` 只注入同一站点范围，第三方辅助请求不带站点 Cookie；",
+        "5. 拒绝 `browser://`、第三方打码服务和内置 OCR 验证码绕过；",
+        "6. 发布前硬门禁要求至少 375 个模板，且索引内容必须与 HAR 文件逐字一致；",
+        "7. 重新生成 README 与 CATEGORIES，有变化才提交推送。",
         "",
         "全程使用仓库内置的 `GITHUB_TOKEN`，**不需要个人访问令牌**。",
         "",
