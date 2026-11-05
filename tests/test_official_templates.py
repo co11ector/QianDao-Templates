@@ -350,6 +350,11 @@ def test_itsk_webapi_probe_uses_one_signature_clock():
     assert "itsk_micro_ts[0:10]" in headers["X-Request-Signature"]
     assert "|sha1" in headers["X-Request-Signature"]
     assert "itsk_access_token" in headers["Authorization"]
+    assert any(
+        "登录超时" in item["re"] and "重新登录" in item["re"]
+        for item in document[1]["rule"]["failed_asserts"]
+        if item.get("from") == "content"
+    )
     assert path.name == "itsk-daily-signin.har"
 
 
