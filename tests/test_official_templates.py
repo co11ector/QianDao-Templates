@@ -224,7 +224,7 @@ def test_52pojie_checks_the_task_center_before_apply_or_draw():
         '<a href="space-uid-42.html" id="m">fixture-user</a>'
         '<a href="member.php?mod=logging&amp;action=logout">退出</a>'
     )
-    task_center = logged_in + "<div>领取今日签到奖励</div>"
+    task_center = logged_in + '<a href="home.php?mod=task">任务</a>'
     available = (
         task_center
         + '<a href="home.php?mod=task&amp;do=apply&amp;id=2&amp;formhash=fixture">'
@@ -265,7 +265,7 @@ def test_52pojie_completed_state_does_not_repeat_apply_and_post_check_fails_clos
     logged_in_idle = (
         '<a href="space-uid-42.html" id="m">fixture-user</a>'
         '<a href="member.php?mod=logging&amp;action=logout">退出</a>'
-        "<div>领取今日签到奖励</div>"
+        '<a href="home.php?mod=task">任务</a>'
         "<div>周期性任务完成后可以再次申请</div>"
     )
     still_available = logged_in_idle.replace(
