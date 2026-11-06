@@ -721,6 +721,24 @@ def test_smzdm_unicode_log_step_uses_the_handler_content_parameter():
     assert "msg=" not in log_step["request"]["data"].split("&", 1)[0]
 
 
+def test_10001_date_comparison_encodes_the_datetime_query_parameter():
+    path, document = local_templates()["10001-daily-login"]
+    environment = SandboxedEnvironment()
+    environment.filters["date_time"] = lambda date=True, time=True, diff=0: (
+        "2026-11-06 14:52:48"
+    )
+    environment.filters["urlencode"] = lambda value: quote_plus(str(value), safe="")
+
+    rendered = environment.from_string(document[2]["request"]["url"]).render(
+        reward_date="2026-11-06"
+    )
+    query = urlsplit(rendered).query
+
+    assert " " not in query, path
+    assert parse_qs(query)["p"] == ["2026-11-06 14:52:48"], path
+    assert parse_qs(query)["s"] == ["2026-11-06"], path
+
+
 def test_local_metadata_names_every_official_template():
     metadata = json.loads((LOCAL / "meta.json").read_text(encoding="utf-8"))
 
