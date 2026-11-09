@@ -734,7 +734,15 @@ def test_10001_date_comparison_encodes_the_datetime_query_parameter():
     )
     environment.filters["urlencode"] = lambda value: quote_plus(str(value), safe="")
 
-    rendered = environment.from_string(document[2]["request"]["url"]).render(
+    # The login steps sit in front of the reward flow, so locate the comparison step by its
+    # own route instead of pinning a position that any added step would shift.
+    comparison = next(
+        step
+        for step in document
+        if "api://util/string/replace" in str(step["request"].get("url") or "")
+        and "t=today_ok" in str(step["request"].get("url") or "")
+    )
+    rendered = environment.from_string(comparison["request"]["url"]).render(
         reward_date="2026-11-06"
     )
     query = urlsplit(rendered).query
