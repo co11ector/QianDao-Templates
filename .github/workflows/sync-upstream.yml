@@ -18,7 +18,9 @@ name: Sync and curate upstream templates
 
 on:
   schedule:
-    - cron: '17 3 * * *'
+    # Twice a day: GitHub delays scheduled runs (observed ~7h on this repo), so the
+    # second slot is what makes an upstream submission land the same day it is merged.
+    - cron: '17 3,15 * * *'
   workflow_dispatch:
 
 permissions:

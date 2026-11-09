@@ -53,7 +53,8 @@ docs/TEMPLATE-REPO.md  本文档
 
 1. 先 `pip install pytest` 并跑 `python -m pytest tests -q` —— **整理器自检不过就中止**，
    不会发布被改坏的索引；
-2. 每天 03:17 UTC（可手动触发）浅克隆上游；
+2. 每天 03:17 与 15:17 UTC（可手动触发）浅克隆上游；GitHub 的定时任务会延迟（本仓库
+   实测约 7 小时），所以排两档，上游当天合并的投稿当天就能进库；
 3. 运行 `tools/normalize.py upstream curated` —— 自动清理抓包中的真实 Cookie、硬编码
    User-Agent、静态凭据 Header，以及请求/响应 Cookie 元数据；为每个外部 HTTP(S) 请求
    补齐且只保留一份 `User-Agent: {{user_agent}}`，并按出现频次识别主站范围，只向主站
