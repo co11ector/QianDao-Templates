@@ -56,7 +56,7 @@ def rendered_rule_pattern(pattern, **variables):
     environment.globals["date_time"] = date_time
     environment.filters["date_time"] = date_time
     rendered = environment.from_string(pattern).render(**variables)
-    delimited = re.fullmatch(r"/(.*)/([imsu]*)", rendered, re.S)
+    delimited = re.fullmatch(r"/(.*)/([gimsu]*)", rendered, re.S)
     if not delimited:
         return re.compile(rendered)
 
@@ -546,10 +546,23 @@ def test_ali213_checks_the_fixed_thread_reply_instead_of_retired_task_id():
     ), path
     assert "formhash={{formhash|urlencode}}" in document[3]["request"]["data"], path
 
+    # The author view paginates, so both reads must ask for newest-first. Otherwise
+    # today's reply lands on page 2 and the guard and the final check only ever see
+    # older posts, which is what made the task post a duplicate reply every run.
+    author_reads = [
+        step["request"]["url"]
+        for step in document
+        if "authorid=" in str(step.get("request", {}).get("url") or "")
+    ]
+    assert len(author_reads) == 2, path
+    assert all("ordertype=1" in url for url in author_reads), path
+
+    # The guard is a fresh list on every run: an empty list means "no reply today".
+    # A single boolean match would keep the previous run's value and post again.
     reply = next(
         item
         for item in document[1]["rule"]["extract_variables"]
-        if item["name"] == "needs_reply"
+        if item["name"] == "today_reply"
     )
     reply_pattern = rendered_rule_pattern(reply["re"], account_uid="42")
     old_reply = (
@@ -559,10 +572,9 @@ def test_ali213_checks_the_fixed_thread_reply_instead_of_retired_task_id():
     )
     replied_today = old_reply.replace("2026-10-21", "2026-10-22")
 
-    old_match = reply_pattern.search(old_reply)
-    assert old_match is not None, path
-    assert old_match.group(1) == 'id="fastpostform"', path
-    assert reply_pattern.search(replied_today) is None, path
+    assert reply_pattern.findall(old_reply) == [], path
+    assert len(reply_pattern.findall(replied_today)) == 1, path
+    assert "not today_reply" in document[2]["request"]["url"], path
 
     final_success = document[-1]["rule"]["success_asserts"][0]["re"]
     final_pattern = rendered_rule_pattern(final_success, account_uid="42")
