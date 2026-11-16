@@ -245,6 +245,9 @@ jobs:
         run: npm install --global pnpm@12.4.2
       - name: Install web dependencies
         run: pnpm --dir web install --frozen-lockfile
+      - name: Install Chromium for browser bridge tests
+        working-directory: web
+        run: pnpm exec playwright install --with-deps chromium
       - name: Verify reproducible web bundle
         run: pnpm --dir web build:check
       - name: Run browser bridge tests
