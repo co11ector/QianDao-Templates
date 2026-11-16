@@ -15,6 +15,9 @@ name: Private QianDao gates
 # or upload the private build outputs as artifacts.
 
 on:
+  push:
+    branches:
+      - master
   schedule:
     # Poll often enough for normal work, while the cache marker below avoids
     # repeating the gate for a commit that already passed.

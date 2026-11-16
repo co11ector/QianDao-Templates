@@ -26,8 +26,9 @@ the old deploy key.
 
 ## Scheduling and result state
 
-The workflow polls the private `main` branches every 15 minutes and can also be
-started manually. The exact commit SHA is checked out for the gate run.
+The workflow polls the private `main` branches every 15 minutes, runs when this
+workflow is updated on `master`, and can also be started manually. The exact
+commit SHA is checked out for the gate run.
 
 After every gate succeeds, a small Actions cache entry keyed by that SHA is
 written. Later polls skip a commit that already passed. A failed commit is not
