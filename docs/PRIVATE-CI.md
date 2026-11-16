@@ -52,7 +52,7 @@ visibility boundary.
 
 ## Gates
 
-The main repository runs the same gates as its private workflow:
+The main repository runs its full gate set:
 
 - dependency lock verification, complexity, Python compilation, Jinja
   compilation, and Python dependency audit;
