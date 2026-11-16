@@ -31,7 +31,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: private-qian-dao-gates-${{ github.ref_name }}
+  group: private-qian-dao-gates-${{ github.ref_name }}-${{ github.sha }}
   cancel-in-progress: true
 
 jobs:
