@@ -9,6 +9,7 @@ this suite before it publishes anything.
 import base64
 import json
 import re
+import subprocess
 import sys
 from pathlib import Path
 from types import SimpleNamespace
@@ -76,6 +77,35 @@ def test_templates_are_sorted_into_categories(tmp_path):
     assert len(report["skipped"]) == 2
     assert any("broken.har" in item for item in report["skipped"])
     assert any("ghost.har" in item for item in report["skipped"])
+
+
+def test_a_case_collision_reads_the_exact_committed_source(tmp_path):
+    source = tmp_path / "upstream"
+    source.mkdir()
+    exact = source / "BTSCHOOL.har"
+    exact.write_text('["uppercase"]', encoding="utf-8")
+    subprocess.run(["git", "init", "-q"], cwd=source, check=True)
+    subprocess.run(["git", "add", "BTSCHOOL.har"], cwd=source, check=True)
+    subprocess.run(
+        [
+            "git",
+            "-c",
+            "user.name=QianDao Tests",
+            "-c",
+            "user.email=tests@example.invalid",
+            "commit",
+            "-qm",
+            "fixture",
+        ],
+        cwd=source,
+        check=True,
+    )
+    exact.rename(source / "btschool.har")
+
+    path, text = normalize._read_indexed_source(source, "BTSCHOOL.har")
+
+    assert path.name == "BTSCHOOL.har"
+    assert text == '["uppercase"]'
 
 
 def test_missing_guidance_header_uses_the_public_record_note(tmp_path):

@@ -540,6 +540,38 @@ def _canonical_har_bytes(path: Path) -> bytes:
     return path.read_text(encoding="utf-8").encode("utf-8")
 
 
+def _read_indexed_source(source: Path, filename: str):
+    """Read a source file without confusing names that differ only by case.
+
+    A Windows checkout of an upstream repository cannot materialise both
+    ``BTSCHOOL.har`` and ``btschool.har``. Git still has both objects, so fall
+    back to the committed object when the exact spelling is absent from the
+    working tree. The workflow runs on Linux, but local generation must produce
+    the same published tree.
+    """
+
+    relative = filename.lstrip("/")
+    source_file = source / relative
+    try:
+        exact_name = source_file.is_file() and any(
+            child.name == source_file.name
+            for child in source_file.parent.iterdir()
+        )
+    except OSError:
+        exact_name = False
+    if exact_name:
+        return source_file, source_file.read_text(encoding="utf-8")
+
+    if (source / ".git").exists():
+        completed = subprocess.run(
+            ["git", "-C", str(source), "show", f"HEAD:{relative}"],
+            capture_output=True,
+        )
+        if completed.returncode == 0:
+            return source_file, completed.stdout.decode("utf-8")
+    return None, None
+
+
 def local_record_metadata(path: Path, comment_url: str, meta_path: Path = None) -> dict:
     """The version/date/update/commenturl fields the application expects on a record.
 
@@ -811,14 +843,12 @@ def normalise(source: Path, target: Path, local_root=None) -> dict:
         if is_retired(record, retired_entries):
             report["retired"].append(record.get("name") or filename)
             continue
-        source_file = source / filename
-        if not source_file.is_file():
-            source_file = source / filename.lstrip("/")
-        if not source_file.is_file():
+        source_file, source_text = _read_indexed_source(source, filename)
+        if source_file is None:
             report["skipped"].append("%s: missing" % filename)
             continue
         try:
-            document = json.loads(source_file.read_text(encoding="utf-8"))
+            document = json.loads(source_text)
         except (json.JSONDecodeError, UnicodeDecodeError) as error:
             report["skipped"].append(
                 "%s: unreadable (%s)" % (filename, error.__class__.__name__)
