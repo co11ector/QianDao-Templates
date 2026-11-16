@@ -1,0 +1,454 @@
+name: Private QianDao gates
+
+# The QianDao application and Cookie Extractor repositories are private. Their
+# GitHub-hosted Actions minutes are metered and the account's allowance is
+# currently zero, so jobs in those repositories fail before their first step.
+#
+# This public repository has free standard GitHub-hosted runners. It checks out
+# the two private repositories with separate read-only deploy keys, runs the
+# same gates their own workflows define, and records a successful commit in the
+# Actions cache so an unchanged repository is skipped on later polls.
+#
+# The private source never becomes part of this repository. The deploy keys
+# cannot write, cannot call the REST API, and are scoped to one repository each.
+# Anyone can read this workflow's logs, so the gate jobs never print credentials
+# or upload the private build outputs as artifacts.
+
+on:
+  schedule:
+    # Poll often enough for normal work, while the cache marker below avoids
+    # repeating the gate for a commit that already passed.
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+    inputs:
+      force:
+        description: Run both repositories even if their commit already passed
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: private-qian-dao-gates
+  cancel-in-progress: false
+
+jobs:
+  resolve:
+    name: Resolve private commits
+    runs-on: ubuntu-latest
+    outputs:
+      main_sha: ${{ steps.revisions.outputs.main_sha }}
+      extension_sha: ${{ steps.revisions.outputs.extension_sha }}
+      main_needed: ${{ inputs.force || steps.main-cache.outputs.cache-hit != 'true' }}
+      extension_needed: ${{ inputs.force || steps.extension-cache.outputs.cache-hit != 'true' }}
+    steps:
+      - name: Read the branch heads with the read-only deploy keys
+        id: revisions
+        env:
+          QIANDAO_READ_KEY: ${{ secrets.QIANDAO_READ_KEY }}
+          QIANDAO_EXT_READ_KEY: ${{ secrets.QIANDAO_EXT_READ_KEY }}
+        run: |
+          set -euo pipefail
+          ssh_dir="$RUNNER_TEMP/private-ci-ssh"
+          install -m 700 -d "$ssh_dir"
+          printf '%s\n' "$QIANDAO_READ_KEY" > "$ssh_dir/main"
+          printf '%s\n' "$QIANDAO_EXT_READ_KEY" > "$ssh_dir/extension"
+          chmod 600 "$ssh_dir/main" "$ssh_dir/extension"
+          ssh-keyscan -H github.com > "$ssh_dir/known_hosts" 2>/dev/null
+
+          main_sha="$(
+            GIT_SSH_COMMAND="ssh -i $ssh_dir/main -o IdentitiesOnly=yes -o UserKnownHostsFile=$ssh_dir/known_hosts -o StrictHostKeyChecking=yes" \
+              git ls-remote git@github.com:co11ector/QianDao.git refs/heads/main |
+              awk 'NR == 1 { print $1 }'
+          )"
+          extension_sha="$(
+            GIT_SSH_COMMAND="ssh -i $ssh_dir/extension -o IdentitiesOnly=yes -o UserKnownHostsFile=$ssh_dir/known_hosts -o StrictHostKeyChecking=yes" \
+              git ls-remote git@github.com:co11ector/QianDao-Cookie-Extractor.git refs/heads/main |
+              awk 'NR == 1 { print $1 }'
+          )"
+
+          test -n "$main_sha"
+          test -n "$extension_sha"
+          echo "main_sha=$main_sha" >> "$GITHUB_OUTPUT"
+          echo "extension_sha=$extension_sha" >> "$GITHUB_OUTPUT"
+          echo "QianDao main: $main_sha"
+          echo "Cookie Extractor main: $extension_sha"
+
+      - name: Look for a completed QianDao gate
+        id: main-cache
+        uses: actions/cache/restore@v4
+        with:
+          path: ci-markers/main
+          key: private-qian-dao-${{ steps.revisions.outputs.main_sha }}
+          lookup-only: true
+
+      - name: Look for a completed extension gate
+        id: extension-cache
+        uses: actions/cache/restore@v4
+        with:
+          path: ci-markers/extension
+          key: private-qian-dao-extension-${{ steps.revisions.outputs.extension_sha }}
+          lookup-only: true
+
+  main-quality:
+    name: QianDao quality
+    needs: resolve
+    if: needs.resolve.outputs.main_needed == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: co11ector/QianDao
+          ref: ${{ needs.resolve.outputs.main_sha }}
+          ssh-key: ${{ secrets.QIANDAO_READ_KEY }}
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.13"
+          cache: pip
+          cache-dependency-path: |
+            requirements.txt
+            requirements-dev.txt
+            requirements.in
+            requirements-dev.in
+      - name: Install quality dependencies
+        run: python -m pip install -r requirements-dev.txt uv==0.12.17
+      - name: Verify dependency locks
+        shell: pwsh
+        run: ./ops/python-deps.ps1 check
+      - name: Enforce complexity trend
+        run: python ops/check_complexity.py
+      - name: Compile Python sources
+        run: python -m compileall -q core db libs modules web worker.py run.py tests
+      - name: Compile Jinja templates
+        run: python ops/check_jinja.py
+      - name: Audit Python runtime dependencies
+        run: python -m pip_audit -r requirements.txt
+
+  main-pytest:
+    name: QianDao pytest (${{ matrix.python-version }})
+    needs: resolve
+    if: needs.resolve.outputs.main_needed == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: co11ector/QianDao
+          ref: ${{ needs.resolve.outputs.main_sha }}
+          ssh-key: ${{ secrets.QIANDAO_READ_KEY }}
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+          cache-dependency-path: |
+            requirements.txt
+            requirements-dev.txt
+            requirements.in
+            requirements-dev.in
+      - name: Install dependencies
+        run: python -m pip install -r requirements-dev.txt
+      - name: Run tests
+        run: python -m pytest -q -W error
+
+  main-mariadb:
+    name: QianDao MariaDB migrations
+    needs: resolve
+    if: needs.resolve.outputs.main_needed == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    services:
+      mariadb:
+        image: mariadb:11.8.9
+        env:
+          MARIADB_DATABASE: qiandao_test
+          MARIADB_USER: qiandao
+          MARIADB_PASSWORD: qiandao-test-password
+          MARIADB_ROOT_PASSWORD: qiandao-root-test-password
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="healthcheck.sh --connect --innodb_initialized"
+          --health-interval=5s
+          --health-timeout=5s
+          --health-retries=20
+    env:
+      DB_TYPE: mysql
+      JAWSDB_MARIA_URL: mysql://qiandao:qiandao-test-password@127.0.0.1:3306/qiandao_test
+      QIANDAO_MARIADB_TEST_URL: mysql://qiandao:qiandao-test-password@127.0.0.1:3306/qiandao_test
+      COOKIE_SECRET: test-cookie-secret
+      AES_KEY: test-aes-key
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: co11ector/QianDao
+          ref: ${{ needs.resolve.outputs.main_sha }}
+          ssh-key: ${{ secrets.QIANDAO_READ_KEY }}
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.13"
+          cache: pip
+          cache-dependency-path: requirements-dev.txt
+      - name: Install dependencies
+        run: python -m pip install -r requirements-dev.txt
+      - name: Validate MariaDB schema migrations
+        run: python -m pytest -q -W error tests/integration/test_mariadb_schema.py
+
+  main-compose:
+    name: QianDao compose configuration
+    needs: resolve
+    if: needs.resolve.outputs.main_needed == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: co11ector/QianDao
+          ref: ${{ needs.resolve.outputs.main_sha }}
+          ssh-key: ${{ secrets.QIANDAO_READ_KEY }}
+          persist-credentials: false
+      - name: Validate Docker Compose
+        env:
+          COOKIE_SECRET: test-cookie-secret
+          AES_KEY: test-aes-key
+          QIANDAO_REVISION: ${{ needs.resolve.outputs.main_sha }}
+        run: |
+          docker compose config --quiet
+          docker compose -f qiandao-compose.nas.yml config --quiet
+
+  main-javascript:
+    name: QianDao JavaScript
+    needs: resolve
+    if: needs.resolve.outputs.main_needed == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: co11ector/QianDao
+          ref: ${{ needs.resolve.outputs.main_sha }}
+          ssh-key: ${{ secrets.QIANDAO_READ_KEY }}
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: "24"
+      - name: Install pinned pnpm
+        run: npm install --global pnpm@12.4.2
+      - name: Install web dependencies
+        run: pnpm --dir web install --frozen-lockfile
+      - name: Verify reproducible web bundle
+        run: pnpm --dir web build:check
+      - name: Run browser bridge tests
+        run: pnpm --dir web test
+      - name: Audit web runtime dependencies
+        run: pnpm --dir web audit --prod
+
+  main-ui-smoke:
+    name: QianDao desktop and mobile UI
+    needs: resolve
+    if: needs.resolve.outputs.main_needed == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    services:
+      redis:
+        image: redis:8.10.1-alpine
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd="redis-cli ping"
+          --health-interval=5s
+          --health-timeout=5s
+          --health-retries=20
+    env:
+      REDISCLOUD_URL: redis://127.0.0.1:6379
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: co11ector/QianDao
+          ref: ${{ needs.resolve.outputs.main_sha }}
+          ssh-key: ${{ secrets.QIANDAO_READ_KEY }}
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.13"
+          cache: pip
+          cache-dependency-path: requirements.txt
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: "24"
+      - name: Install application and UI dependencies
+        run: |
+          python -m pip install -r requirements.txt
+          npm install --global pnpm@12.4.2
+          pnpm --dir web install --frozen-lockfile
+      - name: Install Chromium
+        working-directory: web
+        run: pnpm exec playwright install --with-deps chromium
+      - name: Run desktop and mobile UI smoke checks
+        run: pnpm --dir web test:ui
+
+  main-docker-smoke:
+    name: QianDao Docker smoke
+    needs: resolve
+    if: needs.resolve.outputs.main_needed == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: co11ector/QianDao
+          ref: ${{ needs.resolve.outputs.main_sha }}
+          ssh-key: ${{ secrets.QIANDAO_READ_KEY }}
+          persist-credentials: false
+      - name: Build and verify QianDao image
+        env:
+          QIANDAO_REVISION: ${{ needs.resolve.outputs.main_sha }}
+        run: |
+          set -euo pipefail
+          docker network create qiandao-ci
+          docker volume create qiandao-ci-config
+          docker run -d --name qiandao-ci-redis --network qiandao-ci redis:8.10.1-alpine
+          for attempt in $(seq 1 30); do
+            if docker exec qiandao-ci-redis redis-cli ping | grep -q PONG; then break; fi
+            sleep 1
+          done
+          docker build \
+            --build-arg QIANDAO_VERSION=ci \
+            --build-arg QIANDAO_REVISION="$QIANDAO_REVISION" \
+            --tag qiandao:ci .
+          docker run -d --name qiandao-ci-app --network qiandao-ci \
+            -p 8923:80 \
+            -v qiandao-ci-config:/usr/src/app/config \
+            -e COOKIE_SECRET=ci-cookie-secret \
+            -e AES_KEY=ci-aes-key \
+            -e REDISCLOUD_URL=redis://qiandao-ci-redis:6379 \
+            qiandao:ci
+          for attempt in $(seq 1 90); do
+            if curl --fail --silent http://127.0.0.1:8923/ready >/dev/null; then break; fi
+            if [ "$attempt" -eq 90 ]; then docker logs qiandao-ci-app; exit 1; fi
+            sleep 1
+          done
+          curl --fail --silent http://127.0.0.1:8923/health
+          curl --fail --silent http://127.0.0.1:8923/ready
+          test "$(docker exec qiandao-ci-redis redis-cli ping)" = "PONG"
+          docker exec qiandao-ci-app python -c "import config, sqlite3; connection=sqlite3.connect(config.sqlite3.path); assert connection.execute('PRAGMA quick_check').fetchone()[0] == 'ok'"
+          test "$(docker image inspect qiandao:ci --format '{{ index .Config.Labels "org.opencontainers.image.revision" }}')" = "$QIANDAO_REVISION"
+      - name: Remove exact CI smoke resources
+        if: always()
+        run: |
+          docker rm -f qiandao-ci-app qiandao-ci-redis 2>/dev/null || true
+          docker volume rm qiandao-ci-config 2>/dev/null || true
+          docker network rm qiandao-ci 2>/dev/null || true
+
+  main-secrets-scan:
+    name: QianDao history secret scan
+    needs: resolve
+    if: needs.resolve.outputs.main_needed == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: co11ector/QianDao
+          ref: ${{ needs.resolve.outputs.main_sha }}
+          ssh-key: ${{ secrets.QIANDAO_READ_KEY }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Scan the whole history for committed secrets
+        run: |
+          set -euo pipefail
+          docker run --rm \
+            --user "$(id -u):$(id -g)" \
+            -v "${GITHUB_WORKSPACE}:/repo" \
+            -w /repo \
+            zricethezav/gitleaks:v8.30.1@sha256:b109bc5f8f76a38196a3e413704fc5b9e3c32360bce4e4b603bd6f45b3721dbb \
+            detect --no-banner --redact --verbose --log-opts="--all" --exit-code 1 .
+
+  main-tested:
+    name: Record QianDao gate
+    needs:
+      - resolve
+      - main-quality
+      - main-pytest
+      - main-mariadb
+      - main-compose
+      - main-javascript
+      - main-ui-smoke
+      - main-docker-smoke
+      - main-secrets-scan
+    if: >-
+      always() &&
+      needs.resolve.outputs.main_needed == 'true' &&
+      needs.main-quality.result == 'success' &&
+      needs.main-pytest.result == 'success' &&
+      needs.main-mariadb.result == 'success' &&
+      needs.main-compose.result == 'success' &&
+      needs.main-javascript.result == 'success' &&
+      needs.main-ui-smoke.result == 'success' &&
+      needs.main-docker-smoke.result == 'success' &&
+      needs.main-secrets-scan.result == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Write the tested commit marker
+        run: |
+          mkdir -p ci-markers
+          printf '%s\n' "${{ needs.resolve.outputs.main_sha }}" > ci-markers/main
+      - name: Cache the tested commit
+        uses: actions/cache/save@v4
+        with:
+          path: ci-markers/main
+          key: private-qian-dao-${{ needs.resolve.outputs.main_sha }}
+
+  extension-verify:
+    name: Cookie Extractor verify
+    needs: resolve
+    if: needs.resolve.outputs.extension_needed == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: co11ector/QianDao-Cookie-Extractor
+          ref: ${{ needs.resolve.outputs.extension_sha }}
+          ssh-key: ${{ secrets.QIANDAO_EXT_READ_KEY }}
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: "20"
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Test and build
+        run: npm run check
+      - name: Audit dependencies
+        run: npm audit --audit-level=high
+
+  extension-tested:
+    name: Record Cookie Extractor gate
+    needs:
+      - resolve
+      - extension-verify
+    if: >-
+      always() &&
+      needs.resolve.outputs.extension_needed == 'true' &&
+      needs.extension-verify.result == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Write the tested commit marker
+        run: |
+          mkdir -p ci-markers
+          printf '%s\n' "${{ needs.resolve.outputs.extension_sha }}" > ci-markers/extension
+      - name: Cache the tested commit
+        uses: actions/cache/save@v4
+        with:
+          path: ci-markers/extension
+          key: private-qian-dao-extension-${{ needs.resolve.outputs.extension_sha }}
