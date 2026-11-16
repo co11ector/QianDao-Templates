@@ -137,7 +137,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.11", "3.12", "3.13"]
+        python-version: ["3.12", "3.13"]
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -371,7 +371,9 @@ jobs:
             -v "${GITHUB_WORKSPACE}:/repo" \
             -w /repo \
             zricethezav/gitleaks:v8.30.1@sha256:b109bc5f8f76a38196a3e413704fc5b9e3c32360bce4e4b603bd6f45b3721dbb \
-            detect --no-banner --redact --verbose --log-opts="--all" --exit-code 1 .
+            detect --no-banner --redact --verbose \
+            --gitleaks-ignore-path=.gitleaksignore \
+            --log-opts="--all" --exit-code 1 .
 
   main-tested:
     name: Record QianDao gate

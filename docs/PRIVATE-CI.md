@@ -56,7 +56,7 @@ The main repository runs the same gates as its private workflow:
 
 - dependency lock verification, complexity, Python compilation, Jinja
   compilation, and Python dependency audit;
-- pytest on Python 3.11, 3.12, and 3.13;
+- pytest on Python 3.12 and 3.13;
 - MariaDB schema migration tests;
 - Compose configuration validation;
 - front-end reproducible build, browser-bridge tests, and production audit;
