@@ -18,9 +18,11 @@ name: Sync and curate upstream templates
 
 on:
   schedule:
-    # Twice a day: GitHub delays scheduled runs (observed ~7h on this repo), so the
-    # second slot is what makes an upstream submission land the same day it is merged.
-    - cron: '17 3,15 * * *'
+    # Every four hours. GitHub delays scheduled runs (observed ~7h on this repo) and
+    # queues them, so the wall-clock gap between two slots is longer than the cron
+    # spacing suggests; a four-hour cron still lands an upstream submission within
+    # the same day. Each run costs about 20 seconds, so the extra frequency is cheap.
+    - cron: '17 */4 * * *'
   workflow_dispatch:
 
 permissions:
