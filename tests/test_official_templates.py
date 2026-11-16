@@ -770,3 +770,29 @@ def test_local_metadata_names_every_official_template():
     assert OFFICIAL_PUBLIC_SLUGS <= set(metadata)
     assert "lwgod" in metadata
     assert all(metadata[slug].get("name") for slug in OFFICIAL_PUBLIC_SLUGS)
+
+
+def test_koolcenter_matches_the_current_discourse_session_contract():
+    path, document = local_templates()["koolcenter-daily-login"]
+    session_steps = [
+        step
+        for step in document
+        if step["request"]["url"].endswith("/session/current.json")
+    ]
+
+    assert len(session_steps) == 2, path
+    for step in session_steps:
+        success = step["rule"]["success_asserts"][0]["re"]
+        assert re.search(
+            success, '{"id":42,"username":"fixture-user","trust_level":1}'
+        ), path
+        assert re.search(
+            success, '{"current_user":{"username":"wrong-shape"}}'
+        ) is None, path
+
+        status_failures = [
+            assertion
+            for assertion in step["rule"]["failed_asserts"]
+            if assertion["from"] == "status"
+        ]
+        assert status_failures == [{"re": "^404$", "from": "status"}], path
