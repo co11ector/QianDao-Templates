@@ -33,5 +33,5 @@ README 顶部由生成器 `tools/normalize.py` 输出，固定为：**方形 LOG
 </p>
 
 <h1 align="center">QianDao Templates</h1>
-<p align="center">QianDao 的公共模板模块 · 上游社区模板每日自动同步并按站点类型整理</p>
+<p align="center">QianDao 的公共模板模块 · 上游社区模板定时自动同步并按站点类型整理</p>
 ```

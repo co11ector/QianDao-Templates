@@ -683,6 +683,19 @@ def test_the_readme_tells_readers_how_to_subscribe(tmp_path):
     assert "<仓库地址>/<filename>" in readme
 
 
+def test_the_readme_states_the_four_hour_sync_schedule(tmp_path):
+    """The workflow polls every four hours; the generated docs must not claim a daily run."""
+    root = build_upstream(tmp_path)
+    target = tmp_path / "out"
+    normalize.normalise(root, target, local_root=tmp_path / "local")
+
+    readme = (target / "README.md").read_text(encoding="utf-8")
+
+    assert "每 4 小时自动执行一次" in readme
+    assert "03:17 UTC" not in readme
+    assert "每日更新" not in readme
+
+
 def test_the_readme_describes_categories_without_counts(tmp_path):
     """The overview explains what each directory is for; the counts are left to the app."""
     root = build_upstream(tmp_path)

@@ -6,21 +6,21 @@
 </p>
 
 <h1 align="center">QianDao Templates</h1>
-<p align="center"><strong>QianDao 官方精选公共模板仓库</strong> · 社区签到模板每日自动同步与分类整理</p>
+<p align="center"><strong>QianDao 官方精选公共模板仓库</strong> · 社区签到模板定时自动同步与分类整理</p>
 
 <p align="center">
   <a href="https://github.com/co11ector/QianDao-Templates/actions/workflows/sync-upstream.yml"><img src="https://github.com/co11ector/QianDao-Templates/actions/workflows/sync-upstream.yml/badge.svg" alt="Sync Upstream Status"></a>
   <img src="https://img.shields.io/badge/Format-HAR%20Blueprint-0284c7?logo=json" alt="HAR Blueprint">
-  <img src="https://img.shields.io/badge/Auto%20Sync-Daily%2003%3A17%20UTC-2563eb?logo=githubactions" alt="Auto Sync">
+  <img src="https://img.shields.io/badge/Auto%20Sync-Every%204%20Hours-2563eb?logo=githubactions" alt="Auto Sync">
   <img src="https://img.shields.io/badge/License-MIT-059669" alt="License">
 </p>
 
-> 「QianDao 自动化运行台」**官方精选公共模板仓库**：持续从上游社区仓库 [`qd-today/templates`](https://github.com/qd-today/templates) 每日自动同步、校验并按站点类型分类归纳，供 [QianDao](https://github.com/co11ector/QianDao) 用户开箱即用、一键订阅与定时签到。
+> 「QianDao 自动化运行台」**官方精选公共模板仓库**：持续从上游社区仓库 [`qd-today/templates`](https://github.com/qd-today/templates) 定时自动同步、校验并按站点类型分类归纳，供 [QianDao](https://github.com/co11ector/QianDao) 用户开箱即用、一键订阅与定时签到。
 
 ### 🌟 核心特性
 
 - ⚡ **开箱可用**：订阅本仓库即可在应用内挑选模板，不必自己收集；
-- 🔄 **每日更新**：每天自动比对上游社区变动，24 小时内全自动跟进同步；
+- 🔄 **定时更新**：每 4 小时自动比对上游社区变动，GitHub 计划任务可能延迟；
 - 📂 **整理清楚**：按站点类型分目录，索引与文件一一对应；
 - 🛡️ **来源可查**：每个模板的作者与出处都保留在索引里。
 
@@ -39,7 +39,7 @@
 
 完整列表见 [`tpls_history.json`](tpls_history.json)：索引里 `filename` 为相对路径，`url` 指向本仓库，应用按 `<仓库地址>/<filename>` 抓取。
 
-其中 **24 个是本项目自有的模板**（放在 `local/` 下，每日同步不会覆盖）：
+其中 **24 个是本项目自有的模板**（放在 `local/` 下，定时同步不会覆盖）：
 
 | 模板 | 位置 |
 | --- | --- |
@@ -70,7 +70,7 @@
 
 ## 自动同步
 
-`.github/workflows/sync-upstream.yml` 每天 **03:17 UTC（北京时间 11:17）** 自动执行，也可以手动触发：
+`.github/workflows/sync-upstream.yml` 每 4 小时自动执行一次（GitHub 计划任务可能延迟），也可以手动触发：
 
 1. 先跑整理脚本的测试 —— **不通过就中止**，不会发布被改坏的索引；
 2. 浅克隆上游仓库；
@@ -93,7 +93,7 @@
 分支       master
 ```
 
-添加后点一次「**强制更新**」即可拉到最新模板。本仓库每天自动同步上游，所以之后刷新模板列表取到的就是最新内容，不必反复手动更新。
+添加后点一次「**强制更新**」即可拉到最新模板。本仓库按计划自动同步上游，所以之后刷新模板列表取到的就是最新内容，不必反复手动更新。
 
 ## 许可与来源
 
